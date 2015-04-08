@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'xtalus',
     environment: environment,
-    baseURL: '/',
+    baseURL: '/xtalus/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
