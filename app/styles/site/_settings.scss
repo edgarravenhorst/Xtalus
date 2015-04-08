@@ -3,6 +3,7 @@
 
 @import "coderehab/functions";
 
+
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
@@ -23,9 +24,11 @@ $color6: #d7d7d7;   // middle gray
 $color7: #b6b6b6;
 $color8: #000;      // black
 $color9: #919191;   //
+$color10: #1f1f1f;  // black almost
 
 $body-color: #fff;
 $text-color: $color4;
+
 @import "coderehab/basic-setup";
 
 $susy: (

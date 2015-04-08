@@ -6,7 +6,7 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
-    this.route('about');
+    this.route('projecten');
     this.route('favorites', { path: '/favs' });
     this.route('profile');
     this.resource('profile');

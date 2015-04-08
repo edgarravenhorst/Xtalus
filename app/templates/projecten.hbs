@@ -1,0 +1,11 @@
+Onderstaand de projecten:
+
+{{#each demand in demands}}
+
+    <h2 {{action "showDetails"}} >{{demand.demandDescription}}</h2>
+    <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span>
+    <p>{{demand.demandSummary}}</p>
+
+    <hr>
+
+{{/each}}

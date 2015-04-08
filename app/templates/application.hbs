@@ -1,52 +1,51 @@
 <header id="top-bar">
     {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
-
     <input id="search-field" type="text" placeholder="Zoeken" />
-
-
 </header>
 
 <aside id="main-aside">
 
-    <button id="toggle-main-aside"><</button>
+    <button id="toggle-main-aside" {{action "collapseAside"}}> <span>&lt;</span> </button>
 
-        <nav id="main-nav">
-            <ul>
-                <li>{{#link-to 'about'}}About{{/link-to}}</li>
-                <li>{{#link-to 'favorites'}}Favorites{{/link-to}}</li>
-                <li>{{#link-to 'profile'}}Profile{{/link-to}}</li>
-            </ul>
+    <nav id="main-nav">
 
-            <hr>
+        <ul>
+            <li>{{#link-to 'projecten'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
+            <li>{{#link-to 'favorites'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
+            <li>{{#link-to 'profile'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
+        </ul>
 
-            <h3>Projecten</h3>
+        <hr>
 
+        <h3>Projecten</h3>
 
-            <ul>
-                <li><a href="">Intranet GGnet</a></li>
-                <li><a href="">Ecologische auto</a></li>
-                <li><a href="">Duurzaam kantoor</a></li>
-            </ul>
-
-
-            <a href="">Meer</a>
-
-            <hr>
-
-            <h3>Netwerk</h3>
-
-            <ul>
-                <li><a href="">Henk Jan</a></li>
-                <li><a href="">Tom Brouwer</a></li>
-                <li><a href="">Jan Jansen</a></li>
-            </ul>
+        <ul>
+            <li><a href="">Intranet GGnet</a></li>
+            <li><a href="">Ecologische auto</a></li>
+            <li><a href="">Duurzaam kantoor</a></li>
+        </ul>
 
 
-            <a href="">Meer</a>
+        <a href="">Meer</a>
 
-        </nav>
+        <hr>
 
-        </aside>
+        <h3>Netwerk</h3>
+
+        <ul>
+            <li><a href="">Henk Jan</a></li>
+            <li><a href="">Tom Brouwer</a></li>
+            <li><a href="">Jan Jansen</a></li>
+        </ul>
+
+
+        <a href="">Meer</a>
+
+    </nav>
+
+</aside>
+
+<section id="main-wrapper">
 
     <header id="sub-bar">
 
@@ -67,6 +66,29 @@
 
 
     </header>
-    <section id="content">
-        {{outlet}}
+
+    <section id="content-wrapper">
+
+        <aside id="content-aside">
+        </aside>
+
+        <header id="content-bar">
+
+            11 lopende projecten
+
+            <ul>
+                <li><button>1</button></li>
+                <li><button>2</button></li>
+                <li><button>3</button></li>
+            </ul>
+
+        </header>
+
+
+        <section id="content">
+            {{outlet}}
+        </section>
+
     </section>
+
+</section>

@@ -16,7 +16,7 @@ var ProfileController = Ember.Controller.extend({
 
     setISISVars: function(person){
         this.setProperties({
-            title: 'Hallo ' + person.firstName + ' ' + person.lastName + ','
+            title: person.firstName + ' ' + person.lastName + ','
         });
     }
 });

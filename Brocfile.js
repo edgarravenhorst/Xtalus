@@ -5,6 +5,7 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var app = new EmberApp();
 
 app.import('vendor/isis.min.js');
+app.import('vendor/font-awesome.min.css');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

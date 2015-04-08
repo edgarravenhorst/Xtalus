@@ -10,7 +10,12 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 App = Ember.Application.extend({
     modulePrefix: config.modulePrefix,
     podModulePrefix: config.podModulePrefix,
-    Resolver: Resolver
+    Resolver: Resolver,
+    actions: {
+        collapseAside: function(){
+            alert('click')
+        },
+    }
 });
 
 $ISIS.settings = {
@@ -20,6 +25,12 @@ $ISIS.settings = {
 
 $ISIS.auth.login('frans', 'pass', function(){
 
+});
+
+$ISIS.init(function(data){
+    data.activePerson.invoke({}, function(person){
+        $ISIS.user = person;
+    });
 });
 
 loadInitializers(App, config.modulePrefix);
