@@ -1,0 +1,81 @@
+<header id="top-bar">
+
+    {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
+
+    <input id="search-field" type="text" placeholder="Zoeken" />
+
+
+</header>
+
+<aside id="main-aside">
+
+    <button id="toggle-main-aside"><</button>
+
+        <nav id="main-nav">
+
+            <ul>
+                <li>{{#link-to 'about'}}About{{/link-to}}</li>
+                <li>{{#link-to 'favorites'}}Favorites{{/link-to}}</li>
+                <li>{{#link-to 'profile'}}Profile{{/link-to}}</li>
+            </ul>
+
+            <hr>
+
+            <h3>Projecten</h3>
+
+
+            <ul>
+                <li><a href="">Intranet GGnet</a></li>
+                <li><a href="">Ecologische auto</a></li>
+                <li><a href="">Duurzaam kantoor</a></li>
+            </ul>
+
+
+            <a href="">Meer</a>
+
+            <hr>
+
+            <h3>Netwerk</h3>
+
+            <ul>
+                <li><a href="">Henk Jan</a></li>
+                <li><a href="">Tom Brouwer</a></li>
+                <li><a href="">Jan Jansen</a></li>
+            </ul>
+
+
+            <a href="">Meer</a>
+
+        </nav>
+
+        </aside>
+
+    <header id="sub-bar">
+
+        <button>Nieuw project</button>
+
+        <h4>Projecten</h4>          
+
+        <nav id="sub-nav">
+            <ul>
+                <li><a href="">Alle</a></li>
+                <li><a class="active" href="">Lopend</a></li>
+                <li><a href="">In afwachting</a></li>
+                <li><a href="">Afgerond</a></li>
+                <li><a href="">Uitgenodigd</a></li>
+                <li><a href="">Van mij</a></li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <section id="content">
+        <h2 id="title">Welcome to Ember.js</h2>
+
+        {{ render 'profile' }}
+        
+        {{outlet}}
+    </section>
+
+
