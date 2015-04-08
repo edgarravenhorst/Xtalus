@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global $ISIS */
 
 var ProfileController = Ember.Controller.extend({
 
@@ -6,9 +7,18 @@ var ProfileController = Ember.Controller.extend({
 
     init: function() {
         this._super();
-        console.log('controller called');
-    }
 
+        $ISIS.init(function(data){
+            data.activePerson.invoke({}, this.setISISVars.bind(this));
+        }.bind(this));
+
+    },
+
+    setISISVars: function(person){
+        this.setProperties({
+            title: 'Hallo ' + person.firstName + ' ' + person.lastName + ','
+        });
+    }
 });
 
 export default ProfileController;

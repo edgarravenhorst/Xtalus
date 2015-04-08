@@ -8,9 +8,18 @@ var App;
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 App = Ember.Application.extend({
-  modulePrefix: config.modulePrefix,
-  podModulePrefix: config.podModulePrefix,
-  Resolver: Resolver
+    modulePrefix: config.modulePrefix,
+    podModulePrefix: config.podModulePrefix,
+    Resolver: Resolver
+});
+
+$ISIS.settings = {
+    baseurl: "http://xtalus.apps.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.api/",
+    method: 'GET',
+};
+
+$ISIS.auth.login('frans', 'pass', function(){
+
 });
 
 loadInitializers(App, config.modulePrefix);
