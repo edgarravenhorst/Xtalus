@@ -7,7 +7,6 @@ var ProfileController = Ember.Controller.extend({
 
     init: function() {
         this._super();
-
         $ISIS.init(function(data){
             data.activePerson.invoke({}, this.setISISVars.bind(this));
         }.bind(this));

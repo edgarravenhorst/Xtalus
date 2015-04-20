@@ -4,9 +4,9 @@
 </header>
 
 <section>
-    <form method="post">
-        <input type="text" id="username"/>
-        <input type="password" id="password">
-        <input type="submit" value="login" />
+    <form method="post" {{action "login" on="submit"}}>
+        {{input value=username type="text"}}
+        {{input value=password type="password"}}
+        <button type="submit" class="btn">Log in!</button>
     </form>
 </section>

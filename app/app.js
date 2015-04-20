@@ -23,10 +23,6 @@ $ISIS.settings = {
     method: 'GET',
 };
 
-$ISIS.auth.login('frans', 'pass', function(){
-
-});
-
 $ISIS.init(function(data){
     data.activePerson.invoke({}, function(person){
         $ISIS.user = person;
