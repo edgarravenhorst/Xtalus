@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 var LoginView = Ember.View.extend({
-    layoutName: 'layout/login',
-    templateName: 'profile',
     bodyclass: 'classname',
     init: function() {
         this._super();
