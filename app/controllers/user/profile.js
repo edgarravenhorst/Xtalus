@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import UserController from '../user';
 /* global $ISIS */
 
-var ProfileController = Ember.Controller.extend({
+var ProfileController = UserController.extend({
 
     title:'hallo daar',
 
@@ -9,10 +10,8 @@ var ProfileController = Ember.Controller.extend({
         this._super();
 
         $ISIS.init(function(data){
-            console.log(data);
             data.activePerson.invoke({}, this.setISISVars.bind(this));
         }.bind(this));
-
     },
 
     setISISVars: function(person){
