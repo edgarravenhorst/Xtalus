@@ -2,6 +2,10 @@ import Ember from 'ember';
 /* global $ISIS */
 
 var AppController = Ember.Controller.extend({
+    init: function() {
+        this._super();
+
+    },
 
     actions: {
         collapseAside: function(){
