@@ -2,11 +2,6 @@ import Ember from 'ember';
 /* global $ISIS */
 
 var UserController = Ember.Controller.extend({
-
-    init: function() {
-        this._super();
-    },
-
     actions: {
         login: function(){
             $ISIS.auth.login(this.get("username"), this.get("password"), function(data){
@@ -25,7 +20,5 @@ var UserController = Ember.Controller.extend({
         },
     }
 });
+
 export default UserController;
-
-
-
