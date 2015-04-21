@@ -8,9 +8,9 @@
         <img src="assets/images/login-header-bg.jpg"/>
         <p>{{message}}</p>
         <form method="post" {{action "login" on="submit"}}>
-            {{input value=username type="text"}}
-            {{input value=password type="password"}}
-            <button type="submit" class="btn">Log in!</button>
+            {{input value=username type="text" placeholder="gebruikersnaam"}}
+            {{input value=password type="password" placeholder="wachtwoord"}}
+            <button type="submit" class="btn">Inloggen</button>
         </form>
 
     </section>
