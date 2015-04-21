@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import UserRoute from '../user';
 
-var ProfileRoute = Ember.Route.extend({
+var ProfileRoute = UserRoute.extend({
     init: function() {
         this._super();
         if (!$ISIS.getCookie('auth')) {

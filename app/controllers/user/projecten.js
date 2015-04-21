@@ -1,7 +1,9 @@
 import Ember from 'ember';
+import UserController from '../user';
+
 /* global $ISIS */
 
-var ProjectenController = Ember.Controller.extend({
+var ProjectenController = UserController.extend({
 
     demands:[],
 
@@ -11,7 +13,6 @@ var ProjectenController = Ember.Controller.extend({
         $ISIS.init(function(data){
             data.activePerson.invoke({}, function(person){
                 var demands = person.collectDemands;
-
                 demands.extract(this.setISISVars.bind(this));
             }.bind(this));
         }.bind(this));

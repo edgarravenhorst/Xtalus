@@ -6,4 +6,3 @@ var ProfileView = Ember.View.extend({
 });
 
 export default ProfileView;
-

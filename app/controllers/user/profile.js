@@ -4,10 +4,12 @@ import UserController from '../user';
 
 var ProfileController = UserController.extend({
 
-    title:'hallo daar',
+    title:'',
 
     init: function() {
         this._super();
+
+        this.set('title', '');
 
         $ISIS.init(function(data){
             data.activePerson.invoke({}, this.setISISVars.bind(this));

@@ -6,6 +6,7 @@
 
     <section>
         <img src="assets/images/login-header-bg.jpg"/>
+        <p>{{message}}</p>
         <form method="post" {{action "login" on="submit"}}>
             {{input value=username type="text"}}
             {{input value=password type="password"}}
