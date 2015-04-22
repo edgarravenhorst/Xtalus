@@ -8,21 +8,19 @@ var ProjectenController = UserController.extend({
     demands:[],
 
     init: function() {
+        var self = this;
         this._super();
 
-        $ISIS.init(function(data){
-            data.activePerson.invoke({}, function(person){
-                var demands = person.collectDemands;
-                demands.extract(this.setISISVars.bind(this));
-            }.bind(this));
-        }.bind(this));
+        this.set('demands', null);
 
-    },
 
-    setISISVars: function(demands){
-        console.log(demands);
-        this.setProperties({
-            demands: demands,
+        this.initPerson().then(function(person){
+            var projecten = person.collectDemands;
+            projecten.extract(function(projecten){
+                self.setProperties({
+                    demands: projecten,
+                });
+            });
         });
     },
 

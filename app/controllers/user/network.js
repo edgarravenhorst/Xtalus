@@ -2,7 +2,7 @@ import Ember from 'ember';
 import UserController from '../user';
 /* global $ISIS */
 
-var ProfileController = UserController.extend({
+var NetworkController = UserController.extend({
 
     title:'',
 
@@ -10,14 +10,17 @@ var ProfileController = UserController.extend({
         this._super();
 
         this.set('title', '');
-        this.initPerson().then(this.setUserData.bind(this));
+
+        $ISIS.init(function(data){
+            data.activePerson.invoke({}, this.setISISVars.bind(this));
+        }.bind(this));
     },
 
-    setUserData: function(person){
+    setISISVars: function(person){
         this.setProperties({
             title: person.firstName + ' ' + person.lastName + ','
         });
     }
 });
 
-export default ProfileController;
+export default NetworkController;

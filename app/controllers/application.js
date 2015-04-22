@@ -18,6 +18,3 @@ var AppController = Ember.Controller.extend({
 
 });
 export default AppController;
-
-
-

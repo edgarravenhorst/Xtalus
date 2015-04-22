@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var ProfileView = Ember.View.extend({
     layoutName: 'layout/main',
-    templateName: 'profile'
+    templateName: 'pages/user/profile'
 });
 
 export default ProfileView;

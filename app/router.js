@@ -10,5 +10,6 @@ export default Router.map(function() {
     this.resource('user', function(){
         this.route('profile')
         this.route('projecten');
+        this.route('network');
     });
 });
