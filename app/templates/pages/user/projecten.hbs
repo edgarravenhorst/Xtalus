@@ -1,11 +1,17 @@
-Onderstaand de projecten:
+<section id="demands">
 
-{{#each demand in demands}}
+    {{#each demand in demands}}
 
-    <h2 {{action "showDetails"}} >{{demand.demandDescription}}</h2>
-    <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span>
-    <p>{{demand.demandSummary}}</p>
+    <section class="demand" {{action "showDetails"}}>
+        <img src="assets/images/plant.jpg"/>
+        <section class="description">
+            <h4>{{demand.demandDescription}}</h4>
+            <!-- <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span> -->
+            <!-- <p>{{demand.demandSummary}}</p>-->
+            <p>{{demand.demandOwner.title}}</p>
+        </section>
+    </section>
 
-    <hr>
+    {{/each}}
 
-{{/each}}
+</section>

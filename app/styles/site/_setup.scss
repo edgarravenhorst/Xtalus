@@ -37,6 +37,31 @@ body{
         //@include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.2));
         z-index:2;
 
+        button#profile-nav-toggle-btn{
+            background-color:transparent;
+            border:0;
+            float:right;
+            font-size:18px;
+            @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0));
+            padding: 0;
+            margin: 0 20px 0 0;
+            line-height: 44px;
+        }
+
+        span#profile-username{
+            color:$color3;
+            float:right;
+            line-height:44px;
+            margin-right:20px;
+        }
+
+        img#profilePicture{
+            float:right;
+            @include border-radius(100%);
+            margin:5px 20px 0 0;
+            @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.2));
+        }
+
         button#logout-btn{
             float:right;
             background-color:$color2;
@@ -189,6 +214,41 @@ body{
             width:100%;
             box-sizing:border-box;
 
+
+            // demands overview
+            #demands{
+
+                .demand{
+                    width:258px;
+                    height:240px;
+                    background-color:$color3;
+                    border:1px solid #ccc;
+                    @include border-radius(5px);
+                    float:left;
+                    margin:0 30px 20px 0;
+
+                    .description{
+                        background-color:#fafafa;
+                        height:76px;
+                        @include border-radius(5px);
+                        text-align: center;
+                        padding:10px 30px;
+                        box-sizing: border-box;
+
+                        h4{
+                            margin:0;
+                            font-size:14px;
+                            font-weight: normal;
+                            color:black;
+                        }
+
+                    }
+
+
+                }
+
+            }
+
             aside#content-aside{
                 box-sizing:border-box;
                 position:fixed;
@@ -216,7 +276,29 @@ body{
 
                 ul{
                     float:right;
-                    li{ display:inline-block; }
+                    li{
+                        display:inline-block;
+
+                        button{
+                            background-color:#fff;
+                            width: 40px;
+                            height:40px;
+                            padding:0;
+                            margin-left:20px;
+                            i{ font-size:16px; color:#9a9a9a; }
+
+
+                            &:hover, &.active{
+                                background-color:$color2;
+
+                                i{
+                                    color:$color3;
+                                }
+
+                            }
+                        }
+
+                    }
                 }
 
                 @include single-transition(right, 0.3s);

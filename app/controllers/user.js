@@ -6,6 +6,8 @@ var UserController = Ember.Controller.extend({
     init: function() {
         this._super();
         this.set('title', '');
+        this.set('fullname', '');
+        this.set('profilePicture', '');
     },
 
     initPerson: function(){
@@ -14,6 +16,9 @@ var UserController = Ember.Controller.extend({
             if (!self.person) {
                 $ISIS.init(function(data){
                     data.activePerson.invoke({}, function(person){
+                        var picture = person.picture.split(':');
+                        self.set('profilePicture','data:image/png;base64,'+picture[2]);
+                        self.set('fullname',person.firstName + " " + person.lastName);
                         self.set('person', person);
                         resolve(person)
                     });

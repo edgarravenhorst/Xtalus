@@ -17,6 +17,7 @@ var ProjectenController = UserController.extend({
         this.initPerson().then(function(person){
             var projecten = person.collectDemands;
             projecten.extract(function(projecten){
+                console.log(projecten);
                 self.setProperties({
                     demands: projecten,
                 });
