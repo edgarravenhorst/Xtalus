@@ -53,6 +53,7 @@ body{
             float:right;
             line-height:44px;
             margin-right:20px;
+            font-size:16px;
         }
 
         img#profilePicture{
@@ -249,6 +250,33 @@ body{
 
             }
 
+            // add project popup
+            section#add-project-popup{
+                display:none;
+                position:fixed;
+                left:0;
+                top:0;
+                bottom:0;
+                right:0;
+                width:100%;
+                height:100%;
+                z-index:9999;
+                background-color:rgba(0,0,0,0.2);
+
+
+                section{
+                    position:relative;
+                    top:200px;
+                    width:400px;
+                    height:500px;
+                    padding:20px;
+                    margin:0 auto;
+                    background-color:#ccc;
+                    @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.2));
+
+                }
+            }
+
             aside#content-aside{
                 box-sizing:border-box;
                 position:fixed;
@@ -269,10 +297,12 @@ body{
                 top:140px;
                 left:0;
                 right:0;
-                padding:40px 50px;
+                padding:30px 50px;
                 height:100px;
                 border-bottom:1px solid #e0e0e0;
                 box-sizing: border-box;
+
+                p{ line-height:25px; display: table; float:left; }
 
                 ul{
                     float:right;
@@ -285,7 +315,7 @@ body{
                             height:40px;
                             padding:0;
                             margin-left:20px;
-                            i{ font-size:16px; color:#9a9a9a; }
+                            i{ font-size:14px; color:#9a9a9a; }
 
 
                             &:hover, &.active{
