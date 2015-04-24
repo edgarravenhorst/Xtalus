@@ -13,7 +13,7 @@ var AppController = Ember.Controller.extend({
         },
         showDetails: function(){
             Ember.$('body').toggleClass('aside-left-collapsed');
-        },
+        }
     }
 
 });

@@ -29,6 +29,9 @@ var ProjectenController = UserController.extend({
         showDetails: function(){
             Ember.$('body').toggleClass('aside-right-visible');
         },
+        collapseAddProjectsPopup: function(){
+            Ember.$('body').toggleClass('popup-add-projects-collapsed');
+        }
     }
 });
 

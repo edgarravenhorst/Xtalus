@@ -375,6 +375,15 @@ body.aside-right-visible section#main-wrapper section#content-wrapper {
     }
 }
 
+body.popup-add-projects-collapsed{
+
+
+    #add-project-popup{
+        display:block;
+    }
+
+}
+
 // login
 section#page-login {
     padding:0;
