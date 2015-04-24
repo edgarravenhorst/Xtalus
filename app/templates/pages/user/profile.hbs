@@ -1,2 +1,36 @@
-<h2>Hallo {{ title }}</h2>
-{{outlet}}
+
+<header id="sub-bar">
+
+        <button>Nieuw project</button>
+
+        <h4>{{ fullname }}</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'user.profile'}}Algemeen{{/link-to}}</li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <section id="content-wrapper">
+
+        <aside id="content-aside">
+        </aside>
+
+        <aside id='profile_info'>
+
+
+
+        </aside>
+
+
+        <section id="content">
+
+        </section>
+
+    </section>
+
+
+
