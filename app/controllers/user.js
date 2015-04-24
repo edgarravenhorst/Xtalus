@@ -3,22 +3,6 @@ import Ember from 'ember';
 
 var UserController = Ember.Controller.extend({
 
-    init: function() {
-        this._super();
-        this.set('fullname', '');
-        this.set('profilePicture', '');
-
-        var self = this;
-
-
-        this.initPerson().then(function(){
-            console.log('been here');
-            self.set('profilePicture','data:image/png;base64,'+picture[2]);
-            self.set('fullname',person.firstName + " " + person.lastName);
-            self.set('person', person);
-        });
-    },
-
     initPerson: function(){
         var self = this;
         return new Promise(function(resolve, reject){
@@ -27,6 +11,11 @@ var UserController = Ember.Controller.extend({
                     data.activePerson.invoke({}, function(person){
                         var picture = person.picture.split(':');
 
+                        var fullname = person.firstName + " " + person.lastName
+                        if (person.middleName) fullname = person.firstName + " " + person.middleName + " " + person.lastName
+
+                        self.set('profilePicture','data:image/png;base64,'+picture[2]);
+                        self.set('fullname',fullname);
                         resolve(person)
                     });
                 });

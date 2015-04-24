@@ -1,17 +1,85 @@
-<section id="demands">
+<section id='page' class='projects'>
+    <header id="sub-bar">
 
-    {{#each demand in demands}}
+        <button {{action "showPopup" 'new-project'}}>Nieuw project</button>
 
-    <section class="demand" {{action "showDetails"}}>
-        <img src="assets/images/plant.jpg"/>
-        <section class="description">
-            <h4>{{demand.demandDescription}}</h4>
-            <!-- <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span> -->
-            <!-- <p>{{demand.demandSummary}}</p>-->
-            <p>{{demand.demandOwner.title}}</p>
+        <h4>Projecten</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'user.projecten'}}Alle projecten{{/link-to}}</li>
+            </ul>
+        </nav>
+
+
+    </header>
+    <section id="content">
+        {{outlet}}
+
+        <section id="content-wrapper">
+
+            <aside id="content-aside">
+            </aside>
+
+            <header id="content-bar">
+
+                11 lopende projecten
+
+                <ul>
+                    <li><button>1</button></li>
+                    <li><button>2</button></li>
+                    <li><button>3</button></li>
+                </ul>
+
+            </header>
+
+            <section id="content">
+                {{outlet}}
+
+                <section id="demands">
+
+                    {{#each demand in demands}}
+
+                    <section class="demand" {{action "showDetails"}}>
+                        <img src="assets/images/plant.jpg"/>
+                        <section class="description">
+                            <h4>{{demand.demandDescription}}</h4>
+                            <!-- <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span> -->
+                            <!-- <p>{{demand.demandSummary}}</p>-->
+                            <p>{{demand.demandOwner.title}}</p>
+                        </section>
+                    </section>
+
+                    {{/each}}
+
+                </section>
+
+                <section id="add-project-popup">
+
+                    <section>
+
+                        <header>
+                            <h2>Nieuw project</h2>
+                        </header>
+                        <form method="post" {{action "addProject" on="submit"}}>
+                            {{input value=title type="text" placeholder="Titel"}}<br>
+                            {{textarea value=description placeholder="Description"}}<br>
+                            <button type="submit" class="btn">Project toevoegen</button>
+                        </form>
+
+                    </section>
+
+                </section>
+            </section>
+
         </section>
+
     </section>
-
-    {{/each}}
-
 </section>
+
+
+
+
+
+
+

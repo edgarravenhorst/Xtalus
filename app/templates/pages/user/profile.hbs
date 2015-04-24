@@ -1,7 +1,8 @@
+<section id='page' class='profile'>
 
-<header id="sub-bar">
+    <header id="sub-bar">
 
-        <button>Nieuw project</button>
+        <img class="profile-image" src="{{profilePicture}}" width="100" height="100"/>
 
         <h4>{{ fullname }}</h4>
 
@@ -14,23 +15,38 @@
 
     </header>
 
-    <section id="content-wrapper">
+    <aside id='user-info'>
+        <h4>{{ fullname }}</h4>
+        <h5>{{ roles }}</h5>
 
-        <aside id="content-aside">
-        </aside>
+        <ul>
+            <li>Locatie: {{ location }}</li>
+            <li>Geboortedatum: {{ birthdate }}</li>
+        </ul>
 
-        <aside id='profile_info'>
+        <ul>
+            <li><strong>Beschikbaarheid</strong></li>
+            <li>1 april t/m 30 maart</li>
+            <li>maandag</li>
+            <li>dinsdag</li>
+        </ul>
+    </aside>
 
+    <section id='profile-data'>
 
+        <section id='passion'>
+            <h3>Passie</h3>
+            <p>{{passion}}</p>
+        </section>
 
-        </aside>
-
-
-        <section id="content">
-
+        <section id='qualities'>
+            <h3>Kwaliteiten</h3>
+            <p>{{qualities}}</p>
         </section>
 
     </section>
+
+</section>
 
 
 

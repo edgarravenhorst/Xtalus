@@ -9,13 +9,14 @@ var ProfileController = UserController.extend({
     init: function() {
         this._super();
 
-        this.set('title', '');
         this.initPerson().then(this.setUserData.bind(this));
     },
 
     setUserData: function(person){
+        console.log(person);
         this.setProperties({
-            title: person.firstName + ' ' + person.lastName + ','
+            birthdate: person.dateOfBirth,
+            roles: person.roles
         });
     }
 });

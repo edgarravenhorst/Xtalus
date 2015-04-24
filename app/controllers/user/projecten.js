@@ -28,7 +28,12 @@ var ProjectenController = UserController.extend({
     actions: {
         showDetails: function(){
             Ember.$('body').toggleClass('aside-right-visible');
+            return false;
         },
+        showPopup: function(name){
+            Ember.$('section#page.projects').toggleClass('popup-' + name);
+            return false;
+        }
     }
 });
 

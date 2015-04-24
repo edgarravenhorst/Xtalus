@@ -53,6 +53,7 @@ body{
             float:right;
             line-height:44px;
             margin-right:20px;
+            font-size:16px;
         }
 
         img#profilePicture{
@@ -92,7 +93,7 @@ body{
         top:80px;
         left:0;
         bottom:0;
-        z-index:1;
+        z-index:3;
         padding:40px 70px 0 100px;
         background-color:$color4;
         border-right:1px solid #c2c2c2;
@@ -249,6 +250,35 @@ body{
 
             }
 
+            // add project popup
+            section#add-project-popup{
+                display:none;
+                position:fixed;
+                left:0;
+                top:0;
+                bottom:0;
+                right:0;
+                opacity: 0;
+                width:100%;
+                height:100%;
+                z-index:9999;
+                background-color:rgba(0,0,0,0.2);
+                @include single-transition(opacity, 0.3s);
+
+
+                section{
+                    position:relative;
+                    top:200px;
+                    width:400px;
+                    height:500px;
+                    padding:20px;
+                    margin:0 auto;
+                    background-color:#ccc;
+                    @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.2));
+
+                }
+            }
+
             aside#content-aside{
                 box-sizing:border-box;
                 position:fixed;
@@ -269,10 +299,12 @@ body{
                 top:140px;
                 left:0;
                 right:0;
-                padding:40px 50px;
+                padding:30px 50px;
                 height:100px;
                 border-bottom:1px solid #e0e0e0;
                 box-sizing: border-box;
+
+                p{ line-height:25px; display: table; float:left; }
 
                 ul{
                     float:right;
@@ -285,7 +317,7 @@ body{
                             height:40px;
                             padding:0;
                             margin-left:20px;
-                            i{ font-size:16px; color:#9a9a9a; }
+                            i{ font-size:14px; color:#9a9a9a; }
 
 
                             &:hover, &.active{
@@ -343,6 +375,17 @@ body.aside-right-visible section#main-wrapper section#content-wrapper {
     header#content-bar{
         right:380px;
     }
+}
+
+section#page.projects.popup-new-project{
+
+    //Check eff onderaan hoe ik de andere pagina's heb ingericht.
+    //Ik denk dat dit the way to go is :)
+    #add-project-popup{
+        opacity: 1 !important;
+        display:block !important;
+    }
+
 }
 
 // login
@@ -424,3 +467,138 @@ section#page-login {
 
     }
 }
+
+//=============================================================================================
+// PAGE PROFILE
+//=============================================================================================
+
+section#page.profile {
+
+    header#sub-bar {
+        padding-left:225px;
+        z-index: 2;
+        .profile-image {
+            position:absolute;
+            left:75px;
+            bottom:-30px;
+            @include border-radius(100% 100%);
+
+        }
+    }
+
+    aside#user-info {
+        position:absolute;
+        left:0px;
+        width:300px;
+        top:0;
+        bottom:0;
+        background-color: #fefefe;
+        border-right: 1px solid #e0e0e0;
+        top:140px;
+        z-index: 1;
+        box-sizing: border-box;
+        padding:50px;
+
+        h4{
+            font-weight: bolder;
+            margin-bottom:0;
+        }
+
+        ul{
+            margin: 30px 0;
+            li{
+                margin:0px;
+            }
+        }
+    }
+
+    section#profile-data {
+        position: absolute;
+        top:140px;
+        left:300px;
+        bottom:0;
+        right:0;
+        overflow: auto;
+
+        h3 {
+            font-weight: bolder;
+        }
+
+        section {
+            box-sizing: border-box;
+            padding: 50px;
+        }
+
+        section#passion {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        section#qualities {
+
+        }
+    }
+
+}
+
+
+//=============================================================================================
+// PAGE NETWORK
+//=============================================================================================
+
+section#page.network {
+
+    header#sub-bar {
+
+    }
+
+    section#connections {
+        position: absolute;
+        top:140px;
+        left:0;
+        bottom:0;
+        right:0;
+        overflow: auto;
+
+        h5 {margin:15px 0; margin-bottom:-20px; padding:0 50px;}
+
+        table {
+            width:100%;
+            td,th {
+                padding:30px 50px;
+                text-align: left;
+                border-bottom:1px solid #e0e0e0;
+            }
+
+            th {
+                padding-bottom:10px
+            }
+        }
+        @include single-transition(right, 0.3s);
+    }
+
+    aside#connection-details {
+        background-color:$color4;
+        position:absolute;
+        width:380px;
+        top:140px;
+        right:0;
+        bottom:0;
+        box-sizing:border-box;
+        padding:50px;
+        border-left:1px solid #c2c2c2;
+        @include translateX(100%);
+        @include single-transition(transform, 0.3s);
+    }
+
+    &.show-details {
+        section#connections {
+            right:380px;
+        }
+
+        aside#connection-details {
+            @include translateX(0%);
+        }
+    }
+}
+
+

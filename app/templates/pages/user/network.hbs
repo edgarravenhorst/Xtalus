@@ -1,3 +1,39 @@
-Netwerk
+<section id='page' class='network'>
 
+    <header id="sub-bar">
 
+        <h4>Netwerk</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'user.network'}}Alle connecties{{/link-to}}</li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id='connections' class='list'>
+
+        <h5>{{ connectionCount }} connecties</h5>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Branch</th>
+                <th>Rol</th>
+            </tr>
+
+            {{#each connection in connections}}
+            <tr {{action 'showConnectionDetails'}}>
+                <td><img src="{{connection.profileImage}}"/> {{connection.username}}</td>
+                <td>{{connection.branch}}</td>
+                <td>{{connection.role}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
+
+    <aside id='connection-details'>
+        <button {{action 'hideConnectionDetails'}}>sluiten</button>
+    </aside>
+
+</section>

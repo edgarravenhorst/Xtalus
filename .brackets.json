@@ -3,7 +3,7 @@
         "node_modules",
         "bower_components",
         ".git",
-        "dist",
-        "vendor"
-    ]
+        ".sass-cache",
+        "tmp"
+    ],
 }
