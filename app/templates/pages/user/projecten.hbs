@@ -57,14 +57,16 @@
                 <section id="add-project-popup">
 
                     <section>
-                        <button class="btn" {{action "closePopup" 'new-project'}}>Close</button>
+                        <button class="btn close-popup-btn" {{action "closePopup" 'new-project'}}>X</button>
                         <header>
                             <h2>Nieuw project</h2>
                         </header>
                         <form method="post" {{action "addProject" on="submit"}}>
-                            {{input value=title type="text" placeholder="Titel"}}<br>
-                            {{textarea value=description placeholder="Description"}}<br>
-                            <button type="submit" class="btn">Project toevoegen</button>
+                            {{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
+                            {{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
+                            {{textarea value=story placeholder="Verhaal" class="txt-area"}}<br>
+
+                            <button type="submit" class="btn add-project-btn">Project toevoegen</button>
                         </form>
 
                     </section>

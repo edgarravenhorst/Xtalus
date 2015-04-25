@@ -265,7 +265,6 @@ body{
                 background-color:rgba(0,0,0,0.2);
                 @include single-transition(opacity, 0.3s);
 
-
                 section{
                     position:relative;
                     top:200px;
@@ -273,8 +272,36 @@ body{
                     height:500px;
                     padding:20px;
                     margin:0 auto;
-                    background-color:#ccc;
+                    background-color:#fff;
                     @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.2));
+
+                    .txt-field, .txt-area{
+                        border:1px solid #ccc;
+                        width:100%;
+                        margin-bottom:10px;
+                        padding:14px 20px;
+                        box-sizing: border-box;
+                        font-size:14px;
+                    }
+
+                    .txt-field{
+                        height:30px;
+                        line-height:30px;
+                    }
+
+                    .txt-area{
+                        min-height:150px;
+                    }
+
+                    button.close-popup-btn{
+                        float:right;
+
+                        &:hover{ background-color:$color2;}
+                    }
+
+                    button.add-project-btn{
+                        background-color:$color2;
+                    }
 
                 }
             }
