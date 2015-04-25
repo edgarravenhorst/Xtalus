@@ -20,6 +20,7 @@ var ProjectenController = UserController.extend({
                 console.log(projecten);
                 self.setProperties({
                     demands: projecten,
+                    projectCount: projecten.length,
                 });
             });
         });
