@@ -41,7 +41,12 @@
 
         <section id='qualities'>
             <h3>Kwaliteiten</h3>
-            <p>{{qualities}}</p>
+
+            <ul>
+                {{#each quality in qualities}}
+                    <li>{{ quality }}</li>
+                {{/each}}
+            </ul>
         </section>
 
     </section>
