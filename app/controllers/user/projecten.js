@@ -34,6 +34,16 @@ var ProjectenController = UserController.extend({
         showPopup: function(name){
             Ember.$('section#page.projects').toggleClass('popup-' + name);
             return false;
+        },
+        closePopup: function(name){
+            Ember.$('section#page.projects').removeClass('popup-' + name);
+            return false;
+        },
+        addProject: function(){
+            this.get("title");
+            this.get("description");
+
+            console.log($ISIS.initPerson());
         }
     }
 });
