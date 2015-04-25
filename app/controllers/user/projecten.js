@@ -8,13 +8,16 @@ var ProjectenController = UserController.extend({
     demands:[],
 
     init: function() {
-        var self = this;
+
         this._super();
 
         this.set('demands', null);
+        this.initDemands()
+    },
 
-
-        this.initPerson().then(function(person){
+    initDemands: function(){
+        var self = this;
+        return this.initPerson().then(function(person){
             var projecten = person.collectDemands;
             projecten.extract(function(projecten){
                 console.log(projecten);
@@ -40,10 +43,20 @@ var ProjectenController = UserController.extend({
             return false;
         },
         addProject: function(){
-            this.get("title");
-            this.get("description");
+            var title = this.get("title");
+            var description = this.get("description");
 
-            console.log($ISIS.initPerson());
+            this.initPerson().then(function(person){
+                console.log(person)
+                person.createPersonsDemand.invoke({
+                    demandDescription: title,
+                    demandSummary: description
+                }, function(response){
+                    this.initDemands();
+                    Ember.$('section#page.projects').removeClass('popup-new-project');
+                }.bind(this));
+
+            }.bind(this));
         }
     }
 });
