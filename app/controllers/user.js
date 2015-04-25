@@ -7,7 +7,7 @@ var UserController = Ember.Controller.extend({
         var self = this;
         return new Promise(function(resolve, reject){
             if (!self.person) {
-                $ISIS.init(function(data){
+                $ISIS.init(null, function(data){
                     data.activePerson.invoke({}, function(person){
                         var picture = person.picture.split(':');
 
@@ -22,6 +22,32 @@ var UserController = Ember.Controller.extend({
             }else{
                 resolve(self.get('person'))
             }
+        });
+    },
+
+    getDemandByID:function(uniqueID){
+        return new Promise(function(resolve, reject){
+            $ISIS.init(null, function(data){
+                data.findDemandByUniqueId.invoke({
+                    uUID: uniqueID,
+                },function(result){
+                    console.log('found it!');
+                    resolve(result);
+                });
+            });
+        });
+    },
+
+    getProfileByID:function(uniqueID){
+        return new Promise(function(resolve, reject){
+            $ISIS.init(null, function(data){
+                data.findPersonByUniqueId.invoke({
+                    uUID: uniqueID,
+                },function(result){
+                    console.log('found it!');
+                    resolve(result);
+                });
+            });
         });
     },
 

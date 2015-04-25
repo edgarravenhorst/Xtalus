@@ -19,6 +19,10 @@
         <section id="content-wrapper">
 
             <aside id="content-aside">
+
+                <h4>{{selectedDemand.demandDescription}}</h4>
+                <p>{{selectedDemand.demandSummary}}</p>
+
             </aside>
 
             <header id="content-bar">
@@ -40,13 +44,14 @@
 
                     {{#each demand in demands}}
 
-                    <section class="demand" {{action "showDetails"}}>
+                    <section class="demand" {{action "showDetails" demand.uniqueItemId }}>
                         <img src="assets/images/plant.jpg"/>
                         <section class="description">
                             <h4>{{demand.demandDescription}}</h4>
                             <!-- <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span> -->
                             <!-- <p>{{demand.demandSummary}}</p>-->
                             <p>{{demand.demandOwner.title}}</p>
+                            {{demand.uniqueItemID}}
                         </section>
                     </section>
 
@@ -61,7 +66,7 @@
                         <header>
                             <h2>Nieuw project</h2>
                         </header>
-                        <form method="post" {{action "addProject" on="submit"}}>
+                        <form method="post" {{action "createProject" on="submit"}}>
                             {{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
                             {{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
                             {{textarea value=story placeholder="Verhaal" class="txt-area"}}<br>

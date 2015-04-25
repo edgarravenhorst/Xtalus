@@ -23,7 +23,7 @@
             </tr>
 
             {{#each connection in connections}}
-            <tr {{action 'showConnectionDetails'}}>
+            <tr {{action 'showConnectionDetails' connection }}>
                 <td><img src="{{connection.profileImage}}"/> {{connection.username}}</td>
                 <td>{{connection.branch}}</td>
                 <td>{{connection.role}}</td>
@@ -33,7 +33,12 @@
     </section>
 
     <aside id='connection-details'>
-        <button {{action 'hideConnectionDetails'}}>sluiten</button>
+
+        <h4>{{selectedPerson.fullname}}</h4>
+        <h5>{{selectedPerson.roles}}</h5>
+
+
+        <button {{action 'hideConnectionDetails'}}>x</button>
     </aside>
 
 </section>
