@@ -13,6 +13,10 @@ App = Ember.Application.extend({
     Resolver: Resolver,
 });
 
+Ember.RSVP.on('error', function(reason) {
+    console.assert(false, reason);
+});
+
 $ISIS.settings = {
     baseurl: "http://xtalus.apps.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.api/",
     method: 'GET',

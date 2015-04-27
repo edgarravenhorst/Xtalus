@@ -21,8 +21,12 @@
             <aside id="content-aside">
 
                 <h4>{{selectedDemand.demandDescription}}</h4>
+                <h5>samenvatting</h5>
                 <p>{{selectedDemand.demandSummary}}</p>
+                <h5>verhaal</h5>
+                <p>{{selectedDemand.demandStory}}</p>
 
+                <button {{action 'hideDetails'}}>x</button>
             </aside>
 
             <header id="content-bar">

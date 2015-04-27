@@ -7,45 +7,33 @@ var NetworkController = UserController.extend({
     title:'',
 
     init: function() {
-        var self = this;
         this._super();
+        var self = this;
 
         this.set('title', '');
+        this.set('connections', '');
 
-        this.initPerson().then(function(person){
-            person.collectPersonalContacts
-                .extract(function(rawdata){
-                var connections = [];
-                console.log(rawdata);
-                $.each(rawdata, function(i, connectiondata){
-                    var connection = connectiondata;
-                    connection.username = connectiondata.contactPerson.title
-                    connections.push(connection);
-                });
+        this.getConnections();
+    },
 
-                self.setProperties({
-                    connections: connections,
-                    connectionCount: connections.length,
-                });
-            });
+    getConnections: function(){
+        var self = this;
+        this.initPerson()
+            .then(this.initConnections)
+            .then(this.getConnectionDetails)
+            .then(function(connections){
+            self.setProperties({
+                connections: connections,
+                connectionCount: connections.length,
+            })
         });
     },
 
     actions: {
         showConnectionDetails: function(connection){
             console.log(connection);
-            $ISIS.init(connection.contactPerson.href, function(person){
 
-                person.fullname = person.firstName + " " + person.lastName
-                if (person.middleName) person.fullname = person.firstName + " " + person.middleName + " " + person.lastName
-                console.log(person);
-                this.set("selectedPerson", person)
-
-            }.bind(this))
-
-            /*this.getProfileByID().then(function(profile){
-                console.log(connection);
-            })*/
+            this.set("selectedPerson", connection)
 
 
             $('section#page.network').addClass('show-details');
@@ -55,8 +43,36 @@ var NetworkController = UserController.extend({
             $('section#page.network').removeClass('show-details');
             return false;
         },
-    }
+    },
 
+    getConnectionDetails: function(connections) {
+        var connectiondata = connectiondata;
+        var a_promises = Array();
+        $.each(connections, function(i, connectiondata){
+
+            a_promises.push($ISIS.init(connectiondata.contactPerson.href).then(function(connection){
+                var picture = connection.picture.split(':');
+                connection.profilePicture = 'data:image/png;base64,'+picture[2];
+                connection.fullname = connectiondata.fullname
+
+                return connection
+            }))
+
+        });
+        return Promise.all(a_promises);
+    },
+
+    initConnections: function(person) {
+        var self = this;
+        return person.collectPersonalContacts.extract().then(function(rawdata){
+            var connections = [];
+            $.each(rawdata, function(i, connectiondata){
+                connectiondata.fullname = connectiondata.contactPerson.title
+                connections.push(connectiondata);
+            });
+            return connections;
+        });
+    },
 });
 
 export default NetworkController;

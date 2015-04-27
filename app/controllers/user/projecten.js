@@ -8,9 +8,7 @@ var ProjectenController = UserController.extend({
     demands:[],
 
     init: function() {
-
         this._super();
-
         this.set('demands', null);
         this.initDemands()
     },
@@ -18,8 +16,7 @@ var ProjectenController = UserController.extend({
     initDemands: function(){
         var self = this;
         return this.initPerson().then(function(person){
-            var projecten = person.collectDemands;
-            projecten.extract(function(projecten){
+            person.collectDemands.extract().then(function(projecten){
                 self.setProperties({
                     demands: projecten,
                     projectCount: projecten.length,
@@ -30,15 +27,16 @@ var ProjectenController = UserController.extend({
 
     actions: {
         showDetails: function(itemID){
-
+            this.set('selectedDemand', null);
             this.getDemandByID(itemID).then(function(demand){
-                console.log(demand);
-
                 this.set('selectedDemand', demand);
-
             }.bind(this));
 
-            Ember.$('body').toggleClass('aside-right-visible');
+            Ember.$('body').addClass('aside-right-visible');
+            return false;
+        },
+        hideDetails:function(){
+            Ember.$('body').removeClass('aside-right-visible');
             return false;
         },
         showPopup: function(name){
@@ -50,19 +48,22 @@ var ProjectenController = UserController.extend({
             return false;
         },
         createProject: function(){
+            var self = this;
             var title = this.get("title");
-            var description = this.get("description");
+            var summary = this.get("summary");
+            var story = this.get("story");
 
             this.initPerson().then(function(person){
                 person.createPersonsDemand.invoke({
                     demandDescription: title,
-                    demandSummary: description
-                }, function(response){
-                    this.initDemands();
+                    demandSummary: summary,
+                    demandStory: story
+                }).then( function(response){
+                    self.initDemands();
                     Ember.$('section#page.projects').removeClass('popup-new-project');
-                }.bind(this));
+                });
 
-            }.bind(this));
+            });
         }
     }
 });

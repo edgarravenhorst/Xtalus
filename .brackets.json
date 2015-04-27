@@ -1,9 +1,5 @@
 {
-    "jwolfe.file-tree-exclude.list": [
-        "node_modules",
-        "bower_components",
-        ".git",
-        ".sass-cache",
-        "tmp"
-    ],
+    "jscodehints.detectedExclusions": [
+        "/home/edgar/git/xtalus/tmp/caching-writer-dest-dir_D8puOW.tmp/assets/vendor.js"
+    ]
 }

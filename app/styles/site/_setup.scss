@@ -314,7 +314,7 @@ body{
                 right:0;
                 bottom:0;
                 z-index:1;
-                padding:0;
+                padding:50px;
                 background-color:$color4;
                 border-left:1px solid #c2c2c2;
                 @include translateX(100%);
@@ -415,8 +415,12 @@ section#page.projects.popup-new-project{
 
 }
 
-// login
-section#page-login {
+
+//=============================================================================================
+// PAGE LOGIN
+//=============================================================================================
+
+section#page.login {
     padding:0;
     margin:0;
     position:absolute;
@@ -424,16 +428,19 @@ section#page-login {
     right: 0;
     top: 0;
     bottom: 0;
-    background:#fff url('../assets/images/login-bg.jpg') repeat-x left top;
 
     header{
+        background-color:$color1;
         position:absolute;
-        top:200px;
+        top:0;
         left:0;
         right:0;
+        bottom:50%;
         text-align: center;
         margin:0;
         padding:0;
+        box-sizing: border-box;
+        padding-top:4%;
         h1, h3{
             margin:0;
             padding:0;
@@ -444,11 +451,12 @@ section#page-login {
     }
 
     section{
-        position: relative;
+        position: absolute;
         display: table;
-        top: 350px;
-        margin:0 auto;
+        top: 50%;
+        left:50%;
         width:360px;
+        @include translate(-50%, -50%);
         height:auto;
         padding:0 0 20px 0;
         background-color:$color3;
@@ -487,11 +495,8 @@ section#page-login {
                 @include border-radius(10px);
                 @include single-box-shadow(2px, 2px, 2px, 2px, rgba(0,0,0,0.1));
                 cursor:pointer;
-
             }
         }
-
-
     }
 }
 
@@ -561,7 +566,14 @@ section#page.profile {
         }
 
         section#qualities {
+            ul {
+                list-style: disc;
+                padding:0 20px;
 
+                li{
+                    margin:0;
+                }
+            }
         }
     }
 
@@ -603,6 +615,18 @@ section#page.network {
             th {
                 padding-bottom:10px
             }
+
+            .profilePicture {
+                background-position: 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: inline-block;
+                margin-right: 25px;
+                @include border-radius(100%);
+                width:40px;
+                height: 40px;
+                vertical-align: middle;
+            }
         }
         @include single-transition(right, 0.3s);
     }
@@ -619,6 +643,18 @@ section#page.network {
         border-left:1px solid #c2c2c2;
         @include translateX(100%);
         @include single-transition(transform, 0.3s);
+
+        header.profilePicture {
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: block;
+            width:380px;
+            height: 200px;
+            margin:-50px;
+            margin-bottom:0;
+        }
+
     }
 
     &.show-details {

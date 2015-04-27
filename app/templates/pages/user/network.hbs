@@ -24,20 +24,19 @@
 
             {{#each connection in connections}}
             <tr {{action 'showConnectionDetails' connection }}>
-                <td><img src="{{connection.profileImage}}"/> {{connection.username}}</td>
+                <td><div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div> {{connection.fullname}}</td>
                 <td>{{connection.branch}}</td>
-                <td>{{connection.role}}</td>
+                <td>{{connection.roles}}</td>
             </tr>
             {{/each}}
         </table>
     </section>
 
     <aside id='connection-details'>
-
+        <header class='profilePicture' style="background-image: url({{ selectedPerson.profilePicture }}) "></header>
         <h4>{{selectedPerson.fullname}}</h4>
         <h5>{{selectedPerson.roles}}</h5>
-
-
+        <p>{{selectedPerson.dateOfBirth}}</p>
         <button {{action 'hideConnectionDetails'}}>x</button>
     </aside>
 
