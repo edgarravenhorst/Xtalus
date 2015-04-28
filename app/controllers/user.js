@@ -8,37 +8,16 @@ var UserController = Ember.Controller.extend({
         return $ISIS.init().then(function(isis){
             return isis.activePerson.invoke()
                 .then(
-                function(person){
-                    var picture = person.picture.split(':');
-                    var fullname = person.firstName + " " + person.lastName
-                    if (person.middleName) fullname = person.firstName + " " + person.middleName + " " + person.lastName
-
-                    self.set('profilePicture','data:image/png;base64,'+picture[2]);
-                    self.set('fullname',fullname);
-                    return person;
+                function(activeUser){
+                    var picture = activeUser.picture.split(':');
+                    var fullname = activeUser.firstName + " " + activeUser.lastName
+                    if (activeUser.middleName) fullname = activeUser.firstName + " " + activeUser.middleName + " " + activeUser.lastName
+                    activeUser.profilePicture = 'data:image/png;base64,'+picture[2];
+                    activeUser.fullname = fullname;
+                    self.set('activeUser', activeUser);
+                    return activeUser;
                 })
                 .catch(function(error){console.log(error)});
-        });
-    },
-
-    getDemandByID:function(uniqueID){
-        return $ISIS.init().then(function(isis){
-            return isis.findDemandByUniqueId.invoke({
-                uUID: uniqueID,
-            });
-        });
-    },
-
-    getProfileByID:function(uniqueID){
-        return new Promise(function(resolve, reject){
-            $ISIS.init(null, function(data){
-                data.findPersonByUniqueId.invoke({
-                    uUID: uniqueID,
-                },function(result){
-                    console.log('found it!');
-                    resolve(result);
-                });
-            });
         });
     },
 

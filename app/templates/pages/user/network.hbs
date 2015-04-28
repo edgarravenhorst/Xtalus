@@ -37,6 +37,7 @@
         <h4>{{selectedPerson.fullname}}</h4>
         <h5>{{selectedPerson.roles}}</h5>
         <p>{{selectedPerson.dateOfBirth}}</p>
+        <button {{action 'getUserProfile' selectedPerson.uniqueItemId }}>Bekijk profiel</button>
         <button {{action 'hideConnectionDetails'}}>sluiten</button>
     </aside>
 

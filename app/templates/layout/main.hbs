@@ -4,8 +4,8 @@
 
 
     <button id="profile-nav-toggle-btn">&#8964;</button>
-    <span id="profile-username" {{action "logout"}}>{{fullname}}</span>
-    <img id="profilePicture" src="{{profilePicture}}" width="35" height="35"/>
+    <span id="profile-username" {{action "logout"}}>Logout {{activePerson.fullname}}</span>
+    <img id="profilePicture" src="{{activePerson.profilePicture}}" width="35" height="35"/>
 
 
 </header>
@@ -43,6 +43,6 @@
 
 <section id="main-wrapper">
 
-    {{yield}}
+    {{outlet}}
 
 </section>

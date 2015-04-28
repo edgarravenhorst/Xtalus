@@ -2,22 +2,16 @@ import Ember from 'ember';
 import UserController from '../user';
 /* global $ISIS */
 
-var ProfileController = UserController.extend({
+var ProfileGetController = Ember.Controller.extend({
 
-    title:'',
-
-    init: function() {
-        this._super();
-        this.initPerson().then(this.setUserData.bind(this));
-        console.log('been here')
-    },
-
-    setUserData: function(person){
+    setPersonData: function(person){
         self = this;
 
+        var picture = person.picture.split(':');
         this.setProperties({
             birthdate: person.dateOfBirth,
-            roles: person.roles
+            roles: person.roles,
+            profilePicture: 'data:image/png;base64,'+picture[2],
         });
 
         person.collectSupplies.extract().then(function(result){
@@ -45,4 +39,4 @@ var ProfileController = UserController.extend({
     }
 });
 
-export default ProfileController;
+export default ProfileGetController;

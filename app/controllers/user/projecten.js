@@ -3,29 +3,18 @@ import UserController from '../user';
 
 /* global $ISIS */
 
-var ProjectenController = UserController.extend({
+var ProjectenController = Ember.Controller.extend({
 
-    demands:[],
-
-    init: function() {
-        this._super();
-        this.set('demands', null);
-        this.initDemands()
-    },
-
-    initDemands: function(){
-        var self = this;
-        return this.initPerson().then(function(person){
-            person.collectDemands.extract().then(function(projecten){
-                self.setProperties({
-                    demands: projecten,
-                    projectCount: projecten.length,
-                });
+    getDemandByID:function(uniqueID){
+        return $ISIS.init().then(function(isis){
+            return isis.findDemandByUniqueId.invoke({
+                uUID: uniqueID,
             });
         });
     },
 
     actions: {
+
         showDetails: function(itemID){
             this.set('selectedDemand', null);
             this.getDemandByID(itemID).then(function(demand){
@@ -35,53 +24,50 @@ var ProjectenController = UserController.extend({
             Ember.$('body').addClass('aside-right-visible');
             return false;
         },
+
         hideDetails:function(){
             Ember.$('body').removeClass('aside-right-visible');
             return false;
         },
+
         showPopup: function(name){
             Ember.$('section#page.projects').toggleClass('popup-' + name);
             return false;
         },
+
         closePopup: function(name){
             Ember.$('section#page.projects').removeClass('popup-' + name);
             return false;
         },
+
         delProject: function(){
             var self = this;
             var demand = this.get('selectedDemand');
-            var r = confirm("Weet je het zeker?");
+            var confirmed = confirm("Weet je het zeker?");
 
-            if(r == true){
-                demand.deleteDemand.invoke({confirmDelete: r}).then(function(result){
-                    console.log(result);
-                    self.initDemands();
-                    Ember.$('body').removeClass('aside-right-visible');
-                })
-            }
-            else{
-                return false;
-            }
-
-
+            if(confirmed)
+                demand.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
+                    self.send('refreshDemands');
+                    self.send('hideDetails')
+                });
         },
+
         createProject: function(){
             var self = this;
             var title = this.get("title");
             var summary = this.get("summary");
             var story = this.get("story");
 
-            this.initPerson().then(function(person){
-                person.createPersonsDemand.invoke({
-                    demandDescription: title,
-                    demandSummary: summary,
-                    demandStory: story
-                }).then( function(response){
-                    self.initDemands();
-                    Ember.$('section#page.projects').removeClass('popup-new-project');
-                });
-
+            this.get('activePerson').createPersonsDemand.invoke({
+                demandDescription: title,
+                demandSummary: summary,
+                demandStory: story
+            }).then(function(){
+                self.send('refreshDemands');
+                self.send('closePopup', 'new-project');
             });
+
+
         }
     }
 });
