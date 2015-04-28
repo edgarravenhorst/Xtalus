@@ -319,6 +319,23 @@ body{
                 border-left:1px solid #c2c2c2;
                 @include translateX(100%);
                 @include single-transition(transform, 0.3s);
+
+
+                header.projectPicture {
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    display: block;
+                    width:380px;
+                    height: 200px;
+                    margin:-50px;
+                    margin-bottom:0;
+                }
+
+                button{
+                    background-color:$color2;
+                }
+
             }
 
             header#content-bar{
@@ -586,6 +603,8 @@ section#page.profile {
 
 section#page.network {
 
+    overflow: hidden;
+
     header#sub-bar {
 
     }
@@ -653,6 +672,10 @@ section#page.network {
             height: 200px;
             margin:-50px;
             margin-bottom:0;
+        }
+
+        button{
+            background-color:$color2;
         }
 
     }
