@@ -47,6 +47,24 @@ var ProjectenController = UserController.extend({
             Ember.$('section#page.projects').removeClass('popup-' + name);
             return false;
         },
+        delProject: function(){
+            var self = this;
+            var demand = this.get('selectedDemand');
+            var r = confirm("Weet je het zeker?");
+
+            if(r == true){
+                demand.deleteDemand.invoke({confirmDelete: r}).then(function(result){
+                    console.log(result);
+                    self.initDemands();
+                    Ember.$('body').removeClass('aside-right-visible');
+                })
+            }
+            else{
+                return false;
+            }
+
+
+        },
         createProject: function(){
             var self = this;
             var title = this.get("title");
