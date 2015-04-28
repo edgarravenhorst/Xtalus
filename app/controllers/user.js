@@ -52,7 +52,7 @@ var UserController = Ember.Controller.extend({
                 }
                 if (data.success){
                     this.initPerson();
-                    this.transitionToRoute('user.profile');
+                    this.transitionToRoute('user.projecten');
                 }
             }.bind(this));
         },

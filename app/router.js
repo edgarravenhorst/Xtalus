@@ -8,7 +8,12 @@ var Router = Ember.Router.extend({
 export default Router.map(function() {
     this.route('login');
     this.resource('user', function(){
-        this.route('profile')
+        this.resource('profile', function(){
+
+            this.route('me')
+            this.route(':id')
+
+        })
         this.route('projecten');
         this.route('network');
     });

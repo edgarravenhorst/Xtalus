@@ -2,7 +2,7 @@ import Ember from 'ember';
 import UserController from '../user';
 /* global $ISIS */
 
-var ProfileController = UserController.extend({
+var ProfileIndexController = UserController.extend({
 
     title:'',
 
@@ -45,4 +45,4 @@ var ProfileController = UserController.extend({
     }
 });
 
-export default ProfileController;
+export default ProfileIndexController;
