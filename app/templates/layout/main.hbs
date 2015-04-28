@@ -1,0 +1,48 @@
+<header id="top-bar">
+    {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
+    <input id="search-field" type="text" placeholder="Zoeken" />
+
+
+    <button id="profile-nav-toggle-btn">&#8964;</button>
+    <span id="profile-username" {{action "logout"}}>{{fullname}}</span>
+    <img id="profilePicture" src="{{profilePicture}}" width="35" height="35"/>
+
+
+</header>
+
+<aside id="main-aside">
+
+    <!--<button id="toggle-main-aside" {{action "collapseAside"}}> <span>&lt;</span> </button>-->
+
+    <nav id="main-nav">
+
+        <ul>
+            <li>{{#link-to 'user.projecten'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
+            <li>{{#link-to 'user.network'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
+            <li>{{#link-to 'user.profile'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
+        </ul>
+
+        <hr>
+
+        <h3>Projecten</h3>
+
+        <ul>
+            <li>{{#link-to 'user.projecten'}}Intranet GGnet{{/link-to}}</li>
+            <li>{{#link-to 'user.projecten'}}Ecologische auto{{/link-to}}</li>
+            <li>{{#link-to 'user.projecten'}}Duurzaam kantoor{{/link-to}}</li>
+        </ul>
+
+
+        {{#link-to 'user.projecten'}}Meer{{/link-to}}
+
+        <hr>
+
+    </nav>
+
+</aside>
+
+<section id="main-wrapper">
+
+    {{yield}}
+
+</section>

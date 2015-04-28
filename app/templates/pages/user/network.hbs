@@ -1,0 +1,43 @@
+<section id='page' class='network'>
+
+    <header id="sub-bar">
+
+        <h4>Netwerk</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'user.network'}}Alle connecties{{/link-to}}</li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id='connections' class='list'>
+
+        <h5>{{ connectionCount }} connecties</h5>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Branch</th>
+                <th>Rol</th>
+            </tr>
+
+            {{#each connection in connections}}
+            <tr {{action 'showConnectionDetails' connection }}>
+                <td><div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div> {{connection.fullname}}</td>
+                <td>{{connection.branch}}</td>
+                <td>{{connection.roles}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
+
+    <aside id='connection-details'>
+        <header class='profilePicture' style="background-image: url({{ selectedPerson.profilePicture }}) "></header>
+        <h4>{{selectedPerson.fullname}}</h4>
+        <h5>{{selectedPerson.roles}}</h5>
+        <p>{{selectedPerson.dateOfBirth}}</p>
+        <button {{action 'hideConnectionDetails'}}>x</button>
+    </aside>
+
+</section>
