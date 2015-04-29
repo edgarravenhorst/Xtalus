@@ -67,7 +67,6 @@ var ProjectenController = Ember.Controller.extend({
                 self.send('closePopup', 'new-project');
             });
 
-
         }
     }
 });
