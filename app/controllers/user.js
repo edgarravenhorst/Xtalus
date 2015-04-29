@@ -3,7 +3,9 @@ import Ember from 'ember';
 
 var UserController = Ember.Controller.extend({
     actions: {
+
         login: function(){
+            console.log('login')
             $ISIS.auth.login(this.get("username"), this.get("password")).then(function(data){
                 console.log(data);
                 if (data.message) {
@@ -14,12 +16,6 @@ var UserController = Ember.Controller.extend({
                     this.transitionToRoute('user.projecten');
                 }
             }.bind(this));
-            return false;
-        },
-
-        logout: function(){
-            $ISIS.auth.logout();
-            this.transitionToRoute('login');
             return false;
         },
     }

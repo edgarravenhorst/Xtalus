@@ -24,6 +24,14 @@ var UserRoute = Ember.Route.extend({
 
     setupController: function(controller, model){
         controller.set('activePerson', model)
+    },
+
+    actions: {
+        logout: function(){
+            console.log('logout')
+            $ISIS.auth.logout();
+            this.refresh();
+        },
     }
 });
 
