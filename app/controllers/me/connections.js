@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import UserController from '../user';
 /* global $ISIS */
 
 var NetworkController = Ember.Controller.extend({
@@ -17,7 +16,7 @@ var NetworkController = Ember.Controller.extend({
         },
 
         getUserProfile: function(userID){
-            this.transitionToRoute('profile.get:id', userID);
+            this.transitionToRoute('profile', userID);
         },
     },
 

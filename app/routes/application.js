@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var UserRoute = Ember.Route.extend({
+var IndexRoute = Ember.Route.extend({
 
     beforeModel:function(params, transition){
         //if(this.controller) this.controller.init();
@@ -9,7 +9,7 @@ var UserRoute = Ember.Route.extend({
         }
     },
 
-    model:function(params){
+    model: function(){
         return $ISIS.init().then(function(isis){
             return isis.activePerson.invoke().then(function(activePerson){
                 var picture = activePerson.picture.split(':');
@@ -20,19 +20,8 @@ var UserRoute = Ember.Route.extend({
                 return activePerson;
             });
         });
-    },
-
-    setupController: function(controller, model){
-        controller.set('activePerson', model)
-    },
-
-    actions: {
-        logout: function(){
-            console.log('logout')
-            $ISIS.auth.logout();
-            this.refresh();
-        },
     }
+
 });
 
-export default UserRoute;
+export default IndexRoute;

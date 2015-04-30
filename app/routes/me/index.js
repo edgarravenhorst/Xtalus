@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import UserRoute from '../user';
 
 var ProfileGetRoute = Ember.Route.extend({
     model: function(params) {
-        var activePerson = this.modelFor('user');
+        var activePerson = this.modelFor('me');
         return activePerson.collectSupplies.extract().then(function(result){
             return result[0].collectSupplyProfiles.extract().then(function(result) {
                 return result[0].collectProfileElements.extract();
@@ -12,12 +11,13 @@ var ProfileGetRoute = Ember.Route.extend({
     },
 
     setupController: function(controller, supplies) {
-        var activePerson = this.modelFor('user');
+        var activePerson = this.modelFor('me');
         var picture = activePerson.picture.split(':');
 
         controller.setProperties({
             birthdate: activePerson.dateOfBirth,
             roles: activePerson.roles,
+            fullname: activePerson.fullname,
             profilePicture: 'data:image/png;base64,'+picture[2],
         });
 

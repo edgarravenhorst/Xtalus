@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import UserController from '../user';
 
 /* global $ISIS */
 

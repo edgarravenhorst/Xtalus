@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import UserController from './user';
+import MeController from './me';
 /* global $ISIS */
 
-var LoginController = UserController.extend({
+var LoginController = MeController.extend({
 
 });
 export default LoginController;

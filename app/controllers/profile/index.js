@@ -1,8 +1,7 @@
 import Ember from 'ember';
-import UserController from '../user';
 /* global $ISIS */
 
-var ProfileGetController = Ember.Controller.extend({
+var ProfileIndexController = Ember.Controller.extend({
 
     setPersonData: function(person){
         self = this;
@@ -39,4 +38,4 @@ var ProfileGetController = Ember.Controller.extend({
     }
 });
 
-export default ProfileGetController;
+export default ProfileIndexController;

@@ -1,0 +1,56 @@
+<section id='page' class='profile'>
+
+    <header id="sub-bar">
+
+        <img class="profile-image" src="{{profilePicture}}" width="100" height="100"/>
+
+        <h4>{{ fullname }}</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'profile'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'profile.connections'}}Connections{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id='user-info'>
+        <h4>{{ fullname }}</h4>
+        <h5>{{ roles }}</h5>
+
+        <ul>
+            <li>Locatie: {{ location }}</li>
+            <li>Geboortedatum: {{ birthdate }}</li>
+        </ul>
+
+        <ul>
+            <li><strong>Beschikbaarheid</strong></li>
+            <li>1 april t/m 30 maart</li>
+            <li>maandag</li>
+            <li>dinsdag</li>
+        </ul>
+    </aside>
+
+    <section id='profile-data'>
+
+        <section id='passion'>
+            <h3>Passie</h3>
+            <p>{{passion}}</p>
+        </section>
+
+        <section id='qualities'>
+            <h3>Kwaliteiten</h3>
+
+            <ul>
+                {{#each quality in qualities}}
+                    <li>{{ quality }}</li>
+                {{/each}}
+            </ul>
+        </section>
+
+    </section>
+
+</section>
+
+
+

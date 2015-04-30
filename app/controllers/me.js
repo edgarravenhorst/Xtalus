@@ -1,7 +1,8 @@
 import Ember from 'ember';
 /* global $ISIS */
 
-var UserController = Ember.Controller.extend({
+var MeController = Ember.Controller.extend({
+
     actions: {
 
         login: function(){
@@ -13,12 +14,13 @@ var UserController = Ember.Controller.extend({
                     return;
                 }
                 if (data.success){
-                    this.transitionToRoute('user.projecten');
+                    this.transitionToRoute('me');
                 }
             }.bind(this));
+
             return false;
         },
     }
 });
 
-export default UserController;
+export default MeController;

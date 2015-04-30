@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import UserRoute from '../user';
 
 var NetworkRoute = Ember.Route.extend({
     model: function(params, transition) {
-        var activePerson = this.modelFor('user');
+        var activePerson = this.modelFor('me');
         return this.initConnections(activePerson)
     },
 

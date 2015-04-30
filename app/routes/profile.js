@@ -1,12 +1,12 @@
 import Ember from 'ember';
-import UserRoute from '../user';
 
-var ProfileGetRoute = Ember.Route.extend({
+var ProfileRoute = Ember.Route.extend({
+
     model: function(params) {
-        if(params.id){
+        if(params.user_id){
             return $ISIS.init().then(function(isis){
                 return isis.findPersonByUniqueId.invoke({
-                    uUID: params.id,
+                    uUID: params.user_id,
                 });
             })
         }else{
@@ -16,8 +16,8 @@ var ProfileGetRoute = Ember.Route.extend({
 
     setupController: function(controller, model) {
         console.log(model);
-        controller.setPersonData(model);
+        controller.set('activePerson', this.modelFor('application'))
     }
 });
 
-export default ProfileGetRoute;
+export default ProfileRoute;

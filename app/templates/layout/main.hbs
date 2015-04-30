@@ -17,9 +17,9 @@
     <nav id="main-nav">
 
         <ul>
-            <li>{{#link-to 'user.projecten'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
-            <li>{{#link-to 'user.network'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
-            <li>{{#link-to 'profile.me'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
+            <li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
+            <li>{{#link-to 'me.index'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
         </ul>
 
         <hr>
@@ -27,13 +27,13 @@
         <h3>Projecten</h3>
 
         <ul>
-            <li>{{#link-to 'user.projecten'}}Intranet GGnet{{/link-to}}</li>
-            <li>{{#link-to 'user.projecten'}}Ecologische auto{{/link-to}}</li>
-            <li>{{#link-to 'user.projecten'}}Duurzaam kantoor{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Intranet GGnet{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Ecologische auto{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Duurzaam kantoor{{/link-to}}</li>
         </ul>
 
 
-        {{#link-to 'user.projecten'}}Meer{{/link-to}}
+        {{#link-to 'me.projects'}}Meer{{/link-to}}
 
         <hr>
 
@@ -43,6 +43,6 @@
 
 <section id="main-wrapper">
 
-    {{outlet}}
+    {{yield}}
 
 </section>
