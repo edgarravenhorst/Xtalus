@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global $ */
 
 var ProfileIndexRoute = Ember.Route.extend({
     model: function() {
@@ -6,7 +7,7 @@ var ProfileIndexRoute = Ember.Route.extend({
         return {
             activePerson: this.modelFor('application'),
             profile:this.modelFor('profile')
-        }
+        };
     },
 
     setupController: function(controller, model) {
@@ -14,8 +15,10 @@ var ProfileIndexRoute = Ember.Route.extend({
         var profile = model.profile;
 
         var picture = profile.picture.split(':');
-        var fullname = profile.firstName + " " + profile.lastName
-        if (profile.middleName) fullname = profile.firstName + " " + profile.middleName + " " + profile.lastName
+        var fullname = profile.firstName + " " + profile.lastName;
+        if (profile.middleName) {
+            fullname = profile.firstName + " " + profile.middleName + " " + profile.lastName;
+        }
 
         controller.setProperties({
             activePerson: activePerson,
@@ -44,7 +47,7 @@ var ProfileIndexRoute = Ember.Route.extend({
                             qualities.push(tagholder.tag.title);
                         });
                         controller.set('qualities', qualities);
-                    })
+                    });
                 }
             });
         });

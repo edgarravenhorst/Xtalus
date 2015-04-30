@@ -1,16 +1,16 @@
 import Ember from 'ember';
-/* global $ISIS */
+/* global $ */
 
-var NetworkController = Ember.Controller.extend({
+var ProfileNetworkController = Ember.Controller.extend({
 
     actions: {
         showConnectionDetails: function(connection){
-            this.set("selectedPerson", connection)
+            this.set("selectedPerson", connection);
             $('section#page.network').addClass('show-details');
             return false;
         },
 
-        hideConnectionDetails: function(e){
+        hideConnectionDetails: function(){
             $('section#page.network').removeClass('show-details');
             return false;
         },
@@ -22,4 +22,4 @@ var NetworkController = Ember.Controller.extend({
 
 });
 
-export default NetworkController;
+export default ProfileNetworkController;

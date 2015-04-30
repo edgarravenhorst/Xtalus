@@ -1,10 +1,10 @@
 import Ember from 'ember';
-/* global $ISIS */
+/* global $ */
 
 var ProfileIndexController = Ember.Controller.extend({
 
     setPersonData: function(person){
-        self = this;
+        var self = this;
 
         var picture = person.picture.split(':');
         this.setProperties({
@@ -31,8 +31,9 @@ var ProfileIndexController = Ember.Controller.extend({
                             qualities.push(tagholder.tag.title);
                         });
                         self.set('qualities', qualities);
-                    })
+                    });
                 }
+
             });
         });
     }

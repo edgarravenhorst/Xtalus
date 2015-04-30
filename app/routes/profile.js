@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global $ISIS */
 
 var ProfileRoute = Ember.Route.extend({
 
@@ -8,7 +9,7 @@ var ProfileRoute = Ember.Route.extend({
                 return isis.findPersonByUniqueId.invoke({
                     uUID: params.user_id,
                 });
-            })
+            });
         }else{
             return params;
         }
@@ -16,7 +17,7 @@ var ProfileRoute = Ember.Route.extend({
 
     setupController: function(controller, model) {
         console.log(model);
-        controller.set('activePerson', this.modelFor('application'))
+        controller.set('activePerson', this.modelFor('application'));
     }
 });
 

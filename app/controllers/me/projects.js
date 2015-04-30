@@ -1,8 +1,7 @@
 import Ember from 'ember';
-
 /* global $ISIS */
 
-var ProjectenController = Ember.Controller.extend({
+var MeProjectsController = Ember.Controller.extend({
 
     getDemandByID:function(uniqueID){
         return $ISIS.init().then(function(isis){
@@ -44,11 +43,12 @@ var ProjectenController = Ember.Controller.extend({
             var demand = this.get('selectedDemand');
             var confirmed = confirm("Weet je het zeker?");
 
-            if(confirmed)
+            if(confirmed) {
                 demand.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
                     self.send('refreshDemands');
-                    self.send('hideDetails')
+                    self.send('hideDetails');
                 });
+            }
         },
 
         createProject: function(){
@@ -70,4 +70,4 @@ var ProjectenController = Ember.Controller.extend({
     }
 });
 
-export default ProjectenController;
+export default MeProjectsController;

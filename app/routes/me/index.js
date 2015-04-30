@@ -1,13 +1,14 @@
 import Ember from 'ember';
+/* global $ */
 
-var ProfileGetRoute = Ember.Route.extend({
-    model: function(params) {
+var MeIndexRoute = Ember.Route.extend({
+    model: function() {
         var activePerson = this.modelFor('me');
         return activePerson.collectSupplies.extract().then(function(result){
             return result[0].collectSupplyProfiles.extract().then(function(result) {
                 return result[0].collectProfileElements.extract();
             });
-        })
+        });
     },
 
     setupController: function(controller, supplies) {
@@ -34,10 +35,10 @@ var ProfileGetRoute = Ember.Route.extend({
                         qualities.push(tagholder.tag.title);
                     });
                     controller.set('qualities', qualities);
-                })
+                });
             }
         });
     },
 });
 
-export default ProfileGetRoute;
+export default MeIndexRoute;

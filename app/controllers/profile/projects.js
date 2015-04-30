@@ -44,11 +44,12 @@ var ProjectenController = Ember.Controller.extend({
             var demand = this.get('selectedDemand');
             var confirmed = confirm("Weet je het zeker?");
 
-            if(confirmed)
+            if(confirmed) {
                 demand.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
                     self.send('refreshDemands');
-                    self.send('hideDetails')
+                    self.send('hideDetails');
                 });
+            }
         },
 
         createProject: function(){

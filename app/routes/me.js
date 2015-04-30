@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var MeRoute = Ember.Route.extend({
 
-    beforeModel:function(params, transition){
+    beforeModel:function(){
         //if(this.controller) this.controller.init();
         if(!$ISIS.getCookie('auth')) {
             this.transitionTo('login');
@@ -14,7 +14,7 @@ var MeRoute = Ember.Route.extend({
     },
 
     setupController: function(controller, model){
-        controller.set('activePerson', model)
+        controller.set('activePerson', model);
     },
 
     actions: {

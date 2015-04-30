@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-var ProjectenRoute = Ember.Route.extend({
+var MeProjectsRoute = Ember.Route.extend({
 
-    model: function(params, transition) {
+    model: function() {
         var activePerson = this.modelFor('me');
         return activePerson.collectDemands.extract();
     },
@@ -22,4 +22,4 @@ var ProjectenRoute = Ember.Route.extend({
     }
 });
 
-export default ProjectenRoute;
+export default MeProjectsRoute;
