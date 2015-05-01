@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/* global $ISIS */
 
 var MeRoute = Ember.Route.extend({
 
