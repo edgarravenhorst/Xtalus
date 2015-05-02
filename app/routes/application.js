@@ -24,6 +24,16 @@ var ApplicationRoute = Ember.Route.extend({
                 });
             });
         }
+    },
+
+    actions: {
+        getProject:function(projectIDs){
+            this.transitionTo('project', projectIDs);
+        },
+
+        getProfile: function(userID){
+            this.transitionTo('profile', userID);
+        },
     }
 
 });

@@ -14,10 +14,6 @@ var MeConnectionController = Ember.Controller.extend({
             $('section#page.network').removeClass('show-details');
             return false;
         },
-
-        getUserProfile: function(userID){
-            this.transitionToRoute('profile', userID);
-        },
     },
 
 });

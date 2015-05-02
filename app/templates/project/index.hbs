@@ -1,0 +1,51 @@
+<section id='page' class='profile'>
+
+    <header id="sub-bar">
+
+        <img class="profile-image" src="{{profilePicture}}" width="100" height="100"/>
+
+        <h4>Project: {{ title }}</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id='user-info'>
+        <h4>{{ title }}</h4>
+        <h5>{{ owner }}</h5>
+
+        <ul>
+            <li><strong>Beschrijving</strong></li>
+            <li>{{ description }}</li>
+        </ul>
+        <ul>
+            <li><strong>gevraagde specialismen</strong></li>
+            {{#each profile in matchingProfiles}}
+            <li>{{ profile.name }}</li>
+            {{/each}}
+        </ul>
+        <ul>
+            <li><strong>Start- en einddatum</strong></li>
+            <li>{{ startdate }} t/m {{ enddate }}</li>
+        </ul>
+    </aside>
+
+    <section id='profile-data'>
+
+        <section id='passion'>
+            <h3>Samenvatting</h3>
+            <p>{{ summary }}</p>
+        </section>
+
+        <section id='qualities'>
+            <h3>verhaal</h3>
+            <p>{{ story }}</p>
+        </section>
+
+    </section>
+
+</section>

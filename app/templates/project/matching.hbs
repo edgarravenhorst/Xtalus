@@ -1,0 +1,34 @@
+<section id='page' class='profile'>
+
+    <header id="sub-bar">
+
+        <img class="profile-image" src="{{profilePicture}}" width="100" height="100"/>
+
+        <h4>Project: {{ title }}</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id='user-info'>
+        <h4>Specialismen</h4>
+        <h5>matches 0/{{ matchingProfiles.total }}</h5>
+
+        <ul>
+            {{#each profile in matchingProfiles.list}}
+            <li>{{ profile.name }}</li>
+            {{/each}}
+        </ul>
+
+        <button>Specialisme aanvragen</button>
+    </aside>
+
+    <section id='profile-data'>
+
+    </section>
+
+</section>s
