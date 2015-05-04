@@ -7,11 +7,11 @@ var ProjectIndexRoute = Ember.Route.extend({
         var modelObj = {
             activePerson: this.modelFor('application'),
             project:project
-        }
+        };
 
         return project.collectDemandProfiles.extract().then(function(matchingProfiles){
-            modelObj.matchingProfiles = matchingProfiles
-            return modelObj
+            modelObj.matchingProfiles = matchingProfiles;
+            return modelObj;
         });
     },
 
@@ -23,8 +23,8 @@ var ProjectIndexRoute = Ember.Route.extend({
         $.each(model.matchingProfiles, function(i, profile){
             matchingProfiles.push({
                 name: profile.profileName
-            })
-        })
+            });
+        });
 
         console.log(matchingProfiles);
 
