@@ -8,6 +8,13 @@ var ProjectRoute = Ember.Route.extend({
             return $ISIS.init().then(function(isis){
                 return isis.findDemandByUniqueId.invoke({
                     uUID: params.project_id,
+                }).then(function(project){
+                    return $ISIS.init(project.demandOwner.href).then(function(person){
+                        var picture = person.picture.split(':');
+                        person.profilePicture = 'data:image/png;base64,'+picture[2],
+                        project.owner = person;
+                        return project
+                    });
                 });
             });
         }else{

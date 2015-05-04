@@ -319,7 +319,7 @@ body{
                 border-left:1px solid #c2c2c2;
                 @include translateX(100%);
                 @include single-transition(transform, 0.3s);
-
+                overflow: auto;
 
                 header.projectPicture {
                     background-position: 50%;
@@ -430,6 +430,16 @@ section#page.projects.popup-new-project{
         display:block !important;
     }
 
+}
+
+
+.profilePicture {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    @include border-radius(100%);
+    vertical-align: middle;
 }
 
 
@@ -547,7 +557,7 @@ section#page.profile {
         z-index: 1;
         box-sizing: border-box;
         padding:50px;
-
+        overflow: auto;
         h4{
             font-weight: bolder;
             margin-bottom:0;
@@ -662,6 +672,7 @@ section#page.network {
         border-left:1px solid #c2c2c2;
         @include translateX(100%);
         @include single-transition(transform, 0.3s);
+        overflow: auto;
 
         header.profilePicture {
             background-position: 50%;
@@ -672,6 +683,7 @@ section#page.network {
             height: 200px;
             margin:-50px;
             margin-bottom:0;
+            @include border-radius(0,0);
         }
 
         button{

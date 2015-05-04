@@ -33,7 +33,7 @@ var ProjectMatchingRoute = Ember.Route.extend({
 
         controller.setProperties({
             title: "Schilder project",
-            owner: project.demandOwner.title,
+            ownerProfilePicture: project.owner.profilePicture,
             description: project.demandDescription,
             matchingProfiles: matchingProfiles,
             startdate: project.demandOrSupplyProfileStartDate,
