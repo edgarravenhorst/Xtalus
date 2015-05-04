@@ -309,7 +309,7 @@ body{
             aside#content-aside{
                 box-sizing:border-box;
                 position:fixed;
-                width:380px;
+                width:381px;
                 top:220px;
                 right:0;
                 bottom:0;
@@ -319,7 +319,7 @@ body{
                 border-left:1px solid #c2c2c2;
                 @include translateX(100%);
                 @include single-transition(transform, 0.3s);
-
+                overflow: auto;
 
                 header.projectPicture {
                     background-position: 50%;
@@ -430,6 +430,17 @@ section#page.projects.popup-new-project{
         display:block !important;
     }
 
+}
+
+
+.profilePicture {
+    background-color: #ccc;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    @include border-radius(100%);
+    vertical-align: middle;
 }
 
 
@@ -547,7 +558,7 @@ section#page.profile {
         z-index: 1;
         box-sizing: border-box;
         padding:50px;
-
+        overflow: auto;
         h4{
             font-weight: bolder;
             margin-bottom:0;
@@ -653,7 +664,7 @@ section#page.network {
     aside#connection-details {
         background-color:$color4;
         position:absolute;
-        width:380px;
+        width:381px;
         top:140px;
         right:0;
         bottom:0;
@@ -662,6 +673,7 @@ section#page.network {
         border-left:1px solid #c2c2c2;
         @include translateX(100%);
         @include single-transition(transform, 0.3s);
+        overflow: auto;
 
         header.profilePicture {
             background-position: 50%;
@@ -672,6 +684,7 @@ section#page.network {
             height: 200px;
             margin:-50px;
             margin-bottom:0;
+            @include border-radius(0,0);
         }
 
         button{
@@ -690,5 +703,50 @@ section#page.network {
         }
     }
 }
+
+//=============================================================================================
+// PAGE Projects
+//=============================================================================================
+
+section#page.profile {
+    section#matches {
+        overflow: auto;
+        margin:0 -50px;
+
+        h5 {margin:15px 0; margin-bottom:-20px; padding:0 50px;}
+
+        table {
+            width:100%;
+            td,th {
+                padding:30px 50px;
+                text-align: left;
+                border-bottom:1px solid #e0e0e0;
+            }
+
+            td {
+                cursor: pointer;
+            }
+
+            th {
+                padding-bottom:10px
+            }
+
+            .profilePicture {
+                background-position: 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: inline-block;
+                margin-right: 25px;
+                @include border-radius(100%);
+                width:40px;
+                height: 40px;
+                vertical-align: middle;
+            }
+        }
+        @include single-transition(right, 0.3s);
+    }
+}
+
+
 
 
