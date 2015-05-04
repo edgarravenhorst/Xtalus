@@ -1,1 +1,18 @@
-{{ outlet }}
+<section id='page' class='profile'>
+
+    <header id="sub-bar">
+
+        <img class="profile-image" src="{{ownerProfilePicture}}" width="100" height="100"/>
+
+        <h4>Project: {{ projectTitle }}</h4>
+
+        <nav id="sub-nav">
+            <ul>
+                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
+
+    {{ outlet }}
+</section>

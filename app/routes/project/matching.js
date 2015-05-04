@@ -20,20 +20,10 @@ var ProjectMatchingRoute = Ember.Route.extend({
         var project = model.project;
         var matchingProfiles = {
             total: model.matchingProfiles.length,
-            list:[]
+            list:model.matchingProfiles
         };
 
-        $.each(model.matchingProfiles, function(i, profile){
-            matchingProfiles.list.push({
-                name: profile.profileName
-            })
-        })
-
-        console.log(matchingProfiles);
-
         controller.setProperties({
-            title: "Schilder project",
-            ownerProfilePicture: project.owner.profilePicture,
             description: project.demandDescription,
             matchingProfiles: matchingProfiles,
             startdate: project.demandOrSupplyProfileStartDate,
@@ -41,9 +31,6 @@ var ProjectMatchingRoute = Ember.Route.extend({
             summary: project.demandSummary,
             story: project.demandStory,
         });
-
-
-
     },
 });
 

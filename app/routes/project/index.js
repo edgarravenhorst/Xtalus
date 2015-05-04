@@ -29,9 +29,7 @@ var ProjectIndexRoute = Ember.Route.extend({
         console.log(project.owner.profilePicture);
 
         controller.setProperties({
-            title: "Schilder project",
             ownerName: project.demandOwner.title,
-            ownerProfilePicture: project.owner.profilePicture,
             description: project.demandDescription,
             matchingProfiles: matchingProfiles,
             startdate: project.demandOrSupplyProfileStartDate,

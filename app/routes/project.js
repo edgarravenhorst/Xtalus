@@ -24,6 +24,10 @@ var ProjectRoute = Ember.Route.extend({
 
     setupController: function(controller, model) {
         controller.set('activePerson', this.modelFor('application'));
+        controller.setProperties({
+            projectTitle: "Schilder project",
+            ownerProfilePicture: model.owner.profilePicture,
+        })
     }
 });
 

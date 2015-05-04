@@ -1,58 +1,40 @@
-<section id='page' class='profile'>
-
-    <header id="sub-bar">
-
-        <img class="profile-image" src="{{ownerProfilePicture}}" width="100" height="100"/>
 
 
-        <h4>Project: {{ title }}</h4>
+<aside id='user-info'>
+    <h4>Specialismen</h4>
+    <h5>matches 0/{{ matchingProfiles.total }}</h5>
 
-        <nav id="sub-nav">
-            <ul>
-                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
-                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
-            </ul>
-        </nav>
-    </header>
+    {{#each profile in matchingProfiles.list}}
+    <div {{action 'selectMatchingProfile' profile}} style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
+        <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ ownerProfilePicture }}); width:35px; height:35px;">     </div>
+        <div><strong>{{ profile.profileName }}</strong><br />geen match</div>
+    </div>
+    {{/each}}
 
-    <aside id='user-info'>
-        <h4>Specialismen</h4>
-        <h5>matches 0/{{ matchingProfiles.total }}</h5>
+    <a style="display:block; padding:20px 0;">+ Specialisme toevoegen</a>
+</aside>
 
-        {{#each profile in matchingProfiles.list}}
-        <div style="clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
-            <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ ownerProfilePicture }}); width:35px; height:35px;">     </div>
-            <div><strong>{{ profile.name }}</strong><br />geen match</div>
-        </div>
-        {{/each}}
-
-        <a style="display:block; padding:20px 0;">+ Specialisme toevoegen</a>
-    </aside>
-
-    <section id='profile-data'>
-
+<section id='profile-data'>
+    <section>
         <h3>MatchingProfiel: {{ selectedProfile.title }}</h3>
 
-
-        <section id='matches' class='list'>
-
-            <h3>{{ selectedProfile.matchesCount }} Matches</h3>
-            <table>
-                <tr>
-                    <th>Naam</th>
-                    <th>Branch</th>
-                    <th>Rol</th>
-                </tr>
-
-                {{#each match in selectedProfile.matches}}
-                <tr {{action 'showMatchDetails' connection }}>
-                    <td><div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div> {{match.fullname}}</td>
-                    <td>{{match.branch}}</td>
-                    <td>{{match.roles}}</td>
-                </tr>
-                {{/each}}
-            </table>
-        </section>
     </section>
+    <section id='matches' class='list'>
+        <h5>{{ selectedProfile.matchesCount }} Matches</h5>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Branch</th>
+                <th>Rol</th>
+            </tr>
 
+            {{#each match in selectedProfile.matches}}
+            <tr {{action 'showMatchDetails' connection }}>
+                <td><div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div> {{match.fullname}}</td>
+                <td>{{match.branch}}</td>
+                <td>{{match.roles}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
 </section>
