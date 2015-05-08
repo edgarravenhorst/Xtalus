@@ -18,6 +18,10 @@ var MeIndexRoute = Ember.Route.extend({
         controller.setProperties({
             birthdate: activePerson.dateOfBirth,
             roles: activePerson.roles,
+            firstName: activePerson.firstName,
+            middleName: activePerson.middleName,
+            lastName: activePerson.lastName,
+            roles: activePerson.roles,
             fullname: activePerson.fullname,
             profilePicture: 'data:image/png;base64,'+picture[2],
         });

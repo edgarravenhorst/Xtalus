@@ -13,43 +13,60 @@
         </nav>
     </header>
 
-    <aside id='user-info'>
-        <h4>{{ fullname }}</h4>
-        <h5>{{ roles }}</h5>
+    <aside id='user-info' class='viewslider' >
+        <section class='slideContainer'>
+            <section id='index' class='slide-0'>
+                <i id="edit-btn" {{action 'changeView' 'user-info' 1 }} class="fa fa-cog"></i>
+                <h4>{{ fullname }}</h4>
+                <h5>{{ roles }}</h5>
 
-        <ul>
-            <li>Locatie: {{ location }}</li>
-            <li>Geboortedatum: {{ birthdate }}</li>
-        </ul>
+                <ul>
+                    <li>Locatie: {{ location }}</li>
+                    <li>Geboortedatum: {{ birthdate }}</li>
+                </ul>
 
-        <ul>
-            <li><strong>Beschikbaarheid</strong></li>
-            <li>1 april t/m 30 maart</li>
-            <li>maandag</li>
-            <li>dinsdag</li>
-        </ul>
+                <ul>
+                    <li><strong>Beschikbaarheid</strong></li>
+                    <li>1 april t/m 30 maart</li>
+                    <li>maandag</li>
+                    <li>dinsdag</li>
+                </ul>
+            </section>
+            <section id='index' class='slide-1'>
+                <i id="back-btn" {{action 'changeView' 'user-info' 0 }} class="fa fa-chevron-circle-left"></i>
+                <h4>Instellingen</h4>
+
+                <form method="post" {{action "updatePerson" on="submit"}}>
+
+                    Voornaam
+                    {{input value=firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
+                    Achternaam
+                    {{input value=lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
+                    Geboortedatum
+                    {{input value=birthdate type="text" placeholder="Geboortedatum" class="txt-field"}}<br>
+
+                    <button type="submit" class="btn add-project-btn">Update</button>
+                </form>
+            </section>
+        </section>
     </aside>
 
     <section id='profile-data'>
-
         <section id='passion'>
+            <i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
             <h3>Passie</h3>
             <p>{{passion}}</p>
         </section>
 
         <section id='qualities'>
+            <i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
             <h3>Kwaliteiten</h3>
 
             <ul>
                 {{#each quality in qualities}}
-                    <li>{{ quality }}</li>
+                <li>{{ quality }}</li>
                 {{/each}}
             </ul>
         </section>
-
     </section>
-
 </section>
-
-
-

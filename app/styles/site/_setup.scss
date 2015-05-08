@@ -550,24 +550,24 @@ section#page.profile {
         position:absolute;
         left:0px;
         width:300px;
-        top:0;
-        bottom:0;
-        background-color: #fefefe;
-        border-right: 1px solid #e0e0e0;
         top:140px;
+        bottom:0;
+        border-right: 1px solid #e0e0e0;
+        background-color: #fefefe;
         z-index: 1;
-        box-sizing: border-box;
-        padding:50px;
-        overflow: auto;
-        h4{
-            font-weight: bolder;
-            margin-bottom:0;
-        }
+        #index {
+            box-sizing: border-box;
+            padding:50px;
+            h4{
+                font-weight: bolder;
+                margin-bottom:0;
+            }
 
-        ul{
-            margin: 30px 0;
-            li{
-                margin:0px;
+            ul{
+                margin: 30px 0;
+                li{
+                    margin:0px;
+                }
             }
         }
     }
@@ -594,6 +594,7 @@ section#page.profile {
         }
 
         section#qualities {
+            position: relative;
             ul {
                 list-style: disc;
                 padding:0 20px;
@@ -705,7 +706,7 @@ section#page.network {
 }
 
 //=============================================================================================
-// PAGE Projects
+// PAGE PROJECTS
 //=============================================================================================
 
 section#page.profile {
@@ -746,7 +747,3 @@ section#page.profile {
         @include single-transition(right, 0.3s);
     }
 }
-
-
-
-
