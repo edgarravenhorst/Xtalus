@@ -14,7 +14,8 @@ var ApplicationRoute = Ember.Route.extend({
             return $ISIS.init().then(function(isis){
                 console.log(isis);
                 return isis.activePerson.invoke().then(function(activePerson){
-                    var picture = activePerson.picture.split(':');
+                    var picture = '';
+                    if (activePerson.picture) picture = activePerson.picture.split(':');
                     var fullname = activePerson.firstName + " " + activePerson.lastName;
                     if (activePerson.middleName) {
                         fullname = activePerson.firstName + " " + activePerson.middleName + " " + activePerson.lastName;

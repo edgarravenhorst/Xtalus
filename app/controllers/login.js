@@ -10,8 +10,7 @@ var LoginController = Ember.Controller.extend({
                 if (data.message) {
                     this.set('message', data.message);
                     return;
-                }
-                if (data.success){
+                }else {
                     this.get('target.router').refresh();
                 }
             }.bind(this));

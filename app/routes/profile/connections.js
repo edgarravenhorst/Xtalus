@@ -36,7 +36,8 @@ var ProfileConnectionsRoute = Ember.Route.extend({
         $.each(connections, function(i, connectiondata){
 
             a_promises.push($ISIS.init(connectiondata.contactPerson.href).then(function(connection){
-                var picture = connection.picture.split(':');
+                var picture = "";
+                if(connection.picture) picture = connection.picture.split(':');
                 connection.profilePicture = 'data:image/png;base64,'+picture[2];
                 connection.fullname = connectiondata.fullname;
 

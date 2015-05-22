@@ -19,12 +19,12 @@ var MeProjectsController = Ember.Controller.extend({
                 this.set('selectedDemand', demand);
             }.bind(this));
 
-            Ember.$('body').addClass('aside-right-visible');
+            $('section#page').addClass('aside-right');
             return false;
         },
 
         hideDetails:function(){
-            Ember.$('body').removeClass('aside-right-visible');
+            $('section#page').removeClass('aside-right');
             return false;
         },
 

@@ -18,7 +18,9 @@
 }
 
 .viewslider {
-    overflow: hidden;
+    overflow: hidden !important;
+    padding:0 !important;
+
     .slideContainer {
         @include single-transition(transform, 0.3s);
         @include translateX(0%);
@@ -32,6 +34,8 @@
             position: absolute;
             width:10%;
             @include translateX($position*10);
+            @include box-sizing();
+            padding:$globalPadding;
         }
 
         &.slide-#{$i} {

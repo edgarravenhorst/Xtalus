@@ -3,6 +3,7 @@
 
 @import "compass/utilities/general/clearfix";
 @import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
 @import "compass/css3/transform";
@@ -27,7 +28,9 @@ $color9: #919191;   //
 $color10: #1f1f1f;  // black almost
 
 $body-color: #fff;
-$text-color: $color4;
+$text-color: $color8;
+
+$globalPadding: 50px;
 
 @import "coderehab/basic-setup";
 
@@ -68,17 +71,18 @@ html, body {
 }
 
 a {
-    text-decoration:none;
     color:$text-color;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 hr {
-    margin-top:20px;
     clear:both;
     height:1px;
     border:0;
-    background-color:#fff;
-    background-color:rgba(255,255,255, 0.5);
+    background-color:$color6;
+    margin:34px 0;
+    padding:0;
 }
 
 h1 {font-family:$font2; font-size:35px;  font-weight:300; margin:45px 0 20px 0; line-height: 100%; }
