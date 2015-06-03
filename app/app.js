@@ -15,7 +15,7 @@ App = Ember.Application.extend({
 });
 
 $ISIS.settings = {
-    baseurl: "http://xtalus.apps.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.api/",
+    baseurl: "http://acc.xtalus.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.api/",
     method: 'GET',
 };
 
