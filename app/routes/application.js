@@ -12,8 +12,10 @@ var ApplicationRoute = Ember.Route.extend({
     model: function(){
         if($ISIS.getCookie('auth')) {
             return $ISIS.init().then(function(isis){
+                console.log(isis);
                 return isis.activePerson.invoke().then(function(activePerson){
-                    var picture = activePerson.picture.split(':');
+                    var picture = '';
+                    if (activePerson.picture) picture = activePerson.picture.split(':');
                     var fullname = activePerson.firstName + " " + activePerson.lastName;
                     if (activePerson.middleName) {
                         fullname = activePerson.firstName + " " + activePerson.middleName + " " + activePerson.lastName;
@@ -34,6 +36,18 @@ var ApplicationRoute = Ember.Route.extend({
         getProfile: function(userID){
             this.transitionTo('profile', userID);
         },
+
+        changeView:function(viewID, slideID, type) {
+
+            for(var i=0; i<10; i++){
+                $("#" + viewID).removeClass('slide-'+i)
+            }
+
+            $("#" + viewID).addClass('slide-'+slideID)
+            console.log('slide-'+slideID);
+            return false;
+        }
+
     }
 
 });

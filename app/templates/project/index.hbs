@@ -1,37 +1,51 @@
+<section id='page' class='profile aside-left'>
+    <header id="page-header">
 
+        <img class="profilePicture" src="{{ownerProfilePicture}}" width="100" height="100"/>
 
-<aside id='user-info'>
-    <h4>{{ projectTitle }}</h4>
-    <h5>{{ ownerName }}</h5>
+        <h4>Project: {{ projectTitle }}</h4>
 
-    <ul>
-        <li><strong>Beschrijving</strong></li>
-        <li>{{ description }}</li>
-    </ul>
+        <nav id="submenu">
+            <ul>
+                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
+    <aside id='page-left' class='' >
+        <h4>{{ projectTitle }}</h4>
+        <h5>{{ ownerName }}</h5>
 
-    <p><strong>Specialismen</strong></p>
-    {{#each profile in matchingProfiles}}
-    <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
-        <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ ownerProfilePicture }}); width:35px; height:35px;">     </div>
-        <div><strong>{{ profile.name }}</strong><br />geen match</div>
-    </div>
-    {{/each}}
-    <ul>
-        <li><strong>Start- en einddatum</strong></li>
-        <li>{{ startdate }} t/m {{ enddate }}</li>
-    </ul>
-</aside>
+        <ul>
+            <li><strong>Beschrijving</strong></li>
+            <li>{{ description }}</li>
+        </ul>
 
-<section id='profile-data'>
+        <p><strong>Specialismen</strong></p>
+        {{#each profile in matchingProfiles}}
+        <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
+            <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ ownerProfilePicture }}); width:35px; height:35px;">     </div>
+            <div><strong>{{ profile.name }}</strong><br />geen match</div>
+        </div>
+        {{/each}}
+        <ul>
+            <li><strong>Start- en einddatum</strong></li>
+            <li>{{ startdate }} t/m {{ enddate }}</li>
+        </ul>
+    </aside>
 
-    <section id='passion'>
-        <h3>Samenvatting</h3>
-        <p>{{ summary }}</p>
+    <section id='page-content'>
+
+        <section id='passion'>
+            <h3>Samenvatting</h3>
+            <p>{{ summary }}</p>
+        </section>
+
+        <section id='qualities'>
+            <h3>verhaal</h3>
+            <p>{{ story }}</p>
+        </section>
+
     </section>
-
-    <section id='qualities'>
-        <h3>verhaal</h3>
-        <p>{{ story }}</p>
-    </section>
-
 </section>
+

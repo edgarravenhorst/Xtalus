@@ -23,6 +23,17 @@ var MeRoute = Ember.Route.extend({
             $ISIS.auth.logout();
             this.refresh();
         },
+
+        updatePerson:function() {
+            var activePerson = this.controller.get('activePerson');
+            activePerson.updatePerson.invoke({
+                firstName:'Edgar',
+                lastName:"Ravenhorst",
+                dateOfBirth:'1991-02-20'
+            }).then(function(result){
+                console.log(result);
+            });
+        },
     }
 });
 

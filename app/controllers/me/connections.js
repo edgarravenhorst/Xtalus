@@ -6,16 +6,15 @@ var MeConnectionController = Ember.Controller.extend({
     actions: {
         showConnectionDetails: function(connection){
             this.set("selectedPerson", connection);
-            $('section#page.network').addClass('show-details');
+            $('section#page').addClass('aside-right');
             return false;
         },
 
         hideConnectionDetails: function(){
-            $('section#page.network').removeClass('show-details');
+            $('section#page').removeClass('aside-right');
             return false;
         },
     },
-
 });
 
 export default MeConnectionController;

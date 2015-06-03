@@ -1,48 +1,40 @@
-<header id="top-bar">
-    {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
-    <input id="search-field" type="text" placeholder="Zoeken" />
+<section id='template-main'>
 
+    <header id="app">
+        {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
+        <input id="search-field" type="text" placeholder="Zoeken" />
 
-    <button id="profile-nav-toggle-btn">&#8964;</button>
-    <span id="profile-username" {{action "logout"}}>Logout {{activePerson.fullname}}</span>
-    <img id="profilePicture" src="{{activePerson.profilePicture}}" width="35" height="35"/>
+        <button id="profile-nav-toggle-btn">&#8964;</button>
+        <span id="profile-username" {{action "logout"}}>Logout {{activePerson.fullname}}</span>
+        <img id="profilePicture" src="{{activePerson.profilePicture}}" width="35" height="35"/>
+    </header>
 
+    <aside id="user-menu">
+       <!-- <button id="toggle-user-menu" {{action "collapseAside"}}> <span>&lt;</span> </button>-->
 
-</header>
+        <nav>
+            <ul>
+                <li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
+                <li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
+                <li>{{#link-to 'me.index'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
+            </ul>
 
-<aside id="main-aside">
+            <h3>Projecten</h3>
 
-    <!--<button id="toggle-main-aside" {{action "collapseAside"}}> <span>&lt;</span> </button>-->
+            <ul>
+                <li>{{#link-to 'me.projects'}}Intranet GGnet{{/link-to}}</li>
+                <li>{{#link-to 'me.projects'}}Ecologische auto{{/link-to}}</li>
+                <li>{{#link-to 'me.projects'}}Duurzaam kantoor{{/link-to}}</li>
+            </ul>
 
-    <nav id="main-nav">
+            {{#link-to 'me.projects'}}Meer{{/link-to}}
+        </nav>
+    </aside>
 
-        <ul>
-            <li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i>Projecten{{/link-to}}</li>
-            <li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i>Netwerk{{/link-to}}</li>
-            <li>{{#link-to 'me.index'}}<i class="fa fa-user"></i>Profiel{{/link-to}}</li>
-        </ul>
+    <section id="pagewrapper">
 
-        <hr>
+        {{yield}}
 
-        <h3>Projecten</h3>
-
-        <ul>
-            <li>{{#link-to 'me.projects'}}Intranet GGnet{{/link-to}}</li>
-            <li>{{#link-to 'me.projects'}}Ecologische auto{{/link-to}}</li>
-            <li>{{#link-to 'me.projects'}}Duurzaam kantoor{{/link-to}}</li>
-        </ul>
-
-
-        {{#link-to 'me.projects'}}Meer{{/link-to}}
-
-        <hr>
-
-    </nav>
-
-</aside>
-
-<section id="main-wrapper">
-
-    {{yield}}
+    </section>
 
 </section>
