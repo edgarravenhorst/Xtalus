@@ -1,0 +1,48 @@
+<section id='page' class='network'>
+
+    <header id="page-header">
+
+        <h4>Netwerk</h4>
+
+        <nav id="submenu">
+            <ul>
+                <li>{{#link-to 'me.connections'}}Alle connecties{{/link-to}}</li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id='page-content' >
+        <section id='overview' class='list'>
+            <h5>{{ connectionCount }} connecties</h5>
+            <table>
+                <tr>
+                    <th>Naam</th>
+                    <th>Branch</th>
+                    <th>Rol</th>
+                </tr>
+
+                {{#each connection in connections}}
+                <tr {{action 'showConnectionDetails' connection }}>
+                    <td>
+                        <div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div>
+                        {{ connection.fullname }}
+                    </td>
+                    <td>{{connection.branch}}</td>
+                    <td>{{connection.roles}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </section>
+    </section>
+
+    <aside id='page-right'>
+        <header class='picture' style="background-image: url({{ selectedPerson.profilePicture }}) "></header>
+        <h4>{{selectedPerson.fullname}}</h4>
+        <h5>{{selectedPerson.roles}}</h5>
+        <p>{{selectedPerson.dateOfBirth}}</p>
+        <button {{action 'getProfile' selectedPerson.uniqueItemId }}>Bekijk profiel</button>
+        <button {{action 'hideConnectionDetails'}}>sluiten</button>
+    </aside>
+
+</section>
