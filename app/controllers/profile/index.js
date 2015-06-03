@@ -5,7 +5,7 @@ var ProfileIndexController = Ember.Controller.extend({
 
     setPersonData: function(person){
         var self = this;
-
+        console.log(person);
         var picture = person.picture.split(':');
         this.setProperties({
             birthdate: person.dateOfBirth,
