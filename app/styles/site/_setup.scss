@@ -7,42 +7,200 @@
 //=============================================================================================
 
 section#template-main {
-    @extend .absoluteFill;
-    //templatespecs
-    $headerHeight: 80px;
-    $asideWidth: 350px;
+	@extend .absoluteFill;
+	//templatespecs
+	$headerHeight: 80px;
+	$asideWidth: 350px;
 
-    header#app {
-        @extend .absoluteFill;
-        height:$headerHeight;
-        box-sizing: border-box;
-        background:$color1;
-        padding:15px;
+	header#app {
+		@extend .absoluteFill;
+		height:$headerHeight;
+		box-sizing: border-box;
+		background:$color1;
+		padding:15px;
 
-        img#logo {
-            margin:0 40px;
-        }
-    }
+		img#logo {
+			position:absolute;
+			left:81px;
+			top:29px;
+		}
 
-    aside#user-menu {
-        @extend .absoluteFill;
-        @include box-sizing();
-        padding:$globalPadding;
-        top:$headerHeight;
-        width:$asideWidth;
-        background-color:$color4;
-        border-right:1px solid #c2c2c2;
-        nav i {
-            margin-right:15px;
-        }
-    }
+		input#search-field{
+			position:absolute;
+			left:431px;
+			top:15px;
+			height:40px;
+			width:457px;
+			padding:0 21px;
+			@include box-sizing(border-radius);
+			@include border-radius(3px);
+			background-image:url(../assets/images/search-icon.png);
+			background-position:right 10px;
+			background-repeat: no-repeat;
+		}
 
-    section#pagewrapper {
-        @extend .absoluteFill;
-        left:$asideWidth;
-        top:$headerHeight;
-        padding:0;
-    }
+		section#profileAccountInfo{
+			position:absolute;
+			right:0;
+			top:0;
+			bottom:0;
+			padding:0 76px 0 16px;
+			border-left:1px solid #cd1a57;
+			height:40px;
+			margin-top:20px;
+			line-height:40px;
+			color:$color3;
+
+			#profile-username{
+				cursor:pointer;
+			}
+
+			img{
+				margin:0 19px;
+				float:left;
+				@include border-radius(100%);
+			}
+
+			i{
+				font-size:8px;
+				margin-left:10px;
+			}
+		}
+	}
+
+
+	//==============================================
+	// User navigation
+	// animated
+	//=============================================
+
+	aside#user-menu {
+		@extend .absoluteFill;
+		@include box-sizing();
+		padding:$globalPadding;
+		top:$headerHeight;
+		width:$asideWidth;
+		background-color:$color4;
+		border-right:1px solid #c2c2c2;
+		overflow:visible;
+
+		h3{
+			color:#9e9e9e;
+			font-size:16px;
+			margin-top:$globalPadding;
+		}
+
+		nav{
+			ul{
+				li{
+					font-size:14px;
+					height:50px;
+					line-height:50px;
+					margin-bottom:5px;
+					cursor:pointer;
+				}
+			}
+
+			i {
+				margin-right:26px;
+			}
+
+			a{
+				color:#757575;
+				&.active{
+					color:$color8;
+					i{
+						color:$color11;
+					}
+				}
+
+				&:hover{
+					color:#212121;
+					i{
+						color:#757575;
+					}
+				}
+			}
+			i{
+				width:15px;
+			}
+
+			// project images
+			.projectImg{
+				@include border-radius(100%);
+				float:left;
+				margin:4px 10px 0 0;
+			}
+
+			a.more-projects{
+				display: block;
+				color:$color11;
+				font-size:14px;
+				text-transform: uppercase;
+				margin-top:$globalPadding;
+			}
+
+		}
+
+		// button collapse main-nav
+		button#toggle-user-menu{
+			position:absolute;
+			top:$globalPadding;
+			right:-20px;
+			z-index:999;
+			@include border-radius(100%);
+			background-color:$color11;
+			width:40px;
+			height:40px;
+			box-sizing:border-box;
+			padding:0;
+			font-size:14px;
+
+		}
+	}
+
+	section#pagewrapper {
+		@extend .absoluteFill;
+		left:$asideWidth;
+		top:$headerHeight;
+		padding:0;
+	}
+}
+
+body.user-nav-small{
+
+	section#template-main{
+
+		section#pagewrapper{
+			left:101px;
+			overflow:visible;
+		}
+
+		aside#user-menu{
+			width:100px;
+			padding:50px 30px;
+
+			button#toggle-user-menu{
+				@include rotate(180deg);
+				i{
+					font-size:14px !important;
+				}
+			}
+
+			.more-projects{
+				display:none;
+			}
+
+			span,h3{
+				display:none;
+			}
+			li i{
+				width:40px;
+				text-align:center;
+				font-size:24px;
+			}
+		}
+	}
 }
 
 
@@ -53,7 +211,63 @@ section#template-login {
 
 }
 
+//=============================================================================================
+// Account NAV
+// animated
+//=============================================================================================
+section#account-nav{
+	display:none;
+	@include transition(0.3s);
+	position:absolute;
+	top:65px;
+	right:78px;
+	width:252px;
+	background-color:$color3;
+	z-index:3;
+	@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+	@include border-radius(3px);
+	padding:20px 0;
+	@include box-sizing(border-box);
 
+	h2{
+		font-size:18px;
+		margin-left:50px;
+	}
+
+	ul{
+
+		li{
+			width:100%;
+			height:50px;
+			color:#757575;
+			font-size:16px;
+			cursor: pointer;
+			i{
+				margin-right:20px;
+				width:10px;
+			}
+			padding:0 50px;
+			@include box-sizing(border-box);
+			line-height:50px;
+
+
+			&:hover{
+				background-color:#f5f5f5;
+				color:$color8;
+			}
+
+		}
+
+	}
+}
+
+
+body.account-nav-visible{
+
+	section#account-nav{
+		display:block;
+	}
+}
 
 //=============================================================================================
 // PAGES
@@ -65,156 +279,156 @@ $globalPageLeftWidth: 350px;
 $globalPageRightWidth: 350px;
 
 header#page-header, aside#page-left, aside#page-right, section#page-content  {
-    @extend .absoluteFill;
-    @include box-sizing();
-    padding:$globalPadding/2 $globalPadding;
+	@extend .absoluteFill;
+	@include box-sizing();
+	padding:$globalPadding/2 $globalPadding;
 
-    h4{ font-weight: bolder;margin-bottom:0; }
-    ul{margin: 30px 0;}
+	h4{ font-weight: bolder;margin-bottom:0; }
+	ul{margin: 30px 0;}
 }
 
 header#page-header {
-    background-color:#fafafa;
-    border-bottom:1px solid #e0e0e0;
-    height:$globalPageHeaderHeight;
-    z-index: 2;
-    overflow: visible;
+	background-color:#fafafa;
+	border-bottom:1px solid #e0e0e0;
+	height:$globalPageHeaderHeight;
+	z-index: 2;
+	overflow: visible;
 
-    nav#submenu {
-        position:absolute;
-        bottom: 0;
-        left: $globalPadding;
-        ul{margin:0;}
-        li{
-            display: inline-block;
-            margin:0;
-            margin-right: 20px;
-            height:auto;
-            padding-bottom:10px;
-            a{
-                color:#919191;
-                padding-bottom:10px;
-                &.active {border-bottom: 2px solid $color1; color:#000;}
-            }
-        }
-    }
+	nav#submenu {
+		position:absolute;
+		bottom: 4px;
+		left: $globalPadding;
+		ul{margin:0;}
+		li{
+			display: inline-block;
+			margin:0;
+			margin-right: 20px;
+			height:auto;
+			padding-bottom:10px;
+			a{
+				color:#919191;
+				padding-bottom:10px;
+				&.active {border-bottom: 4px solid $color11; color:#000;}
+			}
+		}
+	}
 }
 
 aside#page-left, aside#page-right {
-    background-color: #fefefe;
-    top:$globalPageHeaderHeight;
-    overflow: auto;
-    z-index: 1;
-    @include single-transition(transform, 0.3s);
+	background-color: #fefefe;
+	top:$globalPageHeaderHeight;
+	overflow: auto;
+	z-index: 1;
+	@include single-transition(transform, 0.3s);
 
-    header.picture {
-        @include ignoreGlobalPadding(1,1,0,1);
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 200px;
-    }
+	header.picture {
+		@include ignoreGlobalPadding(1,1,0,1);
+		background-position: 50%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 200px;
+	}
 }
 
 aside#page-left {
-    border-right: 1px solid #e0e0e0;
-    width:$globalPageLeftWidth;
-    @include translateX(-100%);
+	border-right: 1px solid #e0e0e0;
+	width:$globalPageLeftWidth;
+	@include translateX(-100%);
 }
 
 aside#page-right {
-    border-left: 1px solid #e0e0e0;
-    left:auto;
-    width:$globalPageRightWidth;
-    @include translateX(100%);
+	border-left: 1px solid #e0e0e0;
+	left:auto;
+	width:$globalPageRightWidth;
+	@include translateX(100%);
 }
 
 section#page-content {
-    top:$globalPageHeaderHeight;
-    overflow: auto;
-    @include single-transition(all, 0.3s);
+	top:$globalPageHeaderHeight;
+	overflow: auto;
+	@include single-transition(all, 0.3s);
 
-    section {
-        @include ignoreGlobalPadding();
-        box-sizing: border-box;
-        padding:$globalPadding/2 $globalPadding;
-    }
+	section {
+		@include ignoreGlobalPadding();
+		box-sizing: border-box;
+		padding:$globalPadding/2 $globalPadding;
+	}
 
-    header#overview {
-        @include ignoreGlobalPadding(1,1,0,1);
-        box-sizing: border-box;
-        padding:$globalPadding/2 $globalPadding;
-        border-bottom:1px solid #e0e0e0;
-        @include clearfix();
-        .count {float:left; padding:12px 0}
-        .options{
-            float:right;
-            margin:0;
-            li{padding: 0; display: inline-block;}
-        }
-    }
+	header#overview {
+		@include ignoreGlobalPadding(1,1,0,1);
+		box-sizing: border-box;
+		padding:$globalPadding/2 $globalPadding;
+		border-bottom:1px solid #e0e0e0;
+		@include clearfix();
+		.count {float:left; padding:12px 0}
+		.options{
+			float:right;
+			margin:0;
+			li{padding: 0; display: inline-block;}
+		}
+	}
 
-    section#overview.tiles {
-        //text-align: center;
-        .tile {
-            @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-            @include border-radius(3px);
-            background: #fafafa;
-            display: inline-block;
-            width:255px;
-            height:240px;
-            margin:15px;
-            padding:0;
-            vertical-align: top;
-            font-size: 14px;
-            text-align: left;
-            img{max-width: 100%;}
-            .info{
-                background: #fafafa;
-                position:absolute;
-                bottom:0;
-                width:100%;
-                @include box-sizing();
-                padding:13px 26px;
-                span{display: block; margin:3px 0;}
-                .title{color:#202020}
-                .owner{color:#707070}
-            }
+	section#overview.tiles {
+		//text-align: center;
+		.tile {
+			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+			@include border-radius(3px);
+			background: #fafafa;
+			display: inline-block;
+			width:255px;
+			height:240px;
+			margin:15px;
+			padding:0;
+			vertical-align: top;
+			font-size: 14px;
+			text-align: left;
+			img{max-width: 100%;}
+			.info{
+				background: #fafafa;
+				position:absolute;
+				bottom:0;
+				width:100%;
+				@include box-sizing();
+				padding:13px 26px;
+				span{display: block; margin:3px 0;}
+				.title{color:#202020}
+				.owner{color:#707070}
+			}
 
-            &.selected {
-                @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.5));
-            }
-        }
-    }
+			&.selected {
+				@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.5));
+			}
+		}
+	}
 
-    section#overview.list {
-        @include ignoreGlobalPadding();
-        padding:0;
+	section#overview.list {
+		@include ignoreGlobalPadding();
+		padding:0;
 
-        h5 {margin:15px 0; margin-bottom:-20px; padding:$globalPadding/2 $globalPadding;}
+		h5 {margin:15px 0; margin-bottom:-20px; padding:$globalPadding/2 $globalPadding;}
 
-        table {
-            width:100%;
-            td,th {
-                padding:30px 50px;
-                text-align: left;
-                border-bottom:1px solid #e0e0e0;
-            }
+		table {
+			width:100%;
+			td,th {
+				padding:30px 50px;
+				text-align: left;
+				border-bottom:1px solid #e0e0e0;
+			}
 
-            td {cursor: pointer;}
-            th {padding-bottom:10px }
-        }
-    }
+			td {cursor: pointer;}
+			th {padding-bottom:10px }
+		}
+	}
 }
 
 #page.aside-left {
-    aside#page-left { @include translateX(0%); }
-    section#page-content { left:$globalPageLeftWidth; }
+	aside#page-left { @include translateX(0%); }
+	section#page-content { left:$globalPageLeftWidth; }
 }
 
 #page.aside-right {
-    aside#page-right { @include translateX(0%); }
-    section#page-content { right:$globalPageRightWidth; }
+	aside#page-right { @include translateX(0%); }
+	section#page-content { right:$globalPageRightWidth; }
 }
 
 
@@ -222,21 +436,21 @@ section#page-content {
 //=============================================================================================
 
 section#page.login {
-    @extend .absoluteFill;
+	@extend .absoluteFill;
 
 	$loginWidth: 400px;
 
-    header{
-        @include box-sizing();
-        @extend .absoluteFill;
-        background-color:$color1;
-        border-bottom: 1px solid #cd1a57;
-        bottom:50%;
-        padding-top:4%;
-        text-align: center;
-        h1, h3{ margin:0; padding:0; color:$color3; }
-        h1{ font-weight:bold; margin-bottom:20px; }
-    }
+	header{
+		@include box-sizing();
+		@extend .absoluteFill;
+		background-color:$color1;
+		border-bottom: 1px solid #cd1a57;
+		bottom:50%;
+		padding-top:4%;
+		text-align: center;
+		h1, h3{ margin:0; padding:0; color:$color3; }
+		h1{ font-weight:bold; margin-bottom:20px; }
+	}
 
 	footer{
 		position:absolute;
@@ -254,19 +468,19 @@ section#page.login {
 		}
 	}
 
-    section{
-        background-color:$color3;
-        @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-        @include border-radius(3px);
-        @include centerElement('horizontal');
+	section{
+		background-color:$color3;
+		@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+		@include border-radius(3px);
+		@include centerElement('horizontal');
 		top:275px;
-        @include box-sizing();
-        padding:0 $globalPadding;
-        margin-top:-18px;
-        width:$loginWidth;
+		@include box-sizing();
+		padding:0 $globalPadding;
+		margin-top:-18px;
+		width:$loginWidth;
 
-        img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
-        p.message{ margin-left:20px; font-size:15px; color:$color2;}
+		img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
+		p.message{ margin-left:20px; font-size:15px; color:$color2;}
 
 		h4{
 			font-weight:bold;
@@ -274,13 +488,13 @@ section#page.login {
 			margin: $globalPadding 0 20px 0;
 		}
 
-        form{
-            padding-bottom:40px;
-            input{
-                border:0;
-                border-bottom:1px solid #ccc;
+		form{
+			padding-bottom:40px;
+			input{
+				border:0;
+				border-bottom:1px solid #ccc;
 				padding-left:30px;
-            }
+			}
 
 			input[type=checkbox]{
 				float:left;
@@ -313,15 +527,15 @@ section#page.login {
 
 			}
 
-            button{
-                position:absolute;
-                right:$globalPadding;
-                bottom:35px;
-                background-color:$color11;
-                width:auto;
-            }
-        }
-    }
+			button{
+				position:absolute;
+				right:$globalPadding;
+				bottom:35px;
+				background-color:$color11;
+				width:auto;
+			}
+		}
+	}
 }
 
 
@@ -329,35 +543,35 @@ section#page.login {
 //=============================================================================================
 
 section#page.registration {
-    @extend .absoluteFill;
+	@extend .absoluteFill;
 
-    header{
-        @include box-sizing();
-        @extend .absoluteFill;
-        background-color:$color1;
-        border-bottom: 1px solid #cd1a57;
-        bottom:50%;
-        padding-top:4%;
-        text-align: center;
-        h1, h3{ margin:0; padding:0; color:$color3;  }
-        h1{ font-weight:bold; margin-bottom:20px; }
-    }
+	header{
+		@include box-sizing();
+		@extend .absoluteFill;
+		background-color:$color1;
+		border-bottom: 1px solid #cd1a57;
+		bottom:50%;
+		padding-top:4%;
+		text-align: center;
+		h1, h3{ margin:0; padding:0; color:$color3;  }
+		h1{ font-weight:bold; margin-bottom:20px; }
+	}
 
-    section{
-        background-color:$color3;
-        @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-        @include border-radius(3px);
-        @include centerElement('horizontal');
+	section{
+		background-color:$color3;
+		@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+		@include border-radius(3px);
+		@include centerElement('horizontal');
 		top:275px;
-        @include box-sizing();
-        padding:0 $globalPadding $globalPadding*2 $globalPadding;
-        margin-top:-18px;
+		@include box-sizing();
+		padding:0 $globalPadding $globalPadding*2 $globalPadding;
+		margin-top:-18px;
 		width:680px;
 
-        img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
-        p.message{ margin-left:20px; font-size:15px; color:$color2;}
+		img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
+		p.message{ margin-left:20px; font-size:15px; color:$color2;}
 
-        form{
+		form{
 
 			label{
 				position:relative;
@@ -375,21 +589,21 @@ section#page.registration {
 			}
 
 
-            input{
-                border:0;
-                border-bottom:1px solid #ccc;
+			input{
+				border:0;
+				border-bottom:1px solid #ccc;
 				padding-left:30px;
-            }
+			}
 
-            button{
-                position:absolute;
-                right:$globalPadding;
-                bottom:$globalPadding;
-                background-color:$color11;
-                width:auto;
-            }
-        }
-    }
+			button{
+				position:absolute;
+				right:$globalPadding;
+				bottom:$globalPadding;
+				background-color:$color11;
+				width:auto;
+			}
+		}
+	}
 }
 
 
@@ -397,25 +611,25 @@ section#page.registration {
 //=============================================================================================
 
 section#page.profile {
-    header#page-header {
-        padding-left:225px;
+	header#page-header {
+		padding-left:225px;
 
-        .profilePicture {
-            position:absolute;
-            left:75px;
-            bottom:-30px;
-        }
+		.profilePicture {
+			position:absolute;
+			left:75px;
+			bottom:-30px;
+		}
 
-        nav#submenu {left: 225px;}
-    }
+		nav#submenu {left: 225px;}
+	}
 
-    section#page-content {
-        padding-top:0;
-        section#passion {border-bottom: 1px solid #e0e0e0;}
-        section#qualities {
-            ul {list-style: disc;padding:0 20px; li{margin:0;} }
-        }
-    }
+	section#page-content {
+		padding-top:0;
+		section#passion {border-bottom: 1px solid #e0e0e0;}
+		section#qualities {
+			ul {list-style: disc;padding:0 20px; li{margin:0;} }
+		}
+	}
 }
 
 
@@ -433,7 +647,7 @@ section#page.network {
 //=============================================================================================
 
 section#page.projects {
-    header#page-header {
-        button{float:right}
-    }
+	header#page-header {
+		button{float:right}
+	}
 }
