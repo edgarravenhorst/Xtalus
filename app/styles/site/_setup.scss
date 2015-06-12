@@ -293,11 +293,12 @@ header#page-header {
 	height:$globalPageHeaderHeight;
 	z-index: 2;
 	overflow: visible;
+	padding:50px 80px;
 
 	nav#submenu {
 		position:absolute;
 		bottom: 4px;
-		left: $globalPadding;
+		left: 80px;
 		ul{margin:0;}
 		li{
 			display: inline-block;
@@ -357,7 +358,7 @@ section#page-content {
 	header#overview {
 		@include ignoreGlobalPadding(1,1,0,1);
 		box-sizing: border-box;
-		padding:$globalPadding/2 $globalPadding;
+		padding:10px 80px;
 		border-bottom:1px solid #e0e0e0;
 		@include clearfix();
 		.count {float:left; padding:12px 0}
@@ -369,30 +370,46 @@ section#page-content {
 	}
 
 	section#overview.tiles {
+		padding:50px 80px;
 		//text-align: center;
 		.tile {
 			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
 			@include border-radius(3px);
 			background: #fafafa;
 			display: inline-block;
-			width:255px;
-			height:240px;
-			margin:15px;
+			width:300px;
+			height:320px;
+			margin:0 50px 50px 0;
 			padding:0;
 			vertical-align: top;
 			font-size: 14px;
 			text-align: left;
-			img{max-width: 100%;}
+			cursor: pointer;
+			@include border-radius(3px);
+			img{
+				max-width: 100%;
+				@include border-radius(3px);
+			}
+
 			.info{
 				background: #fafafa;
 				position:absolute;
 				bottom:0;
+				height:160px;
 				width:100%;
 				@include box-sizing();
-				padding:13px 26px;
+				padding:42px 50px;
 				span{display: block; margin:3px 0;}
-				.title{color:#202020}
+				h4{
+					color:#202020;
+					margin:0;
+					padding:0;
+					font-size:18px;
+					height:42px;
+				}
 				.owner{color:#707070}
+
+
 			}
 
 			&.selected {
@@ -648,6 +665,13 @@ section#page.network {
 
 section#page.projects {
 	header#page-header {
-		button{float:right}
+		button{
+			float:right;
+			background-color:$color11;
+
+			i{
+				margin-left:20px;
+			}
+		}
 	}
 }

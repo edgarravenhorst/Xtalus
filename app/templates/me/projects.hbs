@@ -1,7 +1,7 @@
 <section id='page' class='projects'>
     <header id="page-header">
 
-        <button {{action "showPopup" 'new-project'}}>Nieuw project</button>
+        <button {{action "showPopup" 'new-project' id="addProjectBtn"}}>Nieuw project<i class="fa fa-plus"></i></button>
 
         <h4>Projecten</h4>
 
@@ -30,10 +30,11 @@
             {{#each demand in demands}}
 
             <section class="demand tile" {{action "showDetails" demand.uniqueItemId }}>
-                <img src="assets/images/plant.jpg"/>
+                <img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
                 <div class="info">
-                    <span class='title'>{{demand.demandDescription}}</span>
+                    <h4>{{demand.demandDescription}}</h4>
                     <span class='owner'>{{demand.demandOwner.title}}</span>
+					<span class="status"><i class="fa fa-user"></i> Uitgenodigd</span>
                 </div>
             </section>
 
@@ -42,7 +43,7 @@
     </section>
 
     <aside id="page-right">
-        <header class='picture' style="background-image: url('assets/images/plant.jpg') "></header>
+        <header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
         <h4>{{selectedDemand.demandDescription}}</h4>
         <h5>samenvatting</h5>
         <p>{{selectedDemand.demandSummary}}</p>
