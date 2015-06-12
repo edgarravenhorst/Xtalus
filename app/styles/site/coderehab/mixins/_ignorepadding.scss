@@ -1,0 +1,25 @@
+@mixin ignoreGlobalPadding($top:0, $left:1, $bottom:0, $right:1, $isContent:0){
+    position: relative;
+
+    @if $left == 1 {
+        margin-left:-$globalPadding;
+    }
+
+    @if $right == 1 {
+        margin-right:-$globalPadding;
+    }
+
+    @if $top == 1 {
+        margin-top:-$globalPadding/2;
+        @if $isContent == 1 {
+            margin-top:0;
+        }
+    }
+
+    @if $bottom == 1 {
+        margin-bottom:-$globalPadding/2;
+        @if $isContent == 1 {
+            margin-bottom:0;
+        }
+    }
+}

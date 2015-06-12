@@ -1,0 +1,32 @@
+<section id="page" class='registration'>
+
+    <header>
+        <h1>Xtalus</h1>
+        <h3>Het zakelijke matching platform voor studenten, zzp'ers en professionals</h3>
+    </header>
+
+    <section>
+		<h1>Registreer jezelf</h1>
+        <p class="message">{{message}}</p>
+        <form method="post" {{action "login" on="submit"}}>
+            {{input value=firstname type="text" placeholder="Uw voornaam"}}
+            {{input value=lastname type="text" placeholder="Uw achternaam"}}
+			{{input value=email type="text" placeholder="Uw e-mailadres"}}
+			{{input value=phone type="text" placeholder="Uw telefoonnummer"}}
+			{{input value=address type="text" placeholder="Uw adres"}}
+			{{input value=postal type="text" placeholder="Uw postcode"}}
+			{{input value=city type="text" placeholder="Uw woonplaats"}}
+			<label>Entiteit:</label><br>
+			{{
+            view Ember.Select
+            contentBinding="entities"
+            selectionBinding="registration.entity"
+            optionLabelPath="entity.Name"
+            optionValuePath="entity.Id"
+        	}}
+            <button type="submit" class="btn">Registreren</button>
+        </form>
+
+    </section>
+
+</section>

@@ -1,51 +1,3 @@
-@mixin ignoreGlobalPadding($top:0, $left:1, $bottom:0, $right:1, $isContent:0){
-    position: relative;
-
-    @if $left == 1 {
-        margin-left:-$globalPadding;
-    }
-
-    @if $right == 1 {
-        margin-right:-$globalPadding;
-    }
-
-    @if $top == 1 {
-        margin-top:-$globalPadding/2;
-        @if $isContent == 1 {
-            margin-top:0;
-        }
-    }
-
-    @if $bottom == 1 {
-        margin-bottom:-$globalPadding/2;
-        @if $isContent == 1 {
-            margin-bottom:0;
-        }
-    }
-}
-
-.absoluteFill {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    overflow: hidden;
-}
-
-.profilePicture {
-    background-color: #ccc;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: inline-block;
-    @include border-radius(100%);
-    vertical-align: middle;
-    min-width:40px;
-    min-height: 40px;
-    margin:5px 10px;
-}
-
 //=============================================================================================
 // TEMPLATES
 // Template specifieke styling
@@ -290,7 +242,7 @@ section#page.login {
         @include border-radius(3px);
         @include centerElement('both');
         @include box-sizing();
-        padding:$globalPadding;
+        padding:0 $globalPadding;
         margin-top:-18px;
         width:360px;
 
@@ -314,6 +266,57 @@ section#page.login {
         }
     }
 }
+
+
+// PAGE Registration
+//=============================================================================================
+
+section#page.registration {
+    @extend .absoluteFill;
+
+    header{
+        @include box-sizing();
+        @extend .absoluteFill;
+        background-color:$color1;
+        border-bottom: 1px solid #cd1a57;
+        bottom:50%;
+        padding-top:4%;
+        text-align: center;
+        h1, h3{ margin:0; padding:0; color:$color3; }
+        h1{ font-weight:bold; margin-bottom:20px; }
+    }
+
+    section{
+        background-color:$color3;
+        @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+        @include border-radius(3px);
+        @include centerElement('both');
+        @include box-sizing();
+        padding:0 $globalPadding;
+        margin-top:-18px;
+        width:360px;
+
+        img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
+        p.message{ margin-left:20px; font-size:15px; color:$color2;}
+
+        form{
+            padding-bottom:40px;
+            input{
+                border:0;
+                border-bottom:1px solid #ccc;
+            }
+
+            button{
+                position:absolute;
+                right:$globalPadding;
+                bottom:$globalPadding/2;
+                background-color:$color2;
+                width:auto;
+            }
+        }
+    }
+}
+
 
 // PAGE PROFILE
 //=============================================================================================
