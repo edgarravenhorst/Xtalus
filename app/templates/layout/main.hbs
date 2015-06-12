@@ -2,8 +2,7 @@
 
     <header id="app">
         {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
-        <input id="search-field" type="text" placeholder="Zoeken" />
-
+		{{input value=searchQuery type="text" placeholder="Zoeken" id="search-field" }}
         <button id="profile-nav-toggle-btn">&#8964;</button>
         <span id="profile-username" {{action "logout"}}>Logout {{activePerson.fullname}}</span>
         <img id="profilePicture" src="{{activePerson.profilePicture}}" width="35" height="35"/>

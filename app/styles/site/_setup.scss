@@ -9,8 +9,8 @@
 section#template-main {
     @extend .absoluteFill;
     //templatespecs
-    $headerHeight: 90px;
-    $asideWidth: 300px;
+    $headerHeight: 80px;
+    $asideWidth: 350px;
 
     header#app {
         @extend .absoluteFill;
@@ -224,7 +224,7 @@ section#page-content {
 section#page.login {
     @extend .absoluteFill;
 
-	$loginWidth: 360px;
+	$loginWidth: 400px;
 
     header{
         @include box-sizing();
@@ -241,7 +241,7 @@ section#page.login {
 	footer{
 		position:absolute;
 		@include centerElement('horizontal');
-		top:730px;
+		top:636px;
 		width:$loginWidth;
 		z-index:9;
 
@@ -268,17 +268,55 @@ section#page.login {
         img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
         p.message{ margin-left:20px; font-size:15px; color:$color2;}
 
+		h4{
+			font-weight:bold;
+			font-size:24px;
+			margin: $globalPadding 0 20px 0;
+		}
+
         form{
             padding-bottom:40px;
             input{
                 border:0;
                 border-bottom:1px solid #ccc;
+				padding-left:30px;
             }
+
+			input[type=checkbox]{
+				float:left;
+				width:auto;
+				margin-right:11px;
+			}
+
+			label{
+				position:relative;
+
+				i{
+					position: absolute;
+					bottom:2px;
+					color:#9e9e9e;
+				}
+
+				.message{
+					color:$color1;
+					font-size:11px;
+					margin:0;
+					text-align:right;
+					padding:0;
+					height:15px;
+
+
+					&.password{
+						margin-bottom:$globalPadding;
+					}
+				}
+
+			}
 
             button{
                 position:absolute;
                 right:$globalPadding;
-                bottom:$globalPadding/2;
+                bottom:35px;
                 background-color:$color11;
                 width:auto;
             }
@@ -301,7 +339,7 @@ section#page.registration {
         bottom:50%;
         padding-top:4%;
         text-align: center;
-        h1, h3{ margin:0; padding:0; color:$color3; }
+        h1, h3{ margin:0; padding:0; color:$color3;  }
         h1{ font-weight:bold; margin-bottom:20px; }
     }
 
@@ -309,12 +347,12 @@ section#page.registration {
         background-color:$color3;
         @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
         @include border-radius(3px);
-        @include centerElement('both');
+        @include centerElement('horizontal');
+		top:275px;
         @include box-sizing();
         padding:0 $globalPadding $globalPadding*2 $globalPadding;
         margin-top:-18px;
 		width:680px;
-
 
         img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
         p.message{ margin-left:20px; font-size:15px; color:$color2;}
