@@ -8,15 +8,28 @@
     <section>
 		<h1>Registreer jezelf</h1>
         <p class="message">{{message}}</p>
-        <form method="post" {{action "login" on="submit"}}>
+        <form method="post" {{action "register" on="submit"}}>
+			<label>Voornaam</label><br>
             {{input value=firstname type="text" placeholder="Uw voornaam"}}
+			<label>Achternaam</label><br>
             {{input value=lastname type="text" placeholder="Uw achternaam"}}
+			<label>Emailadres</label><br>
 			{{input value=email type="text" placeholder="Uw e-mailadres"}}
+			<label>Teefoonnummer</label><br>
 			{{input value=phone type="text" placeholder="Uw telefoonnummer"}}
+			<label>Adres</label><br>
 			{{input value=address type="text" placeholder="Uw adres"}}
+			<label>Postcode</label><br>
 			{{input value=postal type="text" placeholder="Uw postcode"}}
+			<label>Woonplaats</label><br>
 			{{input value=city type="text" placeholder="Uw woonplaats"}}
-			<label>Entiteit:</label><br>
+			<label>Entiteit*</label><br>
+			<select>
+				<option value="student">Student</option>
+				<option value="zzper">ZZP-er</option>
+				<option value="mkber">MKB-er</option>
+			</select>
+			<!--
 			{{
             view Ember.Select
             contentBinding="entities"
@@ -24,6 +37,8 @@
             optionLabelPath="entity.Name"
             optionValuePath="entity.Id"
         	}}
+			-->
+			{{input value=education type="text" placeholder="Uw opleiding"}}
             <button type="submit" class="btn">Registreren</button>
         </form>
 
