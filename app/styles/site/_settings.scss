@@ -24,6 +24,7 @@ $color7: #b6b6b6;
 $color8: #000;      // black
 $color9: #919191;   //
 $color10: #1f1f1f;  // black almost
+$color11: #3f51b5; // blue/purple
 
 $body-color: #fff;
 $text-color: $color8;
@@ -34,6 +35,7 @@ $globalPadding: 50px;
 @import "coderehab/mixins/ignorepadding";
 @import "coderehab/mixins/centerelement";
 @import "coderehab/include/viewslider";
+@import "coderehab/include/columns";
 
 $susy: (
     global-box-sizing: border-box,

@@ -224,6 +224,8 @@ section#page-content {
 section#page.login {
     @extend .absoluteFill;
 
+	$loginWidth: 360px;
+
     header{
         @include box-sizing();
         @extend .absoluteFill;
@@ -236,15 +238,32 @@ section#page.login {
         h1{ font-weight:bold; margin-bottom:20px; }
     }
 
+	footer{
+		position:absolute;
+		@include centerElement('horizontal');
+		top:730px;
+		width:$loginWidth;
+		z-index:9;
+
+		a{
+			color:#9e9e9e;
+			font-weight:normal;
+			&:nth-child(2){
+				float:right;
+			}
+		}
+	}
+
     section{
         background-color:$color3;
         @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
         @include border-radius(3px);
-        @include centerElement('both');
+        @include centerElement('horizontal');
+		top:275px;
         @include box-sizing();
         padding:0 $globalPadding;
         margin-top:-18px;
-        width:360px;
+        width:$loginWidth;
 
         img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
         p.message{ margin-left:20px; font-size:15px; color:$color2;}
@@ -260,7 +279,7 @@ section#page.login {
                 position:absolute;
                 right:$globalPadding;
                 bottom:$globalPadding/2;
-                background-color:$color2;
+                background-color:$color11;
                 width:auto;
             }
         }
@@ -292,25 +311,43 @@ section#page.registration {
         @include border-radius(3px);
         @include centerElement('both');
         @include box-sizing();
-        padding:0 $globalPadding;
+        padding:0 $globalPadding $globalPadding*2 $globalPadding;
         margin-top:-18px;
-        width:360px;
+		width:680px;
+
 
         img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
         p.message{ margin-left:20px; font-size:15px; color:$color2;}
 
         form{
-            padding-bottom:40px;
+
+			label{
+				position:relative;
+
+				i{
+					position: absolute;
+					bottom:2px;
+					color:#9e9e9e;
+				}
+			}
+
+			h4{
+				margin:0;
+				color:$color1;
+			}
+
+
             input{
                 border:0;
                 border-bottom:1px solid #ccc;
+				padding-left:30px;
             }
 
             button{
                 position:absolute;
                 right:$globalPadding;
-                bottom:$globalPadding/2;
-                background-color:$color2;
+                bottom:$globalPadding;
+                background-color:$color11;
                 width:auto;
             }
         }
