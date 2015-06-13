@@ -1,6 +1,42 @@
 //@import 'fonts';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
+@font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url('../fonts/proximanova-regular-webfont.eot');
+    src: url('../fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova-regular-webfont.woff2') format('woff2'),
+         url('../fonts/proximanova-regular-webfont.woff') format('woff'),
+         url('../fonts/proximanova-regular-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'proxima_nova_rgbold';
+    src: url('../fonts/proximanova-bold-webfont.eot');
+    src: url('../fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova-bold-webfont.woff2') format('woff2'),
+         url('../fonts/proximanova-bold-webfont.woff') format('woff'),
+         url('../fonts/proximanova-bold-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'proxima_novasemibold';
+    src: url('../fonts/proximanova-semibold-webfont.eot');
+    src: url('../fonts/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/proximanova-semibold-webfont.woff') format('woff'),
+         url('../fonts/proximanova-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova-semibold-webfont.svg#proxima_novasemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "compass/utilities/general/clearfix";
 @import "compass/css3/box-shadow";
 @import "compass/css3/box-sizing";
@@ -8,27 +44,52 @@
 @import "compass/css3/transition";
 @import "compass/css3/transform";
 
-$font1: 'Open Sans', sans-serif;
-$font2: 'Open Sans', sans-serif;
-$font3: 'Open Sans', sans-serif;
-$font4: 'Open Sans', sans-serif;
-$font5: 'Open Sans', sans-serif;
+$font1: 'proxima_nova_rgregular', 'Open Sans';
+$font2: 'proxima_novasemibold', 'Open Sans';
+$font3: 'proxima_nova_rgbold', 'Open Sans';
 
-$color1: #e91e63;   // roze
-$color2: #9c27b0;   // purple
-$color3: #fff;      // white
-$color4: #f5f5f5;   // light gray
-$color5: #707070;   // gray
-$color6: #d7d7d7;   // middle gray
-$color7: #b6b6b6;
-$color8: #000;      // black
-$color9: #919191;   //
-$color10: #1f1f1f;  // black almost
-$color11: #3f51b5; // blue/purple
+// black, gray and white
+$color1: #000;
+$color2: #212121;
+$color3: #757575;
+$color4: #9e9e9e;
+$color5: #bdbdbd;
+$color6: #f5f5f5;
+$color7: #fafafa;
+$color8: #ffffff;
+
+// roze
+$color9: #d81b60;
+$color10: #e91e63;
+
+// purple/blue
+$color11: #3949ab;
+$color12: #3f51b5;
+
+// orange
+$color13: #fb8c00;
+$color14: #ff9800;
+
+// green
+$color13: #7cb342;
+$color14: #8bc34a;
 
 $body-color: #fff;
-$text-color: $color8;
+$text-color: $color1;
 
+// fontsizes
+$iconsize: 8px;
+
+$fontsize1: 12px;
+$fontsize2: 14px;
+$fontsize3: 16px;
+$fontsize4: 18px;
+$fontsize5: 22px;
+$fontsize6: 24px;
+$fontsize7: 30px;
+$fontsize8: 48px;
+
+// Padding
 $globalPadding: 50px;
 
 /* Mixins and includes */
@@ -51,8 +112,6 @@ $susy: (
 .font-1 {font-family:$font1 !important}
 .font-2 {font-family:$font2 !important}
 .font-3 {font-family:$font3 !important}
-.font-4 {font-family:$font4 !important}
-.font-5 {font-family:$font5 !important}
 
 $screen-size-mobile: 0px;
 $screen-size-tablet: 650px;

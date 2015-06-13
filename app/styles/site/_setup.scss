@@ -16,7 +16,7 @@ section#template-main {
 		@extend .absoluteFill;
 		height:$headerHeight;
 		box-sizing: border-box;
-		background:$color1;
+		background:$color10;
 		padding:15px;
 
 		img#logo {
@@ -37,6 +37,7 @@ section#template-main {
 			background-image:url(../assets/images/search-icon.png);
 			background-position:right 10px;
 			background-repeat: no-repeat;
+			font-size:$fontsize3;
 		}
 
 		section#profileAccountInfo{
@@ -45,11 +46,12 @@ section#template-main {
 			top:0;
 			bottom:0;
 			padding:0 76px 0 16px;
-			border-left:1px solid #cd1a57;
+			border-left:1px solid $color9;
 			height:40px;
 			margin-top:20px;
 			line-height:40px;
-			color:$color3;
+			color:$color8;
+			font-size:$fontsize3;
 
 			#profile-username{
 				cursor:pointer;
@@ -62,7 +64,7 @@ section#template-main {
 			}
 
 			i{
-				font-size:8px;
+				font-size:$iconsize;
 				margin-left:10px;
 			}
 		}
@@ -80,9 +82,11 @@ section#template-main {
 		padding:$globalPadding;
 		top:$headerHeight;
 		width:$asideWidth;
-		background-color:$color4;
+		background-color:$color6;
 		border-right:1px solid #c2c2c2;
 		overflow:visible;
+		@include transition-property(width,padding);
+		@include transition-duration(0.3s);
 
 		h3{
 			color:#9e9e9e;
@@ -102,13 +106,14 @@ section#template-main {
 			}
 
 			i {
+				width:40px;
 				margin-right:26px;
 			}
 
 			a{
-				color:#757575;
+				color:$color4;
 				&.active{
-					color:$color8;
+					color:$color1;
 					i{
 						color:$color11;
 					}
@@ -154,8 +159,8 @@ section#template-main {
 			height:40px;
 			box-sizing:border-box;
 			padding:0;
-			font-size:14px;
-
+			font-size:$iconsize;
+			@include single-transition(all,0.3s);
 		}
 	}
 
@@ -164,6 +169,7 @@ section#template-main {
 		left:$asideWidth;
 		top:$headerHeight;
 		padding:0;
+		@include single-transition(all,0.3s);
 	}
 }
 
@@ -182,9 +188,6 @@ body.user-nav-small{
 
 			button#toggle-user-menu{
 				@include rotate(180deg);
-				i{
-					font-size:14px !important;
-				}
 			}
 
 			.more-projects{
@@ -276,14 +279,14 @@ body.account-nav-visible{
 
 $globalPageHeaderHeight: 140px;
 $globalPageLeftWidth: 350px;
-$globalPageRightWidth: 350px;
+$globalPageRightWidth: 398px;
 
 header#page-header, aside#page-left, aside#page-right, section#page-content  {
 	@extend .absoluteFill;
 	@include box-sizing();
 	padding:$globalPadding/2 $globalPadding;
 
-	h4{ font-weight: bolder;margin-bottom:0; }
+	h4{ font-weight: bolder; font-size:22px; font-weight:600; line-height:48px; margin:0; color:$color1; }
 	ul{margin: 30px 0;}
 }
 
@@ -365,7 +368,21 @@ section#page-content {
 		.options{
 			float:right;
 			margin:0;
-			li{padding: 0; display: inline-block;}
+			li{
+				padding: 0;
+				display: inline-block;
+				width:40px;
+				text-align: center;
+				margin-left:21px;
+
+				button{
+					background-color:$color11;
+					width:40px;
+					height:40px;
+					padding:0;
+				}
+			}
+
 		}
 	}
 
