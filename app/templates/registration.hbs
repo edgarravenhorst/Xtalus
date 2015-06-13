@@ -62,6 +62,12 @@
                 </label>
             </div>
 
+			<div {{bind-attr class="errors.lastname:error :cols-2"}}>
+                <span>{{errors.birthdaybirthday}}</span>
+                <label><i class="fa fa-user"></i> Geboortedatum<br>
+                    {{input value=formdata.birthday type="text" placeholder="Uw geboortedatum"}}
+                </label>
+            </div>
 
             <div {{bind-attr class="errors.phone:error :cols-2"}}>
                 <span>{{errors.phone}}</span>
