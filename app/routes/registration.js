@@ -29,17 +29,23 @@ var RegistrationRoute = Ember.Route.extend({
                 .then(function(result){
                 console.log('registration:', formdata.entity);
 
-                if(formdata.entity.value === 'student'){
-                    app.createStudent.invoke({
-                        firstName: formdata.firstname,
-                        middleName: formdata.firstname,
-                        lastName: formdata.firstname,
-                        dateOfBirth: '1962-07-16',
-                    })
-                }
+                $ISIS.auth.login(formdata.username, formdata.password).then(function(data){
+                    console.log(data);
+
+                    if(formdata.entity.value === 'student'){
+                        console.log(formdata)
+                        app.createStudent.invoke({
+                            firstName: formdata.firstname,
+                            middleName: formdata.middlename,
+                            lastName: formdata.lastname,
+                            dateOfBirth: formdata.birthday,
+                        }).then(function(result){
+                            console.log('person created:', result);
+                        })
+                    }
+                });
+
             });
-
-
         }
     },
 });

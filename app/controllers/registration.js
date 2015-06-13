@@ -8,6 +8,11 @@ var RegistrationController = Ember.Controller.extend(Validator, {
         email:'edgar@code.rehab',
         password:'pass',
         passwordConfirm:'pass',
+        firstname:'Edgar',
+        middlename:'',
+        lastname:'Ravenhorst',
+        lastname:'Ravenhorst',
+        birthday:'1962-07-16',
         entity:{label:'Student', value:'student'},
     },
     form:{
