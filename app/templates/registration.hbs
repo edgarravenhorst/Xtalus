@@ -12,93 +12,92 @@
             <p class="message">{{message}}</p>
             <h4>Inlog gegevens</h4>
             <div {{bind-attr class="errors.username:error :cols-2"}}>
-                <span>{{errors.username}}</span>
                 <label><i class="fa fa-user"></i> Gebruikersnaam*<br>
                     {{input value=formdata.username type="text" placeholder="Kies een gebruikersnaam"}}
                 </label>
+				<span>{{errors.username}}</span>
             </div>
 
             <div {{bind-attr class="errors.email:error :cols-2"}}>
-                <span>{{errors.email}}</span>
                 <label><i class="fa fa-envelope"></i> Emailadres*<br>
                     {{input value=formdata.email type="text" placeholder="Uw e-mailadres"}}
                 </label>
+				<span>{{errors.email}}</span>
             </div>
 
             <div {{bind-attr class="errors.password:error :cols-2"}}>
-                <span>{{errors.password}}</span>
                 <label><i class="fa fa-lock"></i> Wachtwoord*<br>
                     {{input value=formdata.password type="password" placeholder="Kies een wachtwoord"}}
                 </label>
+				 <span>{{errors.password}}</span>
             </div>
 
             <div {{bind-attr class="errors.passwordConfirm:error :cols-2"}}>
-                <span>{{errors.passwordConfirm}}</span>
                 <label><i class="fa fa-lock"></i> Wachtwoord herhalen*<br>
                     {{input value=formdata.passwordConfirm type="password" placeholder="Herhaal het wachtwoord"}}
                 </label>
+				<span>{{errors.passwordConfirm}}</span>
             </div>
 
             <h4>Persoonlijke gegevens</h4>
 
             <div {{bind-attr class="errors.firstname:error :cols-2"}}>
-                <span>{{errors.firstname}}</span>
                 <label><i class="fa fa-user"></i> Voornaam<br>
                     {{input value=formdata.firstname type="text" placeholder="Uw voornaam"}}
                 </label>
+				<span>{{errors.firstname}}</span>
             </div>
 
             <div {{bind-attr class="errors.middlename:error :cols-2"}}>
-                <span>{{errors.middlename}}</span>
                 <label><i class="fa fa-user"></i> Tussenvoegsel<br>
                     {{input value=formdata.middlename type="text" placeholder="tussenvoegsel"}}
                 </label>
+				<span>{{errors.middlename}}</span>
             </div>
 
             <div {{bind-attr class="errors.lastname:error :cols-2"}}>
-                <span>{{errors.lastname}}</span>
                 <label><i class="fa fa-user"></i> Achternaam<br>
                     {{input value=formdata.lastname type="text" placeholder="Uw achternaam"}}
                 </label>
+				<span>{{errors.lastname}}</span>
             </div>
 
             <div {{bind-attr class="errors.birthday:error :cols-2"}}>
-                <span>{{errors.birthday}}</span>
                 <label><i class="fa fa-birthday-cake"></i> Geboortedatum<br>
                     {{input value=formdata.birthday type="text" placeholder="Uw geboortedatum"}}
                 </label>
+				 <span>{{errors.birthday}}</span>
             </div>
 
             <div {{bind-attr class="errors.phone:error :cols-2"}}>
-                <span>{{errors.phone}}</span>
                 <label><i class="fa fa-phone"></i> Telefoonnummer<br>
                     {{input value=formdata.phone type="text" placeholder="Uw telefoonnummer"}}
                 </label>
+				<span>{{errors.phone}}</span>
             </div>
 
             <div {{bind-attr class="errors.address:error :cols-2"}}>
-                <span>{{errors.address}}</span>
                 <label><i class="fa fa-home"></i> Adres<br>
                     {{input value=formdata.address type="text" placeholder="Uw adres"}}
                 </label>
+				<span>{{errors.address}}</span>
             </div>
 
             <div {{bind-attr class="errors.postal:error :cols-2"}}>
-                <span>{{errors.postal}}</span>
                 <label><i class="fa fa-home"></i> Postcode<br>
                     {{input value=formdata.postal type="text" placeholder="Uw postcode"}}
                 </label>
+				<span>{{errors.postal}}</span>
             </div>
 
             <div {{bind-attr class="errors.city:error :cols-2"}}>
-                <span>{{errors.city}}</span>
                 <label><i class="fa fa-home"></i> Woonplaats<br>
                     {{input value=formdata.city type="text" placeholder="Uw woonplaats"}}
                 </label>
+				<span>{{errors.city}}</span>
             </div>
 
             <div {{bind-attr class="errors.entity:error :cols-2"}}>
-                <span>{{errors.entity}}</span>
                 <label><i class="fa fa-persons"></i> Entiteit*<br>
                     {{
                     view Ember.Select
@@ -108,6 +107,7 @@
                     optionValuePath="content.value"
                     }}
                 </label>
+				<span>{{errors.entity}}</span>
             </div>
 
             <button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
