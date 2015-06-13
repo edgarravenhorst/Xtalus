@@ -10,13 +10,15 @@ export default Router.map(function() {
 	this.route('registration');
 	this.route('forgot');
 
+
     this.resource('me',function(){
         this.route('connections');
         this.route('projects');
+		this.route('courses');
+		this.route('references');
     });
 
     this.resource('profile', {path:"profile/:user_id"}, function(){
-        this.route('connections');
         this.route('projects');
     });
 

@@ -1,7 +1,7 @@
-<section id='page' class='projects'>
+<section id='page' class='courses'>
 
 
-	<section id="add-project-popup">
+	<section id="add-course-popup">
 
 		<section>
 			<header>
@@ -10,7 +10,7 @@
 			<form method="post" {{action "createProject" on="submit"}}>
 				{{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
 				{{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
-				<button type="submit" class="btn add-project-btn">Project toevoegen</button>
+				<button type="submit" class="btn add-project-btn">Opleiding toevoegen</button>
 				<button class="btn close" {{action "closePopup" 'new-project'}}>Annuleren</button>
 			</form>
 
@@ -20,16 +20,18 @@
 
 	<header id="page-header">
 
-		<button {{action "showPopup" 'new-project' id="addProjectBtn"}}>Nieuw project<i class="fa fa-plus"></i></button>
+		<button {{action "showPopup" 'new-project' id="addProjectBtn"}}>Nieuwe opleiding<i class="fa fa-plus"></i></button>
 
-		<h4>Projecten</h4>
+		<h4>Opleidingen</h4>
 
 		<nav id="submenu">
 			<ul>
-				<li>{{#link-to 'me.projects'}}Alle{{/link-to}}</li>
-				<li>{{#link-to 'me.connections'}}Van mij{{/link-to}}</li>
-				<li>{{#link-to 'me.connections'}}Uitgenodigd{{/link-to}}</li>
-				<li>{{#link-to 'me.connections'}}Deelnemer{{/link-to}}</li>
+				<li>{{#link-to 'me.projects' class="active"}}Alle{{/link-to}}</li>
+				<li>{{#link-to 'me.connections'}}MBO{{/link-to}}</li>
+				<li>{{#link-to 'me.connections'}}MHBO{{/link-to}}</li>
+				<li>{{#link-to 'me.connections'}}HBO{{/link-to}}</li>
+				<li>{{#link-to 'me.connections'}}Master{{/link-to}}</li>
+				<li>{{#link-to 'me.connections'}}Trainingen{{/link-to}}</li>
 			</ul>
 		</nav>
 
@@ -37,9 +39,9 @@
 
 	<section id="page-content">
 		<header id="overview" class="absolute">
-			<span class="count">{{ projectCount }} projecten</span>
+			<span class="count">{{ projectCount }} opleidingen</span>
 			<ul class='options'>
-				<li><button><i class="fa fa-sort-alpha-asc"></i></button></li>
+				<!-- <li><button><i class="fa fa-sort-alpha-asc"></i></button></li> -->
 				<li><button class="active"><i class="fa fa-info"></i></button></li>
 			</ul>
 		</header>
