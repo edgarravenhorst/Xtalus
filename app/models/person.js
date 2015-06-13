@@ -16,7 +16,7 @@ export default DS.Model.extend({
     profilePicture: function() {
         var picture = this.get('rawPicture') || '';
         picture = picture.split(':');
-        return '' + md5('edgar@edge-art.nl')
+        return 'http://www.gravatar.com/avatar/' + md5('mathijs@code.rehab')
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
 
