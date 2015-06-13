@@ -14,9 +14,9 @@ export default DS.Model.extend({
     }.property('firstName', 'middleName', 'lastName'),
 
     profilePicture: function() {
-        var picture = this.get('rawPicture') || '';
+        var picture = this.get('rawPicture') || false;
+        if (!picture) return 'http://www.gravatar.com/avatar/' + md5(this.get('email'))
         picture = picture.split(':');
-        return 'http://www.gravatar.com/avatar/' + md5('mathijs@code.rehab')
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
 
@@ -110,6 +110,7 @@ export default DS.Model.extend({
 
     fetchProfileData:function() {
         var personData = this.get('personData');
+        if (personData) return [];
         return personData.collectSupplies.extract().then(function(result){
             if (!result[0]) return [];
             return result[0].collectSupplyProfiles.extract().then(function(result) {
