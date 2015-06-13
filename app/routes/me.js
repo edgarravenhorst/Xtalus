@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Auth from './auth';
 /* global $ISIS */
 
-var MeRoute = Ember.Route.extend({
+var MeRoute = Auth.extend({
 
     beforeModel:function(){
         //if(this.controller) this.controller.init();
@@ -12,11 +13,11 @@ var MeRoute = Ember.Route.extend({
 
     model:function(){
         var app = this.modelFor('application');
-        return app.activePerson;
+        return app;
     },
 
     setupController: function(controller, model) {
-        controller.set('activePerson', model.activeperson);
+        controller.set('activePerson', model.get('activePerson'));
     },
 
     actions: {

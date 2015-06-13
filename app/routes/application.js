@@ -1,33 +1,28 @@
 import Ember from 'ember';
+import DS from 'ember-data';
+
 /* global $ISIS */
 
 var ApplicationRoute = Ember.Route.extend({
-
-    beforeModel:function(){
-        if(!$ISIS.getCookie('auth')) {
-            this.transitionTo('login');
-        }
-    },
 
     model: function(){
         var store = this.store;
         if($ISIS.getCookie('auth')) {
             return $ISIS.init().then(function(isis){
-
                 console.log("\nAPI referentie:\n",'--------------------------------------------------', isis, "===================================================\n");
 
                 return isis.activePerson.invoke().then(function(personData){
-                    console.log(personData);
+
                     var activePerson = store.createRecord('person');
                     return activePerson.initData(personData).then(function(person){
-                        return {
-                            isis: isis,
-                            activePerson: person
-                        }
+                        var isis = store.createRecord('isis')
+                        isis.set('isis', isis);
+                        isis.set('activePerson', person);
+                        return isis;
                     })
                 });
             });
-        }
+        }else return store.createRecord('isis')
     },
 
     actions: {

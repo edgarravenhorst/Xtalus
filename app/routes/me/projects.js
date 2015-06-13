@@ -8,7 +8,7 @@ var MeProjectsRoute = Ember.Route.extend({
     },
 
     model: function() {
-        return this.modelFor('me').initProjects();
+        return this.modelFor('me').get('activePerson').initProjects();
     },
 
     setupController: function(controller, model) {

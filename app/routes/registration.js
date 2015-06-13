@@ -14,8 +14,9 @@ var RegistrationRoute = Ember.Route.extend({
         //$ISIS.put('http://acc.xtalus.gedge.nl/simple/restful/register')
 
         submitRegistration: function(e) {
-            var _this = this
-            var app = this.modelFor('application').isis;
+            var _this = this;
+            var store = this.store;
+            var appModel = this.modelFor('application');
 
             var formdata = this.controller.get('formdata');
             var params = {
@@ -25,38 +26,53 @@ var RegistrationRoute = Ember.Route.extend({
                 email:formdata.email,
             }
 
+            $ISIS.auth.logout();
             $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false)
                 .then(function(result){
-                console.log('registration:', formdata.entity);
+
 
                 $ISIS.auth.login(formdata.username, formdata.password).then(function(data){
-                    console.log(data);
-                    var personData = {
-                        firstName: formdata.firstname,
-                        middleName: formdata.middlename,
-                        lastName: formdata.lastname,
-                        dateOfBirth: formdata.birthday,
-                    }
 
-                    if(formdata.entity.value === 'student'){
-                        app.createStudent.invoke(personData).then(function(result){
-                            _this.transitionTo('me');
-                        })
-                    }
+                    $ISIS.init().then(function(isis){
 
-                    if(formdata.entity.value === 'zzp'){
-                        app.createProfessional.invoke(personData).then(function(result){
-                            _this.transitionTo('me');
-                        })
-                    }
+                        //appModel.isis = isis;
+                        appModel.set('isis',isis)
 
-                    if(formdata.entity.value === 'mkb'){
-                        app.createPrincipal.invoke(personData).then(function(result){
-                            _this.transitionTo('me');
-                        })
-                    }
+                        var personData = {
+                            firstName: formdata.firstname,
+                            middleName: formdata.middlename,
+                            lastName: formdata.lastname,
+                            dateOfBirth: formdata.birthdate,
+                        }
+
+                        if(formdata.entity.value === 'student'){
+                            isis.createStudent.invoke(personData).then(function(data){
+                                //appModel.activePerson = $ISIS.extractMembers(data.result)
+                                var personData = $ISIS.extractMembers(data.result)
+                                var activePerson = store.createRecord('person');
+                                return activePerson.initData(personData).then(function(person){
+                                    var isis = store.createRecord('isis')
+                                    appModel.set('activePerson', person);
+                                    _this.transitionTo('me');
+                                })
+                            })
+                        }
+
+                        if(formdata.entity.value === 'zzp'){
+                            isis.createProfessional.invoke(personData).then(function(data){
+                                appModel.activePerson = $ISIS.extractMembers(data.result)
+                                _this.transitionTo('me');
+                            })
+                        }
+
+                        if(formdata.entity.value === 'mkb'){
+                            isis.createPrincipal.invoke(personData).then(function(data){
+                                appModel.activePerson = $ISIS.extractMembers(data.result)
+                                _this.transitionTo('me');
+                            })
+                        }
+                    });
                 });
-
             });
         }
     },

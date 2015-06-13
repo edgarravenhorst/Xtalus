@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Auth from './auth';
 /* global $ISIS */
 
-var ProjectRoute = Ember.Route.extend({
+var ProjectRoute = Auth.extend({
 
     model: function(params) {
         if(params.project_id){

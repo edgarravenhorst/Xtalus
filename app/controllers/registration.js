@@ -3,7 +3,17 @@ import Validator from '../mixins/validator';
 
 var RegistrationController = Ember.Controller.extend(Validator, {
 
-    formdata:{},
+    formdata:{
+        username:'edgar',
+        password:'pass',
+        passwordConfirm:'pass',
+        email:'edgar@code.rehab',
+        firstname: 'Edgar',
+        middlename: '',
+        lastname: 'Ravenhorst',
+        birthdate: '1991-02-20',
+        entity: {label:'Student', value:'student'}
+    },
     form:{
         entities: [
             {label:'maak een keuze', value:''},
@@ -51,9 +61,9 @@ var RegistrationController = Ember.Controller.extend(Validator, {
             validated = this.validateRequired(formdata.city) ? false : true;
             if (!validated) errors.city = 'Uw woonplaats is verplicht';
 
-            //city
-            validated = this.validateRequired(formdata.city) ? false : true;
-            if (!validated) errors.city = 'Uw woonplaats is verplicht';
+            //birthdate
+            validated = this.validateRequired(formdata.birthdate) ? false : true;
+            if (!validated) errors.birthdate = 'Uw birthdate is verplicht';
 
             //phone
             validated = this.validatePhone(formdata.phone) ? false : true;
@@ -68,6 +78,7 @@ var RegistrationController = Ember.Controller.extend(Validator, {
             if (!validated) errors.entity = 'Uw entiteit is verplicht';
 
             this.set('errors', errors);
+            return true;
             return (Object.keys(errors).length === 0);
         }
     }

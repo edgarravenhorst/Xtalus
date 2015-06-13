@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Auth from './auth';
 /* global $ISIS */
 
-var ProfileRoute = Ember.Route.extend({
+var ProfileRoute = Auth.extend({
 
     model: function(params) {
         var personModel = this.store.createRecord('person')

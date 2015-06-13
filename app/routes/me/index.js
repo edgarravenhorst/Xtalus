@@ -3,7 +3,8 @@ import Ember from 'ember';
 
 var MeIndexRoute = Ember.Route.extend({
     model:function(){
-        return this.modelFor('me');
+        console.log(this.modelFor('me').get('activePerson'))
+        return this.modelFor('me').get('activePerson');
     },
 });
 

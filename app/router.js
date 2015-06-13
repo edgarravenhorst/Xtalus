@@ -19,6 +19,7 @@ export default Router.map(function() {
     });
 
     this.resource('profile', {path:"profile/:user_id"}, function(){
+        this.route('connections');
         this.route('projects');
     });
 
