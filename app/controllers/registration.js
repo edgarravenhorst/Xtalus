@@ -3,25 +3,14 @@ import Validator from '../mixins/validator';
 
 var RegistrationController = Ember.Controller.extend(Validator, {
 
-    formdata:{
-        username:'edgar',
-        email:'edgar@code.rehab',
-        password:'pass',
-        passwordConfirm:'pass',
-        firstname:'Edgar',
-        middlename:'',
-        lastname:'Ravenhorst',
-        lastname:'Ravenhorst',
-        birthday:'1962-07-16',
-        entity:{label:'Student', value:'student'},
-    },
+    formdata:{},
     form:{
         entities: [
             {label:'maak een keuze', value:''},
             {label:'Student', value:'student'},
             {label:'Zzper', value:'zzp'},
             {label:'Mkber', value:'mkb'},
-            ]
+        ]
     },
 
     actions: {
@@ -79,11 +68,9 @@ var RegistrationController = Ember.Controller.extend(Validator, {
             if (!validated) errors.entity = 'Uw entiteit is verplicht';
 
             this.set('errors', errors);
-            return  true
             return (Object.keys(errors).length === 0);
         }
     }
-
 });
 
 export default RegistrationController;
