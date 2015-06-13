@@ -3,14 +3,22 @@ import DS from 'ember-data';
 export default DS.Model.extend({
 
     fullName: function(e) {
-        return this.get('firstName') + ' ' + this.get('lastName');
-    }.property('firstName', 'lastName'),
+        var fullname = ''
+        var firstname = this.get('firstName');
+        var middlename = this.get('middleName');
+        var lastname = this.get('lastName');
+        if(firstname) fullname += firstname;
+        if(middlename) fullname += ' ' + middlename;
+        if(lastname) fullname += ' ' + lastname
+        return fullname
+    }.property('firstName', 'middleName', 'lastName'),
 
     profilePicture: function() {
         var picture = this.get('rawPicture') || '';
         picture = picture.split(':');
+        return '' + md5('edgar@edge-art.nl')
         return 'data:image/png;base64,'+picture[2];
-    }.property('rawPicture'),
+    }.property('rawPicture', 'email'),
 
     initData:function(personData){
         var _this = this;
@@ -29,6 +37,7 @@ export default DS.Model.extend({
 
             _this.setProperties({
                 firstName: personData.firstName,
+                middleName: personData.middleName,
                 lastName: personData.lastName,
                 birthDate: personData.lastName,
                 rawPicture: personData.picture,
@@ -68,6 +77,7 @@ export default DS.Model.extend({
         var personData = this.get('personData');
         return personData.collectPersonalContacts.extract().then(function(rawdata){
             var connections = [];
+            if(!rawdata) return connections;
             $.each(rawdata, function(i, connectiondata){
                 if(connectiondata.contactPerson){
                     connectiondata.fullname = connectiondata.contactPerson.title;
@@ -101,6 +111,7 @@ export default DS.Model.extend({
     fetchProfileData:function() {
         var personData = this.get('personData');
         return personData.collectSupplies.extract().then(function(result){
+            if (!result[0]) return [];
             return result[0].collectSupplyProfiles.extract().then(function(result) {
                 return result[0].collectProfileElements.extract();
             });
