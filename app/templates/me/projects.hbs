@@ -33,7 +33,7 @@
                 <div class="info">
                     <h4>{{demand.demandDescription}}</h4>
                     <span class='owner'>{{demand.demandOwner.title}}</span>
-					<span class="status"><i class="fa fa-user"></i> Uitgenodigd</span>
+					<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
                 </div>
             </section>
 
@@ -43,8 +43,24 @@
 
     <aside id="page-right">
         <header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
+
         <h4>{{selectedDemand.demandDescription}}</h4>
-        <h5>samenvatting</h5>
+		<span class='owner'>{{selectedDemand.demandOwner.title}}</span>
+		<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+		<hr>
+		<span class="expertise">
+		<i class="fa fa-rocket"></i> <h5>Mijn expertise</h5>
+		Leergierig persoon<br>
+		{{
+			view Ember.Select
+			contentBinding="form.entities"
+			selectionBinding="formdata.entity"
+			optionLabelPath="content.label"
+			optionValuePath="content.value"
+        }}
+		</span>
+		<hr>
+
         <p>{{selectedDemand.demandSummary}}</p>
         <h5>verhaal</h5>
         <p>{{selectedDemand.demandStory}}</p>

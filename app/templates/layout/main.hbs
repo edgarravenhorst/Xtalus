@@ -9,45 +9,48 @@
 		</ul>
 	</section>
 
-    <header id="app">
-        {{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
+	<header id="app">
+		{{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
 		{{input value=searchQuery type="text" placeholder="Zoeken" id="search-field" }}
 
 		<section id="profileAccountInfo">
-            <img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
-            <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}
-			<i class="fa fa-chevron-down"></i></span>
+			<img id="profilePicture" src="{{profilePicture}}" width="40" height="40"/>
+			<span id="profile-username" {{action 'toggleAccountNav' }}>{{fullName}}
+				<i class="fa fa-chevron-down"></i></span>
 		</section>
 
-    </header>
+	</header>
 
-    <aside id="user-menu">
-       <button id="toggle-user-menu" {{action "toggleUsernav"}}><i class="fa fa-chevron-left"></i></button>
-        <nav>
-            <ul>
-                <li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i><span>Projecten</span>{{/link-to}}</li>
+	<aside id="user-menu">
+		<button id="toggle-user-menu" {{action "toggleUsernav"}}><i class="fa fa-chevron-left"></i></button>
+		<nav>
+			<ul>
+				<li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i><span>Projecten</span>{{/link-to}}</li>
 				<li>{{#link-to 'me.connections'}}<i class="fa fa-graduation-cap"></i><span>Opleidingen</span>{{/link-to}}</li>
-                <li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i><span>Netwerk</span>{{/link-to}}</li>
-                <li>{{#link-to 'me.index'}}<i class="fa fa-user"></i><span>Profiel</span>{{/link-to}}</li>
-            </ul>
+				<li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i><span>Netwerk</span>{{/link-to}}</li>
+				<li>{{#link-to 'me.index'}}<i class="fa fa-user"></i><span>Profiel</span>{{/link-to}}</li>
+			</ul>
 
-			<hr>
-            <h3>Recente projecten</h3>
 
-            <ul>
-                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
-                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
-                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
-            </ul>
+			<span style="display:none;">
+				<hr>
+				<h3>Recente projecten</h3>
 
-            {{#link-to 'me.projects' class="more-projects"}}Meer{{/link-to}}
-        </nav>
-    </aside>
+				<ul>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
+				</ul>
 
-    <section id="pagewrapper">
+				{{#link-to 'me.projects' class="more-projects"}}Meer{{/link-to}}
+			</span>
+		</nav>
+	</aside>
 
-        {{yield}}
+	<section id="pagewrapper">
 
-    </section>
+		{{yield}}
+
+	</section>
 
 </section>

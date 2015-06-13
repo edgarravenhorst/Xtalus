@@ -329,7 +329,7 @@ header#page-header {
 				padding-bottom:10px;
 				font-size:$fontsize3;
 				display: block;
-  				height: 28px;
+				height: 28px;
 
 				&:hover{ color:$color2; }
 				&.active {border-bottom: 4px solid $color11; color:$color2;}
@@ -339,11 +339,12 @@ header#page-header {
 }
 
 aside#page-left, aside#page-right {
-	background-color: #fefefe;
+	background-color:$color8;
 	top:$globalPageHeaderHeight;
 	overflow: auto;
 	z-index: 1;
 	@include single-transition(transform, 0.3s);
+	font-size:$fontsize3;
 
 	header.picture {
 		@include ignoreGlobalPadding(1,1,0,1);
@@ -351,6 +352,46 @@ aside#page-left, aside#page-right {
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 200px;
+	}
+
+	h4{
+		color:$color1;
+		line-height:24px;
+		font-size:$fontsize5;
+		margin-top:44px;
+	}
+
+	.owner{
+		color:$color2;
+		font-size:$fontsize3;
+		margin-top:25px;
+		display: block;
+		width: 100%;
+	}
+
+	.status{
+		margin-top:18px;
+		color:$color3;
+		display: block;
+		width: 100%;
+		img{
+			float:left;
+			margin-right:15px;
+		}
+	}
+
+	.expertise{
+		h5{
+			font-size:$fontsize3;
+		}
+		i{
+			float:left;
+			margin-right:18px;
+		}
+	}
+
+	hr{
+		color:#e0e0e0;
 	}
 }
 
@@ -460,7 +501,21 @@ section#page-content {
 					height:42px;
 					line-height:24px;
 				}
-				.owner{color:$color2; font-size:$fontsize3;}
+				.owner{
+					color:$color2;
+					font-size:$fontsize3;
+					margin-top:10px;
+				}
+
+				.status{
+					margin-top:10px;
+					color:$color3;
+
+					img{
+						float:left;
+						margin-right:15px;
+					}
+				}
 
 
 			}
@@ -697,6 +752,7 @@ section#page.profile {
 			position:absolute;
 			left:75px;
 			bottom:-30px;
+			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
 		}
 
 		nav#submenu {left: 225px;}
@@ -704,9 +760,69 @@ section#page.profile {
 
 	section#page-content {
 		padding-top:0;
-		section#passion {border-bottom: 1px solid #e0e0e0;}
+		h3{
+			font-size:$fontsize4;
+			color:$color2;
+		}
+
+		section#passion {
+			padding:$globalPadding 80px 0 80px;
+
+			p{
+				color:$color3;
+				font-size:$fontsize3;
+				line-height:30px;
+			}
+
+
+		}
 		section#qualities {
-			ul {list-style: disc;padding:0 20px; li{margin:0;} }
+			width:100%;
+			border:1px dashed #e4e4e4;
+			padding: 25px 30px;
+			margin: 0 20px 0 0;
+
+			ul {
+				list-style: none;
+				padding:0 20px;
+				margin:0;
+				padding: 0;
+				li{
+					margin:0 0 20px  0;
+					display: table;
+					padding:15px;
+					color:$color3;
+					font-size:$fontsize3;
+					@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+					cursor:pointer;
+
+					i{
+						margin-left:20px;
+						color:$color3;
+						font-size:$fontsize1;
+					}
+				}
+			}
+
+			.add-quality-btn{
+				color:$color12;
+			}
+		}
+	}
+
+	aside#page-left{
+
+		h4{
+			font-size:$fontsize5;
+			color:$color2;
+			margin-top:10px;
+		}
+
+		h5{
+			font-size:$fontsize3;
+			color:$color3;
+			line-height:24px;
+			font-weight: normal;
 		}
 	}
 }

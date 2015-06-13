@@ -20,7 +20,8 @@
 
             <section id='index' class='slide-0'>
                 <i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
-                <h5>{{ roles }}</h5>
+                <h4>{{ fullName }}</h4>
+				<h5>{{ roles }}</h5>
 				<hr>
 
 				<section id="age">
@@ -68,9 +69,12 @@
 
             <ul>
                 {{#each quality in qualities}}
-                <li>{{ quality }}</li>
+                	<li>{{ quality }} <i class="fa fa-times"></i></li>
                 {{/each}}
             </ul>
+			Kwaliteit toevoegen<br>
+			{{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
+			<span class="add-quality-btn">Toevoegen</span>
         </section>
     </section>
 </section>
