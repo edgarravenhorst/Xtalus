@@ -11,12 +11,12 @@ var MeRoute = Ember.Route.extend({
     },
 
     model:function(){
-        var activePerson = this.modelFor('application');
-        return activePerson;
+        var app = this.modelFor('application');
+        return app.activePerson;
     },
 
     setupController: function(controller, model) {
-        controller.set('activePerson', this.modelFor('application'));
+        controller.set('activePerson', model.activeperson);
     },
 
     actions: {

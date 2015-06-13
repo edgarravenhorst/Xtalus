@@ -1,110 +1,112 @@
 <section id="page" class='registration'>
 
-	<header>
-		<h1>Xtalus</h1>
-		<h3>Together the perfect 'match-maker' for finding and growing talent</h3>
-	</header>
+    <header>
+        <h1>Xtalus</h1>
+        <h3>Together the perfect 'match-maker' for finding and growing talent</h3>
+    </header>
 
-	<section>
-		<h2>Registreer jezelf</h2>
-		<form method="post" {{action "submitRegistration" on="submit"}} class="columns">
-		<!-- Left column -->
-			<p class="message">{{message}}</p>
-			<h4>Inlog gegevens</h4>
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-user"></i> Gebruikersnaam*<br>
-				{{input value=username type="text" placeholder="Kies een gebruikersnaam"}}
-				</label>
-			</div>
+    <section>
+        <h2>Registreer jezelf</h2>
+        <form method="post" {{action "submitRegistration" on="submit"}} class="columns">
+            <!-- Left column -->
+            <p class="message">{{message}}</p>
+            <h4>Inlog gegevens</h4>
+            <div {{bind-attr class="errors.username:error :cols-2"}}>
+                <span>{{errors.username}}</span>
+                <label><i class="fa fa-user"></i> Gebruikersnaam*<br>
+                    {{input value=formdata.username type="text" placeholder="Kies een gebruikersnaam"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-envelope"></i> Emailadres*<br>
-				{{input value=email type="text" placeholder="Uw e-mailadres"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.email:error :cols-2"}}>
+                <span>{{errors.email}}</span>
+                <label><i class="fa fa-envelope"></i> Emailadres*<br>
+                    {{input value=formdata.email type="text" placeholder="Uw e-mailadres"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-lock"></i> Wachtwoord*<br>
-				{{input value=password type="password" placeholder="Kies een wachtwoord"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.password:error :cols-2"}}>
+                <span>{{errors.password}}</span>
+                <label><i class="fa fa-lock"></i> Wachtwoord*<br>
+                    {{input value=formdata.password type="password" placeholder="Kies een wachtwoord"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-lock"></i> Wachtwoord herhalen*<br>
-				{{input value=passwordrepeat type="password" placeholder="Herhaal het wachtwoord"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.passwordConfirm:error :cols-2"}}>
+                <span>{{errors.passwordConfirm}}</span>
+                <label><i class="fa fa-lock"></i> Wachtwoord herhalen*<br>
+                    {{input value=formdata.passwordConfirm type="password" placeholder="Herhaal het wachtwoord"}}
+                </label>
+            </div>
 
-			<h4>Persoonlijke gegevens</h4>
+            <h4>Persoonlijke gegevens</h4>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-user"></i> Voornaam<br>
-				{{input value=firstname type="text" placeholder="Uw voornaam"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.firstname:error :cols-2"}}>
+                <span>{{errors.firstname}}</span>
+                <label><i class="fa fa-user"></i> Voornaam<br>
+                    {{input value=formdata.firstname type="text" placeholder="Uw voornaam"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-user"></i> Tussenvoegsel<br>
-				{{input value=middlename type="text" placeholder="tussenvoegsel"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.middlename:error :cols-2"}}>
+                <span>{{errors.middlename}}</span>
+                <label><i class="fa fa-user"></i> Tussenvoegsel<br>
+                    {{input value=formdata.middlename type="text" placeholder="tussenvoegsel"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-user"></i> Achternaam<br>
-				{{input value=lastname type="text" placeholder="Uw achternaam"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.lastname:error :cols-2"}}>
+                <span>{{errors.lastname}}</span>
+                <label><i class="fa fa-user"></i> Achternaam<br>
+                    {{input value=formdata.lastname type="text" placeholder="Uw achternaam"}}
+                </label>
+            </div>
 
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-phone"></i> Telefoonnummer<br>
-				{{input value=phone type="text" placeholder="Uw telefoonnummer"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.phone:error :cols-2"}}>
+                <span>{{errors.phone}}</span>
+                <label><i class="fa fa-phone"></i> Telefoonnummer<br>
+                    {{input value=formdata.phone type="text" placeholder="Uw telefoonnummer"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-home"></i> Adres<br>
-				{{input value=address type="text" placeholder="Uw adres"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.address:error :cols-2"}}>
+                <span>{{errors.address}}</span>
+                <label><i class="fa fa-home"></i> Adres<br>
+                    {{input value=formdata.address type="text" placeholder="Uw adres"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-home"></i> Postcode<br>
-				{{input value=postal type="text" placeholder="Uw postcode"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.postal:error :cols-2"}}>
+                <span>{{errors.postal}}</span>
+                <label><i class="fa fa-home"></i> Postcode<br>
+                    {{input value=formdata.postal type="text" placeholder="Uw postcode"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-home"></i> Woonplaats<br>
-				{{input value=city type="text" placeholder="Uw woonplaats"}}
-				</label>
-			</div>
+            <div {{bind-attr class="errors.city:error :cols-2"}}>
+                <span>{{errors.city}}</span>
+                <label><i class="fa fa-home"></i> Woonplaats<br>
+                    {{input value=formdata.city type="text" placeholder="Uw woonplaats"}}
+                </label>
+            </div>
 
-			<div {{bind-attr class="errors.name:error :cols-2"}}>
-            	<span>{{errors.name}}</span>
-				<label><i class="fa fa-persons"></i> Entiteit*<br>
-				<select name="entity">
-					<option value="student">Student</option>
-					<option value="zzper">ZZP-er</option>
-					<option value="mkber">MKB-er</option>
-				</select>
-				</label>
-			</div>
+            <div {{bind-attr class="errors.entity:error :cols-2"}}>
+                <span>{{errors.entity}}</span>
+                <label><i class="fa fa-persons"></i> Entiteit*<br>
+                    {{
+                    view Ember.Select
+                    contentBinding="form.entities"
+                    selectionBinding="formdata.entity"
+                    optionLabelPath="content.label"
+                    optionValuePath="content.value"
+                    }}
+                </label>
+            </div>
 
-			<button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
-			</form>
+            <button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
+        </form>
 
-	</section>
-
+    </section>
+    {{log this}}
 </section>

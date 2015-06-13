@@ -16,9 +16,14 @@ var ApplicationRoute = Ember.Route.extend({
 
                 console.log("\nAPI referentie:\n",'--------------------------------------------------', isis, "===================================================\n");
 
-                return isis.activePerson.invoke().then(function(activePerson){
-                    var personModel = store.createRecord('person');
-                    return personModel.initData(activePerson);
+                return isis.activePerson.invoke().then(function(personData){
+                    var activePerson = store.createRecord('person');
+                    return activePerson.initData(personData).then(function(person){
+                        return {
+                            isis: isis,
+                            activePerson: person
+                        }
+                    })
                 });
             });
         }
