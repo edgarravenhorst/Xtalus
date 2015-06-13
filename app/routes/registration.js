@@ -60,15 +60,25 @@ var RegistrationRoute = Ember.Route.extend({
 
                         if(formdata.entity.value === 'zzp'){
                             isis.createProfessional.invoke(personData).then(function(data){
-                                appModel.activePerson = $ISIS.extractMembers(data.result)
-                                _this.transitionTo('me');
+                                var personData = $ISIS.extractMembers(data.result)
+                                var activePerson = store.createRecord('person');
+                                return activePerson.initData(personData).then(function(person){
+                                    var isis = store.createRecord('isis')
+                                    appModel.set('activePerson', person);
+                                    _this.transitionTo('me');
+                                })
                             })
                         }
 
                         if(formdata.entity.value === 'mkb'){
                             isis.createPrincipal.invoke(personData).then(function(data){
-                                appModel.activePerson = $ISIS.extractMembers(data.result)
-                                _this.transitionTo('me');
+                                var personData = $ISIS.extractMembers(data.result)
+                                var activePerson = store.createRecord('person');
+                                return activePerson.initData(personData).then(function(person){
+                                    var isis = store.createRecord('isis')
+                                    appModel.set('activePerson', person);
+                                    _this.transitionTo('me');
+                                })
                             })
                         }
                     });
