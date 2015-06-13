@@ -11,11 +11,12 @@ var MeRoute = Ember.Route.extend({
     },
 
     model:function(){
-        return this.modelFor('application');
+        var activePerson = this.modelFor('application');
+        return activePerson;
     },
 
-    setupController: function(controller, model){
-        controller.set('activePerson', model);
+    setupController: function(controller, model) {
+        controller.set('activePerson', this.modelFor('application'));
     },
 
     actions: {
@@ -25,7 +26,7 @@ var MeRoute = Ember.Route.extend({
         },
 
         updatePerson:function() {
-            var activePerson = this.controller.get('activePerson');
+            var activePerson = this.modelFor('application');
             activePerson.updatePerson.invoke({
                 firstName:'Edgar',
                 lastName:"Ravenhorst",
@@ -34,7 +35,7 @@ var MeRoute = Ember.Route.extend({
                 console.log(result);
             });
         },
-    }
+    },
 });
 
 export default MeRoute;

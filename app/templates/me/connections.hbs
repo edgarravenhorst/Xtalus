@@ -14,7 +14,7 @@
 
     <section id='page-content' >
         <section id='overview' class='list'>
-            <h5>{{ connectionCount }} connecties</h5>
+            <h5>{{ model.connections.length }} connecties</h5>
             <table>
                 <tr>
                     <th>Naam</th>
@@ -22,7 +22,7 @@
                     <th>Rol</th>
                 </tr>
 
-                {{#each connection in connections}}
+                {{#each connection in model.connections}}
                 <tr {{action 'showConnectionDetails' connection }}>
                     <td>
                         <div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div>
@@ -44,5 +44,5 @@
         <button {{action 'getProfile' selectedPerson.uniqueItemId }}>Bekijk profiel</button>
         <button {{action 'hideConnectionDetails'}}>sluiten</button>
     </aside>
-
 </section>
+{{log this}}

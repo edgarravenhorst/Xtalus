@@ -14,8 +14,8 @@
 		{{input value=searchQuery type="text" placeholder="Zoeken" id="search-field" }}
 
 		<section id="profileAccountInfo">
-			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
-			<span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullname}}
+            <img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
+            <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}
 			<i class="fa fa-chevron-down"></i></span>
 		</section>
 
@@ -35,9 +35,9 @@
             <h3>Recente projecten</h3>
 
             <ul>
-                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
-                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
-				<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
+                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
+                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
+                <li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.profilePicture}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
             </ul>
 
             {{#link-to 'me.projects' class="more-projects"}}Meer{{/link-to}}

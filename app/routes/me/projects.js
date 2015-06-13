@@ -3,8 +3,12 @@ import Ember from 'ember';
 var MeProjectsRoute = Ember.Route.extend({
 
     model: function() {
-        var activePerson = this.modelFor('me');
+        //var activePerson = this.modelFor('me');
         return activePerson.collectDemands.extract();
+    },
+
+    model: function() {
+        return this.modelFor('me').initProjects();
     },
 
     setupController: function(controller, model) {
