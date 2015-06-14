@@ -309,7 +309,7 @@ header#page-header {
 
 	button{
 		float:right;
-			background-color:$color11;
+		background-color:$color11;
 		i{
 			font-size:$fontsize1;
 			margin-left:20px;
@@ -860,6 +860,170 @@ section#page.profile {
 }
 
 
+// PAGE PROFILE MATCHIING
+//=============================================================================================
+
+section#page.profile-matching {
+
+	.profilePicture{
+		width:60px;
+		height:60px;
+	}
+
+	header#page-header {
+		padding-left:225px;
+
+		.profilePicture {
+			position:absolute;
+			left:75px;
+			bottom:-30px;
+			height:100px;
+			width:100px;
+			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+		}
+
+		nav#submenu {left: 225px;}
+	}
+
+	aside#page-left{
+		padding:20px;
+		.profilePicture {
+			float:left;
+		}
+		h4,h5{
+			float:left;
+			line-height:24px;
+		}
+		h4{
+			width: 168px;
+			font-size:$fontsize2;
+		}
+
+		h5{
+			margin:10px 0 20px 0;
+			font-size:$fontsize1;
+		}
+
+		button{
+			float:right;
+			background-color:$color12;
+			i{
+				margin-left:10px;
+			}
+		}
+
+		.element{
+			margin-bottom:20px;
+			display:table;
+			box-sizing:border-box;
+			width:100%;
+			padding:20px;
+			@include border-radius(3px);
+			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+			cursor:pointer;
+			.label{
+				i{
+					float:right;
+				}
+			}
+
+			.config{
+				// display:none;
+			}
+
+		}
+
+
+	}
+
+	section#page-content {
+
+		header#criteria-header{
+			position:absolute;
+			left:0;
+			top:0;
+			right:0;
+			height:70px;
+			padding:20px;
+			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+
+			button{
+				margin-top: 17px;
+				float:right;
+				background-color:$color12;
+
+				i{
+					margin-left:10px;
+				}
+			}
+
+			h5{
+				display:table;
+				float:left;
+				font-size:$fontsize3;
+			}
+
+			.criteria{
+
+				.profilePicture{
+					float:left;
+					cursor:pointer;
+					position:relative;
+
+					.info{
+						display: none;
+						position:absolute;
+						left:0;
+						top: 60px;
+						width: 230px;
+						height: 44px;
+						padding:10px;
+						color:$color8;
+						background-color:$color10;
+						z-index:9999;
+					}
+
+					&:hover .info{
+						display:block;
+					}
+				}
+
+			}
+		}
+
+		section#matchingResults{
+			top:80px;
+
+			h3{
+				font-size:$fontsize4;
+				color:$color2;
+			}
+
+		}
+
+
+
+	}
+
+	aside#page-left{
+
+		h4{
+			font-size:$fontsize5;
+			color:$color2;
+			margin-top:10px;
+		}
+
+		h5{
+			font-size:$fontsize3;
+			color:$color3;
+			line-height:24px;
+			font-weight: normal;
+		}
+	}
+}
+
+
+
 
 //=============================================================================================
 // PAGE NETWORK
@@ -927,6 +1091,38 @@ section#page.popup-new-project{
 	}
 
 }
+
+//=============================================================================================
+// PAGE REFERENCES
+//=============================================================================================
+
+section#page.references {
+
+	header#page-header{
+		padding-left:225px;
+		padding: 50px 80px;
+	}
+
+	section#page-content{
+
+		section.reference{
+			background-color:red;
+			padding:30 80px;
+
+			h2{
+
+			}
+
+			.referencePersonImage{
+				@include border-radius(100%);
+				float:left;
+			}
+		}
+
+	}
+
+}
+
 
 //=============================================================================================
 // PAGE PROJECTS
