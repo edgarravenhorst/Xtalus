@@ -15,7 +15,7 @@ var ProjectMatchingController = Ember.Controller.extend({
 
         selectMatchingProfile: function(id){
 
-            var profile = this.store.find('profile', id).then(function(profile){
+            var profile = this.store.find('demandprofile', id).then(function(profile){
                 this.send('getMatches', profile)
                 this.set('selectedProfile', profile)
             }.bind(this))
