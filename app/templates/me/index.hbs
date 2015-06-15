@@ -45,7 +45,13 @@
 				Geboortedatum
                 {{date-picker value=model.birthDay valueFormat='YYYY-MM-DD' format='YYYY-MM-DD'}}<br>
 
-				<hr>
+				<h4>Locatiegegevens</h4>
+				Adres:
+				{{input value=model.address type="text" placeholder="adres" class="txt-field"}}<br>
+				Postcode:
+				{{input value=model.postalCode type="text" placeholder="postcode" class="txt-field"}}<br>
+				Plaats
+				{{input value=model.town type="text" placeholder="plaats" class="txt-field"}}<br>
 
 				<h4>Beschikbaarheid</h4>
 				Van:

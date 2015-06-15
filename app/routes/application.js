@@ -27,7 +27,13 @@ var ApplicationRoute = Ember.Route.extend({
         }
     },
 
+
     actions: {
+
+		findPerson:function(){
+			console.log(this.get('globalSearchQuery'));
+		},
+
         getProject:function(id){
             this.transitionTo('project', id);
         },

@@ -11,8 +11,8 @@
 
 	<header id="app">
 		{{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
-		{{input value=searchQuery type="text" placeholder="Zoeken" id="search-field" }}
 
+		{{input id="search-field" value=globalSearchQuery action="findPerson" on="key-press"}}
 		<section id="profileAccountInfo">
 			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
             <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}

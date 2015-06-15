@@ -23,6 +23,7 @@ export default Router.map(function() {
         this.route('projects');
     });
 
+
     this.resource('project', {path:"project/:project_id"}, function(){
         this.route('matching')
     })
