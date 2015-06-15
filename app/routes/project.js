@@ -4,9 +4,9 @@ import Auth from './auth';
 
 var ProjectRoute = Auth.extend({
     model: function(params) {
-        var project = this.store.getById('project', params.project_id)
-        if (!project) project = this.store.createRecord('project', {id:params.project_id}).init();
-        return project
+        var demand = this.store.find('demand', params.project_id);
+        console.log('demand', demand);
+        return demand;
     },
 });
 

@@ -13,18 +13,55 @@ var ProjectMatchingController = Ember.Controller.extend({
             })
         },
 
-        selectMatchingProfile: function(profile){
-            var self = this;
-            if (profile) this.set('profile', profile);
-            console.log('Matchingprofile', profile);
+        selectMatchingProfile: function(id){
 
-            this.model.initMatchingProfile(profile).then(function(profile){
-                console.log(profile)
-                self.set('selectedProfile', profile)
-            });
+            var profile = this.store.find('profile', id).then(function(profile){
+                this.send('getMatches', profile)
+                this.set('selectedProfile', profile)
+            }.bind(this))
+
+
         },
 
+        getMatches: function(profile){
+            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+profile.get('URI')).then(function(isisProfile){
+                isisProfile = $ISIS.extractMembers(isisProfile)
+
+                return isisProfile.collectSupplyProfileComparisons.extract().then(function(matches){
+                    var a_promises = [];
+                    $.each(matches, function(i, match){
+
+                        if(match) {
+                            a_promises.push($ISIS.init(match.proposedPerson.href));
+                            console.log(match);
+                        }
+                    });
+
+                    return Ember.RSVP.all(a_promises).then(function(matches){
+
+                        $.each(matches, function(i, match){
+                            //console.log(match)
+                            var picture = match.picture ? match.picture.split(':') : '';
+                            var fullname = match.firstName + " " + match.lastName;
+                            if (match.middleName) {
+                                fullname = match.firstName + " " + match.middleName + " " + match.lastName;
+                            }
+                            match.fullname = fullname;
+                            match.profilePicture = 'data:image/png;base64,'+picture[2];
+                        });
+
+                        console.log(matches)
+                        profile.set('matches', matches)
+                        console.log(profile)
+                        return matches
+                    })
+                });
+            });
+
+
+        }
     }
+
 
 });
 

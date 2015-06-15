@@ -3,13 +3,13 @@
             <section id='index' class='slide-0'>
 
                 <div class='profilePicture' style="background-image: url({{ model.owner.picture }});"></div>
-                <h4>Meelevende persoonlijkheden</h4>
+                <h4>{{ selectedProfile.description }}</h4>
                 <h5>geen match</h5>
                 <hr>
 
                 <section class='widgetContainer'>
 
-                    {{#each element in selectedProfile.choosenMatchingElements}}
+                    {{#each element in selectedProfile.profileElements}}
                     {{matching-widget data=element isNew=false  action='updateWidget'}}
                     {{/each}}
 
@@ -35,10 +35,10 @@
 
     <section id='page-content'>
         <header id="criteria-header">
-            {{#each profile in matchingProfiles}}
-            <span {{action 'selectMatchingProfile' profile}} class="criteria">
+            {{#each profile in model.profiles}}
+            <span {{action 'selectMatchingProfile' profile.id}} class="criteria">
                 <span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
-                    <span class="info"><strong>{{ profile.profileName }}</strong><br />geen match</span>
+                    <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
                 </span>
             </span>
             {{/each}}

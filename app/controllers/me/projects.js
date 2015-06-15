@@ -3,24 +3,11 @@ import Ember from 'ember';
 
 var MeProjectsController = Ember.Controller.extend({
 
-    getDemandByID:function(uniqueID){
-        return $ISIS.init().then(function(isis){
-            return isis.findDemandByUniqueId.invoke({
-                uUID: uniqueID,
-            });
-        });
-    },
-
     actions: {
 
         showDetails: function(itemID){
-            this.set('selectedDemand', null);
-            this.getDemandByID(itemID).then(function(demand){
-                this.set('selectedDemand', demand);
-            }.bind(this));
-
             $('section#page').addClass('aside-right');
-            return false;
+            this.set('selectedDemand', this.store.find('demand', itemID));
         },
 
         hideDetails:function(){

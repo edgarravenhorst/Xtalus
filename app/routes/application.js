@@ -28,12 +28,12 @@ var ApplicationRoute = Ember.Route.extend({
     },
 
     actions: {
-        getProject:function(projectIDs){
-            this.transitionTo('project', projectIDs);
+        getProject:function(id){
+            this.transitionTo('project', id);
         },
 
-        getProfile: function(userID){
-            this.transitionTo('profile', userID);
+        getProfile: function(id){
+            this.transitionTo('profile', id);
         },
 
         toggleAccountNav:function(){

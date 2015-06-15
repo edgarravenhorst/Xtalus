@@ -60,7 +60,7 @@
 	<aside id="page-right">
 		<header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
 
-		<h4>{{selectedDemand.demandDescription}}</h4>
+		<h4>{{selectedDemand.description}}</h4>
 		<span class='owner'>{{selectedDemand.demandOwner.title}}</span>
 		<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
 		<hr>
@@ -82,7 +82,7 @@
 		<p>{{selectedDemand.demandStory}}</p>
 
 		<button {{action 'hideDetails'}}>Sluiten</button><br><br>
-		<button {{action 'getProject' selectedDemand.uniqueItemId }}>Bekijk project</button>
+		<button {{action 'getProject' selectedDemand.id }}>Bekijk project</button>
 
 	</aside>
 

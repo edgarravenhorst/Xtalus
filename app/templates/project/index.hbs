@@ -4,14 +4,14 @@
 
         <ul>
             <li><strong>Beschrijving</strong></li>
-            <li>{{ description }}</li>
+            <li>{{ model.description }}</li>
         </ul>
 
         <p><strong>Specialismen</strong></p>
-        {{#each profile in model.matchingProfiles}}
+        {{#each profile in model.profiles}}
         <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
             <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ ownerProfilePicture }}); width:35px; height:35px;">     </div>
-            <div><strong>{{ profile.name }}</strong><br />geen match</div>
+            <div><strong>{{ profile.description }}</strong><br />geen match</div>
         </div>
         {{/each}}
         <ul>
