@@ -40,7 +40,7 @@ var RegistrationRoute = Ember.Route.extend({
                             firstName: formdata.firstname,
                             middleName: formdata.middlename,
                             lastName: formdata.lastname,
-                            dateOfBirth: formdata.birthdate,
+                            dateOfBirth: formdata.birthday,
                         }
 
                         if(formdata.entity.value === 'student'){
