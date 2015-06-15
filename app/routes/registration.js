@@ -29,8 +29,6 @@ var RegistrationRoute = Ember.Route.extend({
             $ISIS.auth.logout();
             $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false)
                 .then(function(result){
-
-
                 $ISIS.auth.login(formdata.username, formdata.password).then(function(data){
 
                     $ISIS.init().then(function(isis){
@@ -46,11 +44,9 @@ var RegistrationRoute = Ember.Route.extend({
                         }
 
                         if(formdata.entity.value === 'student'){
-                            isis.createStudent.invoke(personData).then(function(data){
-                                //appModel.activePerson = $ISIS.extractMembers(data.result)
-                                var personData = $ISIS.extractMembers(data.result)
-                                var activePerson = store.createRecord('person');
-                                return activePerson.initData(personData).then(function(person){
+                            isis.createStudent.invoke(personData).then(function(personID){
+                                console.log(personID)
+                                return store.find('person', personID).then(function(person){
                                     var isis = store.createRecord('isis')
                                     appModel.set('activePerson', person);
                                     _this.transitionTo('me');
@@ -59,10 +55,8 @@ var RegistrationRoute = Ember.Route.extend({
                         }
 
                         if(formdata.entity.value === 'zzp'){
-                            isis.createProfessional.invoke(personData).then(function(data){
-                                var personData = $ISIS.extractMembers(data.result)
-                                var activePerson = store.createRecord('person');
-                                return activePerson.initData(personData).then(function(person){
+                            isis.createProfessional.invoke(personData).then(function(personID){
+                                return store.find('person', personID).then(function(person){
                                     var isis = store.createRecord('isis')
                                     appModel.set('activePerson', person);
                                     _this.transitionTo('me');
@@ -71,10 +65,8 @@ var RegistrationRoute = Ember.Route.extend({
                         }
 
                         if(formdata.entity.value === 'mkb'){
-                            isis.createPrincipal.invoke(personData).then(function(data){
-                                var personData = $ISIS.extractMembers(data.result)
-                                var activePerson = store.createRecord('person');
-                                return activePerson.initData(personData).then(function(person){
+                            isis.createPrincipal.invoke(personData).then(function(personID){
+                                return store.find('person', personID).then(function(person){
                                     var isis = store.createRecord('isis')
                                     appModel.set('activePerson', person);
                                     _this.transitionTo('me');
