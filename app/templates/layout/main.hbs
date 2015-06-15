@@ -14,8 +14,8 @@
 		{{input value=searchQuery type="text" placeholder="Zoeken" id="search-field" }}
 
 		<section id="profileAccountInfo">
-			<img id="profilePicture" src="{{profilePicture}}" width="40" height="40"/>
-			<span id="profile-username" {{action 'toggleAccountNav' }}>{{fullName}}
+			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
+            <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}
 				<i class="fa fa-chevron-down"></i></span>
 		</section>
 

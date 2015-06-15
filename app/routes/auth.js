@@ -9,25 +9,17 @@ var AuthRoute = Ember.Route.extend({
         }
     },
 
+    setupController: function(controller, model){
+        controller.set('activePerson', this.modelFor('application').get('activePerson'))
+        controller.set('model', model)
+        console.log("\nPage referentie:\n",'--------------------------------------------------', controller, "===================================================\n");
+    },
+
     actions: {
-        getProject:function(projectIDs){
-            this.transitionTo('project', projectIDs);
+        logout: function(){
+            $ISIS.auth.logout();
+            this.refresh();
         },
-
-        getProfile: function(userID){
-            this.transitionTo('profile', userID);
-        },
-
-        changeView:function(viewID, slideID, type) {
-
-            for(var i=0; i<10; i++){
-                $("#" + viewID).removeClass('slide-'+i)
-            }
-
-            $("#" + viewID).addClass('slide-'+slideID)
-            console.log('slide-'+slideID);
-            return false;
-        }
     }
 });
 

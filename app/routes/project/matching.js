@@ -3,34 +3,18 @@ import Ember from 'ember';
 
 var ProjectMatchingRoute = Ember.Route.extend({
     model: function() {
-        var project = this.modelFor('project');
-        var modelObj = {
-            activePerson: this.modelFor('application'),
-            project:project
-        }
-
-        return project.collectDemandProfiles.extract().then(function(matchingProfiles){
-            modelObj.matchingProfiles = matchingProfiles
-            return modelObj
-        });
+        return this.modelFor('project');
     },
 
     setupController: function(controller, model) {
-        var activePerson = model.activePerson;
-        var project = model.project;
-        var matchingProfiles = {
-            total: model.matchingProfiles.length,
-            list:model.matchingProfiles
-        };
 
-        controller.setProperties({
-            description: project.demandDescription,
-            matchingProfiles: matchingProfiles,
-            startdate: project.demandOrSupplyProfileStartDate,
-            enddate: project.demandOrSupplyProfileEndDate,
-            summary: project.demandSummary,
-            story: project.demandStory,
+        controller.set('model', model);
+        controller.set('matchingProfiles', model.get('matchingProfiles'));
+        model.initMatchingProfile(model.get('matchingProfiles')[0]).then(function(profile){
+            console.log(profile)
+            controller.set('selectedProfile', profile)
         });
+
     },
 });
 

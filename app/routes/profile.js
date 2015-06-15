@@ -19,11 +19,6 @@ var ProfileRoute = Auth.extend({
             return params;
         }
     },
-
-
-    setupController: function(controller, model) {
-        controller.set('activePerson', this.modelFor('application'));
-    }
 });
 
 export default ProfileRoute;

@@ -1,112 +1,88 @@
 <section id='page' class='profile-matching aside-left'>
-	<header id="page-header">
+    <header id="page-header">
 
-		<img class="profilePicture" src="{{ownerProfilePicture}}" width="100" height="100"/>
+        <img class="profilePicture" src="{{ model.owner.picture }}" width="100" height="100"/>
 
-		<h4>Project: {{ projectTitle }}</h4>
+        <h4>Project: {{ model.description }}</h4>
 
-		<nav id="submenu">
-			<ul>
-				<li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
-				<li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
-			</ul>
-		</nav>
-	</header>
+        <nav id="submenu">
+            <ul>
+                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
+                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
+            </ul>
+        </nav>
+    </header>
 
-	<aside id='page-left' class='viewslider' >
-		<section class='slideContainer'>
-			<section id='index' class='slide-0'>
+    <aside id='page-left' class='viewslider' >
+        <section class='slideContainer'>
+            <section id='index' class='slide-0'>
 
-				<div class='profilePicture' style="background-image: url({{ ownerProfilePicture }});"></div>
-				<h4>Meelevende persoonlijkheden</h4>
-				<h5>geen match</h5>
-				<hr>
+                <div class='profilePicture' style="background-image: url({{ model.owner.picture }});"></div>
+                <h4>Meelevende persoonlijkheden</h4>
+                <h5>geen match</h5>
+                <hr>
 
-				<ul>
-					<li class="element">
-						<span class="label">Leeftijd <i class="fa fa-pencil-square-o"></i></span>
-					</li>
+                <section class='widgetContainer'>
 
-					<li class="element">
-						<span class="label">Leeftijd <i class="fa fa-pencil-square-o"></i></span>
-					</li>
-				</ul>
+                    {{#each element in selectedProfile.choosenMatchingElements}}
+                    {{matching-widget data=element isNew=false  action='updateWidget'}}
+                    {{/each}}
 
-				<button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
-				<hr>
-				<button {{action '' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
-			</section>
-			<section id="add" class='slide-1'>
+                </section>
 
-				<span class="element">
-					<span class="label">Leeftijd</span>
-					<span class="config">
-						{{#matching/widget-textfield type="number" value=0}}
-						{{body}}
-						{{/matching/widget-textfield}}
-						<button {{action 'changeView' 'page-left' 0 }}>Toevoegen <i class="fa fa-plus"></i></button>
-					</span>
-				</span>
+                <button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
+                <hr>
+                <button {{action '' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
+            </section>
+            <section id="add" class='slide-1'>
 
-				<span class="element">
-					<span class="label">Text</span>
-					<span class="config">
-						{{#matching/widget-textfield type="text"}}
-						{{body}}
-						{{/matching/widget-textfield}}
-						<button {{action 'changeView' 'page-left' 0 }}>Toevoegen <i class="fa fa-plus"></i></button>
-					</span>
-				</span>
+                <section class='widgetContainer'>
 
-				<span class="element">
-					<span class="label">Textarea</span>
-					<span class="config">
-						{{#matching/widget-textarea}}
-						{{body}}
-						{{/matching/widget-textarea}}
-						<button {{action 'changeView' 'page-left' 0 }}>Toevoegen <i class="fa fa-plus"></i></button>
-					</span>
-				</span>
+                    {{#each element in selectedProfile.matchingElements}}
+                    {{matching-widget data=element action='saveWidget'}}
+                    {{/each}}
 
-			</section>
-		</section>
-	</aside>
+                </section>
 
-	<section id='page-content'>
-		<header id="criteria-header">
-			{{#each profile in matchingProfiles.list}}
-			<span {{action 'selectMatchingProfile' profile}} class="criteria">
-				<span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
-					<span class="info"><strong>{{ profile.profileName }}</strong><br />geen match</span>
-				</span>
-			</span>
-			{{/each}}
-			<h5>matches 0/{{ matchingProfiles.total }}</h5>
-			<button>Specialisme toevoegen <i class="fa fa-plus"></i></button>
-		</header>
+            </section>
+        </section>
+    </aside>
+
+    <section id='page-content'>
+        <header id="criteria-header">
+            {{#each profile in matchingProfiles}}
+            <span {{action 'selectMatchingProfile' profile}} class="criteria">
+                <span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
+                    <span class="info"><strong>{{ profile.profileName }}</strong><br />geen match</span>
+                </span>
+            </span>
+            {{/each}}
+            <h5>matches 0/{{ model.matchingProfiles.length }}</h5>
+            <button>Specialisme toevoegen <i class="fa fa-plus"></i></button>
+        </header>
 
 
-		<section id="matchingResults" class='list'>
-			<h3>MatchingProfiel: {{ selectedProfile.title }}</h3>
-			<h5>{{ connectionCount }} connecties</h5>
-			<table>
-				<tr>
-					<th>Naam</th>
-					<th>Branch</th>
-					<th>Rol</th>
-				</tr>
+        <section id="matchingResults" class='list'>
+            <h3>MatchingProfiel: {{ model.selectedProfile.title }}</h3>
+            <h5>{{ connectionCount }} connecties</h5>
+            <table>
+                <tr>
+                    <th>Naam</th>
+                    <th>Branch</th>
+                    <th>Rol</th>
+                </tr>
 
-				{{#each match in selectedProfile.matches}}
-				<tr {{action 'showConnectionDetails' connection }}>
-					<td>
-						<div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div>
-						{{ match.fullname }}
-					</td>
-					<td>{{match.branch}}</td>
-					<td>{{match.roles}}</td>
-				</tr>
-				{{/each}}
-			</table>
-		</section>
-	</section>
+                {{#each match in selectedProfile.matches}}
+                <tr {{action 'showConnectionDetails' connection }}>
+                    <td>
+                        <div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div>
+                        {{ match.fullname }}
+                    </td>
+                    <td>{{match.branch}}</td>
+                    <td>{{match.roles}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </section>
+    </section>
 </section>

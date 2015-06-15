@@ -151,3 +151,48 @@ p{
     min-height: 40px;
     margin:5px 10px;
 }
+
+.matching-widget {
+    @include border-radius(3px);
+    @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+    @include single-transition(max-height, 0.3s);
+
+    max-height:205px;
+    label{
+        display:block;
+        width: 100%;
+        padding:20px;
+        box-sizing: border-box;
+        i{
+            float:right;
+        }
+    }
+
+    .inner {
+        @include single-transition(opacity, 0.3s);
+        margin-bottom:20px;
+        box-sizing:border-box;
+        width:100%;
+        padding:0 20px 20px 20px;
+        opacity: 1;
+
+        cursor:pointer
+
+        form{
+            margin:0;
+        }
+
+        .config{
+            // display:none;
+        }
+
+    }
+
+    &.collapsed {
+        max-height:55px;
+        overflow: hidden;
+        .inner{
+            opacity: 0;
+        }
+    }
+}

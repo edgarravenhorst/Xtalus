@@ -6,6 +6,10 @@
         @include single-transition(transform, 0.3s);
         @include translateX(0%);
         width:1000%;
+        position: absolute;
+        top:0;
+        bottom:0;
+
     }
 
     @for $i from 0 to 10 {
@@ -13,10 +17,13 @@
 
         .slide-#{$i} {
             position: absolute;
+            top:0;
+            bottom:0;
             width:10%;
             @include translateX($position*10);
             @include box-sizing();
             padding:$globalPadding;
+            overflow: auto;
         }
 
         &.slide-#{$i} {

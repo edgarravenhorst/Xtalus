@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 var ProjectIndexRoute = Ember.Route.extend({
     model: function() {
-        var project = this.modelFor('project');
+        /*var project = this.modelFor('project');
         var modelObj = {
             activePerson: this.modelFor('application'),
             project:project
@@ -12,10 +12,11 @@ var ProjectIndexRoute = Ember.Route.extend({
         return project.collectDemandProfiles.extract().then(function(matchingProfiles){
             modelObj.matchingProfiles = matchingProfiles;
             return modelObj;
-        });
+        });*/
+        return this.modelFor('project');
     },
 
-    setupController: function(controller, model) {
+    /*setupController: function(controller, model) {
         var activePerson = model.activePerson;
         var project = model.project;
         var matchingProfiles = [];
@@ -38,9 +39,8 @@ var ProjectIndexRoute = Ember.Route.extend({
             story: project.demandStory,
         });
 
-
-
-    },
+        console.log(model.get('title'));
+    },*/
 });
 
 export default ProjectIndexRoute;

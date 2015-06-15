@@ -6,6 +6,10 @@ var MeIndexRoute = Ember.Route.extend({
         console.log(this.modelFor('me').get('activePerson'))
         return this.modelFor('me').get('activePerson');
     },
+
+    actions: {
+
+    }
 });
 
 export default MeIndexRoute;

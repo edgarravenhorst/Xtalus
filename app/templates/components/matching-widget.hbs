@@ -1,0 +1,30 @@
+
+
+<label {{action "toggleStatus"}}>{{data.description}}</label>
+<div class="inner">
+    <form>
+    {{#if isTextfield}}
+        {{input type=type value=params.postcode class="cols-2"}}
+    {{/if}}
+
+    {{#if isDate}}
+        {{input type=type value=params.postcode class="cols-2"}}
+    {{/if}}
+
+    {{#if isNumber}}
+        {{input type=type value=params.postcode class="cols-2"}}
+    {{/if}}
+
+    {{#if isSelect}}
+        {{input type=type value=params.postcode class="cols-2"}}
+    {{/if}}
+
+    {{#if isTags}}
+        {{input type=type value=params.postcode class="cols-2"}}
+    {{/if}}
+
+    {{#if isNew}}
+        <button {{action "saveWidget" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
+    {{/if}}
+    </form>
+</div>

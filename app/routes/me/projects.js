@@ -13,6 +13,7 @@ var MeProjectsRoute = Ember.Route.extend({
 
     setupController: function(controller, model) {
         controller.setProperties({
+            model:model,
             activePerson: this.modelFor('me'),
             demands: model,
             projectCount: model.length,

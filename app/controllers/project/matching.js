@@ -5,31 +5,22 @@ var ProjectMatchingController = Ember.Controller.extend({
 
     actions: {
 
+        saveWidget:function(element, params){
+            console.log(this.get('profile'), params)
+            var profile = this.get('profile');
+            profile[element.action].invoke(params).then(function(result){
+                console.log(result);
+            })
+        },
+
         selectMatchingProfile: function(profile){
-            self = this;
-            console.log(profile);
+            var self = this;
+            if (profile) this.set('profile', profile);
+            console.log('Matchingprofile', profile);
 
-            profile.collectProfileMatches.extract().then(function(matches){
-                var a_promises = [];
-                $.each(matches, function(i, match){
-                    a_promises.push($ISIS.init(match.proposedPerson.href));
-                });
-                Ember.RSVP.all(a_promises).then(function(matches){
-
-                    $.each(matches, function(i, match){
-                        var picture = match.picture.split(':');
-                        var fullname = match.firstName + " " + match.lastName;
-                        if (match.middleName) {
-                            fullname = match.firstName + " " + match.middleName + " " + match.lastName;
-                        }
-                        match.fullname = fullname;
-                        match.profilePicture = 'data:image/png;base64,'+picture[2];
-                    });
-                    console.log(matches)
-                    profile.matches = matches;
-
-                    self.set('selectedProfile', profile);
-                })
+            this.model.initMatchingProfile(profile).then(function(profile){
+                console.log(profile)
+                self.set('selectedProfile', profile)
             });
         },
 

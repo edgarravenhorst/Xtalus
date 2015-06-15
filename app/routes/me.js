@@ -16,22 +16,21 @@ var MeRoute = Auth.extend({
         return app;
     },
 
-    setupController: function(controller, model) {
+    setupController: function(controller, model){
+        controller.set('model', model)
         controller.set('activePerson', model.get('activePerson'));
+        console.log("\nProfile referentie:\n",'--------------------------------------------------', controller, "===================================================\n");
     },
 
     actions: {
-        logout: function(){
-            $ISIS.auth.logout();
-            this.refresh();
-        },
-
         updatePerson:function() {
-            var activePerson = this.modelFor('application');
+
+            var activePerson = this.controller.get('activePerson');
+            console.log(activePerson)
             activePerson.updatePerson.invoke({
-                firstName:'Edgar',
-                lastName:"Ravenhorst",
-                dateOfBirth:'1991-02-20'
+                firstName:this.get('firstName'),
+                lastName:this.get('lastName'),
+                dateOfBirth:this.get('birthDate'),
             }).then(function(result){
                 console.log(result);
             });

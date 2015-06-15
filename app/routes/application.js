@@ -23,7 +23,7 @@ var ApplicationRoute = Ember.Route.extend({
                 });
             });
         }else return store.createRecord('isis')
-    },
+            },
 
     actions: {
         getProject:function(projectIDs){
@@ -32,6 +32,16 @@ var ApplicationRoute = Ember.Route.extend({
 
         getProfile: function(userID){
             this.transitionTo('profile', userID);
+        },
+
+        toggleAccountNav:function(){
+            Ember.$('body').toggleClass('account-nav-visible');
+            return false;
+        },
+
+        toggleUsernav:function(){
+            Ember.$('body').toggleClass('user-nav-small');
+            return false;
         },
 
         changeView:function(viewID, slideID, type) {
@@ -43,7 +53,7 @@ var ApplicationRoute = Ember.Route.extend({
             $("#" + viewID).addClass('slide-'+slideID)
             console.log('slide-'+slideID);
             return false;
-        }
+        },
     }
 });
 
