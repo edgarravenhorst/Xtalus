@@ -1,17 +1,3 @@
-<section id='page' class='network'>
-
-    <header id="page-header">
-
-        <h4>Netwerk</h4>
-
-        <nav id="submenu">
-            <ul>
-                <li>{{#link-to 'me.connections'}}Alle connecties{{/link-to}}</li>
-            </ul>
-        </nav>
-
-    </header>
-
     <section id='page-content' >
         <section id='overview' class='list'>
             <h5>{{ model.connections.length }} connecties</h5>
@@ -44,5 +30,4 @@
         <button {{action 'getProfile' selectedPerson.uniqueItemId }}>Bekijk profiel</button>
         <button {{action 'hideConnectionDetails'}}>sluiten</button>
     </aside>
-</section>
 {{log this}}

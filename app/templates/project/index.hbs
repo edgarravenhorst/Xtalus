@@ -1,17 +1,3 @@
-<section id='page' class='profile aside-left'>
-    <header id="page-header">
-
-        <img class="profilePicture" src="{{owner.picture}}" width="100" height="100"/>
-
-        <h4>Project: {{ model.title }}</h4>
-
-        <nav id="submenu">
-            <ul>
-                <li>{{#link-to 'project.index'}}Algemeen{{/link-to}}</li>
-                <li>{{#link-to 'project.matching'}}Matches{{/link-to}}</li>
-            </ul>
-        </nav>
-    </header>
     <aside id='page-left' class='' >
         <h4>{{ model.title }}</h4>
         <h5>{{ model.owner.firstName }}</h5>
@@ -47,5 +33,4 @@
         </section>
 
     </section>
-</section>
 {{log this}}

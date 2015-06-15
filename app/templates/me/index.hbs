@@ -1,79 +1,62 @@
-<section id='page' class='profile aside-left'>
+<aside id='page-left' class='viewslider' >
+	<section class='slideContainer'>
 
-    <header id="page-header">
+		<section id='index' class='slide-0'>
+			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
+			<h4>{{ fullName }}</h4>
+			<h5>{{ roles }}</h5>
+			<hr>
 
-        <img class="profilePicture" src="{{profilePicture}}" width="100" height="100"/>
+			<section id="age">
+				<i class="fa fa-male"></i> Leeftijd<br> {{ birthdate }}
+			</section>
 
-        <h4>{{ fullName }}</h4>
+			<section id="availability">
+				<i class="fa fa-calendar"></i> Beschikbaarheid<br>
+				1 april t/m 30 maart<br>
+				15 uur per week
+			</section>
 
-        <nav id="submenu">
-            <ul>
-                <li>{{#link-to 'me'}}Algemeen{{/link-to}}</li>
-				<li>{{#link-to 'me.references'}}Referenties{{/link-to}}</li>
-				<li>{{#link-to 'me.connections'}}Netwerk{{/link-to}}</li>
-            </ul>
-        </nav>
-    </header>
+		</section>
 
-    <aside id='page-left' class='viewslider' >
-        <section class='slideContainer'>
+		<section id='edit' class='slide-1'>
+			<i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
+			<h4>Instellingen</h4>
 
-            <section id='index' class='slide-0'>
-                <i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
-                <h4>{{ fullName }}</h4>
-				<h5>{{ roles }}</h5>
-				<hr>
+			<form method="post" {{action "updatePerson" on="submit"}}>
 
-				<section id="age">
-                <i class="fa fa-male"></i> Leeftijd<br> {{ birthdate }}
-				</section>
+				Voornaam
+				{{input value=firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
+				Achternaam
+				{{input value=lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
+				Geboortedatum
+				{{input value=birthdate type="text" placeholder="Geboortedatum" class="txt-field"}}<br>
 
-				<section id="availability">
-					<i class="fa fa-calendar"></i> Beschikbaarheid<br>
-					1 april t/m 30 maart<br>
-					15 uur per week
-				</section>
+				<button type="submit" class="btn add-project-btn">Update</button>
+			</form>
+		</section>
+	</section>
+</aside>
 
-            </section>
+<section id='page-content'>
+	<section id='passion'>
+		<i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
+		<h3>Verhaal</h3>
+		<p>{{passion}}</p>
+	</section>
 
-            <section id='edit' class='slide-1'>
-                <i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
-                <h4>Instellingen</h4>
+	<section id='qualities'>
+		<i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
+		<h3>Kwaliteiten</h3>
 
-                <form method="post" {{action "updatePerson" on="submit"}}>
-
-                    Voornaam
-                    {{input value=firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
-                    Achternaam
-                    {{input value=lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
-                    Geboortedatum
-                    {{input value=birthdate type="text" placeholder="Geboortedatum" class="txt-field"}}<br>
-
-                    <button type="submit" class="btn add-project-btn">Update</button>
-                </form>
-            </section>
-        </section>
-    </aside>
-
-    <section id='page-content'>
-        <section id='passion'>
-            <i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
-            <h3>Verhaal</h3>
-            <p>{{passion}}</p>
-        </section>
-
-        <section id='qualities'>
-            <i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
-            <h3>Kwaliteiten</h3>
-
-            <ul>
-                {{#each quality in qualities}}
-                	<li>{{ quality }} <i class="fa fa-times"></i></li>
-                {{/each}}
-            </ul>
-			Kwaliteit toevoegen<br>
-			{{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
-			<span class="add-quality-btn">Toevoegen</span>
-        </section>
-    </section>
+		<ul>
+			{{#each quality in qualities}}
+			<li>{{ quality }} <i class="fa fa-times"></i></li>
+			{{/each}}
+		</ul>
+		Kwaliteit toevoegen<br>
+		{{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
+		<span class="add-quality-btn">Toevoegen</span>
+	</section>
 </section>
+

@@ -41,6 +41,10 @@ export default Ember.Component.extend({
         return this.get('data.widgetType') === 'TEXT';
     }.property('data.widgetType'),
 
+	isTextarea: function() {
+        return this.get('data.widgetType') === 'TEXTAREA';
+    }.property('data.widgetType'),
+
     isNumber: function() {
         return this.get('data.widgetType') === 'NUMBER';
     }.property('data.widgetType'),
@@ -56,5 +60,22 @@ export default Ember.Component.extend({
     isDate: function() {
         return this.get('data.widgetType') === 'DATE';
     }.property('data.widgetType'),
+
+	isCheckbox: function() {
+        return this.get('data.widgetType') === 'CHECKBOX';
+    }.property('data.widgetType'),
+
+	isMulticheckbox: function() {
+        return this.get('data.widgetType') === 'MULTICHECKBOX';
+    }.property('data.widgetType'),
+
+	isPredicate: function() {
+        return this.get('data.widgetType') === 'PREDICATE';
+    }.property('data.widgetType'),
+
+	isDaterange: function() {
+        return this.get('data.widgetType') === 'DATERANGE';
+    }.property('data.widgetType'),
+
 
 });

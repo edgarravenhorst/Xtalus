@@ -1,27 +1,61 @@
-
-
 <label {{action "toggleStatus"}}>{{data.description}}</label>
 <div class="inner">
     <form>
     {{#if isTextfield}}
-        {{input type=type value=params.postcode class="cols-2"}}
+        {{input type=text value=params.postcode class="cols-2"}}
+    {{/if}}
+
+	{{#if isTextarea}}
+        {{textarea value=params.postcode class="cols-2"}}
     {{/if}}
 
     {{#if isDate}}
-        {{input type=type value=params.postcode class="cols-2"}}
+        {{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
+    {{/if}}
+
+	{{#if isDaterange}}
+		Start:
+        {{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
+		Eind:
+		{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
     {{/if}}
 
     {{#if isNumber}}
-        {{input type=type value=params.postcode class="cols-2"}}
+		{{input type="number" min="1" max="100" step="1" value=value}}
     {{/if}}
 
     {{#if isSelect}}
-        {{input type=type value=params.postcode class="cols-2"}}
+        {{view Ember.Select
+         contentBinding="App.peopleController"
+         selectionBinding="App.selectedPersonController.person"
+         optionLabelPath="content.fullName"
+         optionValuePath="content.id"
+         prompt="Pick a person:"}}
     {{/if}}
 
     {{#if isTags}}
+
+		<ul class="tags">
+			<li>Tag 1 <i class="fa fa-trash-o"></i></li>
+			<li>Tag 2 <i class="fa fa-trash-o"></i></li>
+		</ul>
+
         {{input type=type value=params.postcode class="cols-2"}}
+		<button {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
     {{/if}}
+
+	{{#if isCheckbox}}
+			{{ view Ember.Checkbox
+           		contentBinding="paymentMethods"
+          		selectionBinding="order.bank"
+				optionLabelPath="name"
+           		optionValuePath="content.Id"
+		}}
+	{{/if}}
+
+	{{#if isMulticheckbox}}
+		{{multiselect-checkboxes options=options labelProperty=options.label }}
+	{{/if}}
 
     {{#if isNew}}
         <button {{action "saveWidget" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>

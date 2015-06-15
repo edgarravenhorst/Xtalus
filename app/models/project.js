@@ -71,8 +71,8 @@ export default DS.Model.extend({
 
         var a_promises = {
             matches: collectMatches,
-            //matchingElements: profileData.collectProfileElementChoices.extract(),
-            //choosenMatchingElements: profileData.collectProfileElements.extract()
+            matchingElements: profileData.collectProfileElementChoices.extract(),
+            choosenMatchingElements: profileData.collectProfileElements.extract()
         };
 
         return Ember.RSVP.hash(a_promises)
