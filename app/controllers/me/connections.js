@@ -4,8 +4,8 @@ import Ember from 'ember';
 var MeConnectionController = Ember.Controller.extend({
 
     actions: {
-        showConnectionDetails: function(connection){
-            this.set("selectedPerson", connection);
+        showConnectionDetails: function(personData){
+            this.set("selectedPerson", this.store.find('person', personData.contactId));
             $('section#page').addClass('aside-right');
             return false;
         },

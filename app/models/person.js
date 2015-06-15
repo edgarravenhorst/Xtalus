@@ -2,6 +2,15 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
 
+    firstName: DS.attr(),
+    middleName: DS.attr({defaultValue:''}),
+    lastName: DS.attr(),
+    dateOfBirth: DS.attr(),
+
+    demands: DS.attr({defaultValue:[]}),
+    supplies: DS.attr({defaultValue:[]}),
+    personalContacts: DS.attr({defaultValue:[]}),
+
     fullName: function(e) {
         var fullname = ''
         var firstname = this.get('firstName');
@@ -20,6 +29,7 @@ export default DS.Model.extend({
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
 
+    /*
     initData:function(personData){
         var _this = this;
         this.set('personData', personData)
@@ -94,7 +104,6 @@ export default DS.Model.extend({
         var _this = this;
 
         $.each(connections, function(i, connectiondata){
-
             a_promises.push($ISIS.init(connectiondata.contactPerson.href).then(function(connection){
                 connection.picture = connection.picture || '';
                 var picture = connection.picture.split(':');
@@ -102,7 +111,6 @@ export default DS.Model.extend({
                 connection.fullname = connectiondata.fullname;
                 return connection;
             }));
-
         });
 
         return Ember.RSVP.all(a_promises);
@@ -117,5 +125,5 @@ export default DS.Model.extend({
                 return result[0].collectProfileElements.extract();
             });
         });
-    }
+    }*/
 });

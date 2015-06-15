@@ -5,8 +5,7 @@ import Ember from 'ember';
 var ProfileConnectionsRoute = Ember.Route.extend({
 
     model: function() {
-        var profile = this.modelFor('profile');
-        return profile
+        return this.modelFor('profile');
     },
 });
 

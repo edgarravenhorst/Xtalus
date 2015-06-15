@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 var MeConnectionsRoute = Ember.Route.extend({
     model: function() {
-        return this.modelFor('me').get('activePerson');
+        return this.modelFor('me');
     },
 });
 

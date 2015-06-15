@@ -12,14 +12,7 @@ var MeRoute = Auth.extend({
     },
 
     model:function(){
-        var app = this.modelFor('application');
-        return app;
-    },
-
-    setupController: function(controller, model){
-        controller.set('model', model)
-        controller.set('activePerson', model.get('activePerson'));
-        console.log("\nProfile referentie:\n",'--------------------------------------------------', controller, "===================================================\n");
+        return this.modelFor('application').get('activePerson');
     },
 
     actions: {

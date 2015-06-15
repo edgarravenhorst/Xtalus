@@ -1,86 +1,88 @@
-<section id='page' class='projects'>
-    <header id="sub-bar">
+<section id="add-project-popup">
 
-        <button {{action "showPopup" 'new-project'}}>Nieuw project</button>
-
-        <h4>Projecten</h4>
-
-        <nav id="sub-nav">
-            <ul>
-                <li>{{#link-to 'me.projects'}}Alle projecten{{/link-to}}</li>
-            </ul>
-        </nav>
-
-
-    </header>
-    <section id="content">
-        <section id="content-wrapper">
-
-            <aside id="content-aside">
-                <header class='projectPicture' style="background-image: url('assets/images/plant.jpg') "></header>
-                <h4>{{selectedDemand.demandDescription}}</h4>
-                <h5>samenvatting</h5>
-                <p>{{selectedDemand.demandSummary}}</p>
-                <h5>verhaal</h5>
-                <p>{{selectedDemand.demandStory}}</p>
-
-                <button {{action 'hideDetails'}}>Sluiten</button><br><br>
-                <button {{action 'delProject'}}>Verwijderen</button>
-            </aside>
-
-            <header id="content-bar">
-                {{ projectCount }} lopende projecten
-
-                <ul>
-                    <li><button>1</button></li>
-                    <li><button>2</button></li>
-                    <li><button>3</button></li>
-                </ul>
-            </header>
-
-            <section id="content">
-                {{outlet}}
-
-                <section id="demands">
-
-                    {{#each demand in demands}}
-
-                    <section class="demand" {{action "showDetails" demand.uniqueItemId }}>
-                        <img src="assets/images/plant.jpg"/>
-                        <section class="description">
-                            <h4>{{demand.demandDescription}}</h4>
-                            <!-- <span>{{demand.demandOrSupplyProfileStartDate}} - {{demand.demandOrSupplyProfileEndDate}}</span> -->
-                            <!-- <p>{{demand.demandSummary}}</p>-->
-                            <p>{{demand.demandOwner.title}}</p>
-                            {{demand.uniqueItemID}}
-                        </section>
-                    </section>
-
-                    {{/each}}
-
-                </section>
-
-                <section id="add-project-popup">
-
-                    <section>
-                        <button class="btn close-popup-btn" {{action "closePopup" 'new-project'}}>X</button>
-                        <header>
-                            <h2>Nieuw project</h2>
-                        </header>
-                        <form method="post" {{action "createProject" on="submit"}}>
-                            {{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
-                            {{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
-                            {{textarea value=story placeholder="Verhaal" class="txt-area"}}<br>
-
-                            <button type="submit" class="btn add-project-btn">Project toevoegen</button>
-                        </form>
-
-                    </section>
-
-                </section>
-            </section>
-
-        </section>
+    <section>
+        <header>
+            <h2>Nieuw project</h2>
+        </header>
+        <form method="post" {{action "createProject" on="submit"}}>
+            {{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
+            {{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
+            <button type="submit" class="btn add-project-btn">Project toevoegen</button>
+            <button class="btn close" {{action "closePopup" 'new-project'}}>Annuleren</button>
+        </form>
 
     </section>
+
 </section>
+
+<header id="page-header">
+
+    <button {{action "showPopup" 'new-project' id="addProjectBtn"}}>Nieuw project<i class="fa fa-plus"></i></button>
+
+    <h4>Projecten</h4>
+
+    <nav id="submenu">
+        <ul>
+            <li>{{#link-to 'me.projects'}}Alle{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Van mij{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Uitgenodigd{{/link-to}}</li>
+            <li>{{#link-to 'me.projects'}}Deelnemer{{/link-to}}</li>
+        </ul>
+    </nav>
+
+</header>
+
+<section id="page-content">
+    <header id="overview" class="absolute">
+        <span class="count">{{ projectCount }} projecten</span>
+        <ul class='options'>
+            <li><button><i class="fa fa-sort-alpha-asc"></i></button></li>
+            <li><button class="active"><i class="fa fa-info"></i></button></li>
+        </ul>
+    </header>
+
+    <section id="overview" class='tiles'>
+        {{#each demand in demands}}
+
+        <section class="demand tile" {{action "showDetails" demand.uniqueItemId }}>
+            <img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
+            <div class="info">
+                <h4>{{demand.demandDescription}}</h4>
+                <span class='owner'>{{demand.demandOwner.title}}</span>
+                <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+            </div>
+        </section>
+
+        {{/each}}
+    </section>
+</section>
+
+<aside id="page-right">
+    <header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
+
+    <h4>{{selectedDemand.demandDescription}}</h4>
+    <span class='owner'>{{selectedDemand.demandOwner.title}}</span>
+    <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+    <hr>
+    <span class="expertise">
+        <i class="fa fa-rocket"></i> <h5>Mijn expertise</h5>
+        Leergierig persoon<br>
+        {{
+        view Ember.Select
+        contentBinding="form.entities"
+        selectionBinding="formdata.entity"
+        optionLabelPath="content.label"
+        optionValuePath="content.value"
+        }}
+    </span>
+    <hr>
+
+    <p>{{selectedDemand.demandSummary}}</p>
+    <h5>verhaal</h5>
+    <p>{{selectedDemand.demandStory}}</p>
+
+    <button {{action 'hideDetails'}}>Sluiten</button><br><br>
+    <button {{action 'getProject' selectedDemand.uniqueItemId }}>Bekijk project</button>
+
+</aside>
+

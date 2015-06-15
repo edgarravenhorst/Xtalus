@@ -1,21 +1,19 @@
     <section id='page-content' >
         <section id='overview' class='list'>
-            <h5>{{ model.connections.length }} connecties</h5>
+            <h5>{{ model.personalContacts.length }} connecties</h5>
             <table>
                 <tr>
                     <th>Naam</th>
-                    <th>Branch</th>
                     <th>Rol</th>
                 </tr>
 
-                {{#each connection in model.connections}}
+                {{#each connection in model.personalContacts}}
                 <tr {{action 'showConnectionDetails' connection }}>
                     <td>
                         <div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div>
-                        {{ connection.fullname }}
+                        {{ connection.contactName }}
                     </td>
-                    <td>{{connection.branch}}</td>
-                    <td>{{connection.roles}}</td>
+                    <td>{{connection.contactRoles}}</td>
                 </tr>
                 {{/each}}
             </table>
@@ -27,7 +25,6 @@
         <h4>{{selectedPerson.fullname}}</h4>
         <h5>{{selectedPerson.roles}}</h5>
         <p>{{selectedPerson.dateOfBirth}}</p>
-        <button {{action 'getProfile' selectedPerson.uniqueItemId }}>Bekijk profiel</button>
+        <button {{action 'getProfile' selectedPerson.id }}>Bekijk profiel</button>
         <button {{action 'hideConnectionDetails'}}>sluiten</button>
     </aside>
-{{log this}}

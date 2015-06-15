@@ -11,19 +11,21 @@ var ApplicationRoute = Ember.Route.extend({
             return $ISIS.init().then(function(isis){
                 console.log("\nAPI referentie:\n",'--------------------------------------------------', isis, "===================================================\n");
 
-                return isis.activePerson.invoke().then(function(personData){
+                return $ISIS.get("http://acc.xtalus.gedge.nl/simple/restful/v1").then(function(restData){
+                    console.log(restData)
 
-                    var activePerson = store.createRecord('person');
-                    return activePerson.initData(personData).then(function(person){
-                        var isis = store.createRecord('isis')
-                        isis.set('isis', isis);
-                        isis.set('activePerson', person);
-                        return isis;
-                    })
+                    var person = store.find('person', restData.person.id);
+                    var isis = store.createRecord('isis')
+                    isis.set('isis', isis);
+                    isis.set('activePerson', person);
+
+                    return isis;
                 });
             });
-        }else return store.createRecord('isis')
-            },
+        }else {
+            return store.createRecord('isis')
+        }
+    },
 
     actions: {
         getProject:function(projectIDs){

@@ -5,19 +5,8 @@ import Auth from './auth';
 var ProfileRoute = Auth.extend({
 
     model: function(params) {
-        var personModel = this.store.createRecord('person')
-        if(params.user_id){
-            return $ISIS.init().then(function(isis){
-                return isis.findPersonByUniqueId.invoke({
-                    uUID: params.user_id,
-                });
-            }).then(function(person){
-                console.log(person);
-                return personModel.initData(person);
-            });
-        }else{
-            return params;
-        }
+        console.log(this.modelFor('application'))
+        return this.store.find('person', params.user_id)
     },
 });
 

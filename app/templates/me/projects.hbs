@@ -42,9 +42,9 @@
 		</header>
 
 		<section id="overview" class='tiles'>
-			{{#each demand in demands}}
+			{{#each demand in model.demands}}
 
-			<section class="demand tile" {{action "showDetails" demand.uniqueItemId }}>
+			<section class="demand tile" {{action "showDetails" demand.id }}>
 				<img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
 				<div class="info">
 					<h4>{{demand.demandDescription}}</h4>
