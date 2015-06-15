@@ -2,6 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
 
+    URI: DS.attr(),
     firstName: DS.attr(),
     middleName: DS.attr({defaultValue:''}),
     lastName: DS.attr(),
@@ -52,11 +53,19 @@ export default DS.Model.extend({
                 picture = 'data:image/png;base64,'+picture[2];
             }
 
-
             connection.picture = picture;
             console.log(connection.picture)
         });
 
         return connections;
-    }.property('personalContacts')
+    }.property('personalContacts'),
+
+    isisObj:function(){
+        console.log('obe')
+        return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+this.get('URI')).then(function(isisObjData){
+
+            return ($ISIS.extractMembers(isisObjData));
+
+        });
+    }.property('URI')
 });
