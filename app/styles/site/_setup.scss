@@ -802,8 +802,8 @@ section#page.profile {
 
 			p{
 				color:$color3;
-				font-size:$fontsize3;
-				line-height:30px;
+				font-size:$fontsize2;
+				line-height:24px;
 			}
 
 
@@ -844,6 +844,10 @@ section#page.profile {
 
 	aside#page-left{
 
+		input{
+			margin-bottom:10px;
+		}
+
 		h4{
 			font-size:$fontsize5;
 			color:$color2;
@@ -855,6 +859,30 @@ section#page.profile {
 			color:$color3;
 			line-height:24px;
 			font-weight: normal;
+		}
+		i{
+			float:left;
+			margin-right:20px;
+		}
+		h6{
+			margin:0 0 20px 0;
+			font-size:$fontsize3;
+			font-family:$font2;
+		}
+
+		p{
+			color:$color3;
+			font-size:$fontsize3;
+			line-height:30px;
+		}
+
+		button{
+			width: auto;
+			background-color:$color12;
+			float:right;
+			i{
+				margin-left:10px;
+			}
 		}
 	}
 }
@@ -1083,16 +1111,39 @@ section#page.references {
 	section#page-content{
 
 		section.reference{
-			background-color:red;
 			padding:30 80px;
+			border-bottom:1px solid #e2e2e2;
+			position:relative;
 
-			h2{
+			.configs{
+				position:absolute;
+				right:80px;
+				top:40px;
+
+				i{
+					margin-left:10px;
+					cursor:pointer;
+					padding:10px;
+					color:$color3;
+					font-size:$fontsize2;
+					@include border-radius(100%);
+					@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+				}
 
 			}
 
+			h2{
+				margin:20px 0 10px 0;
+				color:$color12;
+			}
+			h3{
+				margin:0;
+				color:$color3;
+			}
 			.referencePersonImage{
 				@include border-radius(100%);
 				float:left;
+				margin:0 20px 0 0;
 			}
 		}
 

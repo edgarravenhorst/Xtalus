@@ -5,12 +5,22 @@ export default DS.Model.extend({
     firstName: DS.attr(),
     middleName: DS.attr({defaultValue:''}),
     lastName: DS.attr(),
-    dateOfBirth: DS.attr(),
+    birthDay: DS.attr(),
     email: DS.attr(),
+	roles: DS.attr(),
+	address: DS.attr(),
+	postalCode: DS.attr(),
+	town: DS.attr(),
 
     demands: DS.attr({defaultValue:[]}),
     supplies: DS.attr({defaultValue:[]}),
     personalContacts: DS.attr({defaultValue:[]}),
+	assessments: DS.attr({defaultValue:[]}),
+
+	birthday: function(e){
+		 return moment(this.get('birthDay')).format('DD-MM-YYYY');
+
+	}.property('birthDay'),
 
     fullName: function(e) {
         var fullname = ''

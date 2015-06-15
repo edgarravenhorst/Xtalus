@@ -18,7 +18,7 @@ var AuthRoute = Ember.Route.extend({
     actions: {
         logout: function(){
             $ISIS.auth.logout();
-            this.refresh();
+            this.transitionTo('login');
         },
     }
 });

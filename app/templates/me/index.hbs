@@ -3,19 +3,30 @@
 
 		<section id='index' class='slide-0'>
 			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
-			<h4>{{ fullName }}</h4>
-			<h5>{{ roles }}</h5>
+			<h4>{{ model.fullName }}</h4>
+			<h5>{{ model.roles }}</h5>
 			<hr>
 
+			<section id="location">
+				<i class="fa fa-location-arrow"></i> <h6>Locatiegegevens</h6>
+				<p>
+				{{	model.address }} <br>
+				{{ model.postalCode }} {{ model.town }}
+				 </p>
+			</section>
+			<hr>
 			<section id="age">
-				<i class="fa fa-male"></i> Leeftijd<br> {{ birthdate }}
+				<i class="fa fa-male"></i> <h6>Geboortdedatum</h6>
+				<p>{{ model.birthday }}</p>
+			</section>
+			<hr>
+			<section id="availability">
+				<i class="fa fa-calendar"></i> <h6>Beschikbaarheid</h6>
+				<p>1 april t/m 30 maart<br>
+				15 uur per week</p>
 			</section>
 
-			<section id="availability">
-				<i class="fa fa-calendar"></i> Beschikbaarheid<br>
-				1 april t/m 30 maart<br>
-				15 uur per week
-			</section>
+
 
 		</section>
 
@@ -26,13 +37,23 @@
 			<form method="post" {{action "updatePerson" on="submit"}}>
 
 				Voornaam
-				{{input value=firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
+				{{input value=model.firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
+				Tussenvoegsel
+				{{input value=model.middleName type="text" placeholder="Tussenvoegsel" class="txt-field"}}<br>
 				Achternaam
-				{{input value=lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
+				{{input value=model.lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
 				Geboortedatum
-				{{input value=birthdate type="text" placeholder="Geboortedatum" class="txt-field"}}<br>
+				{{date-picker value=model.birthDay date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY'}}<br>
 
-				<button type="submit" class="btn add-project-btn">Update</button>
+				<hr>
+
+				<h4>Beschikbaarheid</h4>
+				Van:
+				{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY'}}<br>
+				tot:
+				{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY'}}<br>
+
+				<button type="submit" class="btn add-project-btn">Wijzigen <i class="fa fa-pencil"></i></button>
 			</form>
 		</section>
 	</section>
@@ -42,11 +63,10 @@
 	<section id='passion'>
 		<i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
 		<h3>Verhaal</h3>
-		<p>{{passion}}</p>
+		<p>{{model.passion}}</p>
 	</section>
 
 	<section id='qualities'>
-		<i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
 		<h3>Kwaliteiten</h3>
 
 		<ul>
