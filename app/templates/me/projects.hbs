@@ -5,8 +5,8 @@
 				<h2>Nieuw project</h2>
 			</header>
 			<form method="post" {{action "createProject" on="submit"}}>
-				{{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
-				{{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
+                {{input value=newProjectParams.title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
+                {{textarea value=newProjectParams.summary placeholder="Samenvatting" class="txt-area"}}<br>
 				<button type="submit" class="btn add-project-btn">Project toevoegen</button>
 				<button class="btn close" {{action "closePopup" 'new-project'}}>Annuleren</button>
 			</form>
@@ -47,7 +47,7 @@
 			<section class="demand tile" {{action "showDetails" demand.id }}>
 				<img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
 				<div class="info">
-					<h4>{{demand.demandDescription}}</h4>
+					<h4>{{demand.description}}</h4>
 					<span class='owner'>{{demand.demandOwner.title}}</span>
 					<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
 				</div>

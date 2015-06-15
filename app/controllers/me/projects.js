@@ -3,6 +3,9 @@ import Ember from 'ember';
 
 var MeProjectsController = Ember.Controller.extend({
 
+    newProjectParams: {
+    },
+
     actions: {
 
         showDetails: function(itemID){
@@ -32,26 +35,30 @@ var MeProjectsController = Ember.Controller.extend({
 
             if(confirmed) {
                 demand.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
-                    self.send('refreshDemands');
-                    self.send('hideDetails');
+                    //self.send('refreshDemands');
+                    self.model.reload();
                 });
             }
         },
 
         createProject: function(){
             var self = this;
-            var title = this.get("title");
-            var summary = this.get("summary");
-            var story = this.get("story");
-
-            this.get('activePerson').createPersonsDemand.invoke({
-                demandDescription: title,
-                demandSummary: summary,
-                demandStory: story
-            }).then(function(){
-                self.send('refreshDemands');
-                self.send('closePopup', 'new-project');
-            });
+            var store = this.store;
+            var params = this.get('newProjectParams');
+            console.log(params)
+            this.model.get('isisObj').then(function(isisObj){
+                console.log(isisObj);
+                isisObj.createPersonsDemand.invoke({
+                    demandDescription: params.title,
+                    demandSummary: params.summary,
+                    demandStory: params.summary
+                }).then(function(){
+                    //self.send('refreshDemands');
+                    self.send('closePopup', 'new-project');
+                    this.get('newProjectParams', {});
+                    self.model.reload();
+                });
+            })
 
         }
     }

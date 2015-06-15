@@ -18,6 +18,8 @@ export default DS.Model.extend({
     personalContacts: DS.attr({defaultValue:[]}),
 	assessments: DS.attr({defaultValue:[]}),
 
+    newProjectParams: DS.attr(),
+
 	birthday: function(e){
 		 return moment(this.get('birthDay')).format('DD-MM-YYYY');
 
