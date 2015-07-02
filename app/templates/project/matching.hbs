@@ -10,20 +10,20 @@
                 <section class='widgetContainer'>
 
                     {{#each element in selectedProfile.profileElements}}
-                    {{matching-widget data=element isNew=false  action='updateWidget'}}
+                    {{matching-widget data=element isNew=false action='updateWidget'}}
                     {{/each}}
 
                 </section>
 
                 <button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
                 <hr>
-                <button {{action '' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
+                <button {{action 'calculateMatches' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
             </section>
             <section id="add" class='slide-1'>
 
                 <section class='widgetContainer'>
 
-                    {{#each element in selectedProfile.matchingElements}}
+                    {{#each element in selectedProfile.profileElementChoices}}
                     {{matching-widget data=element action='saveWidget'}}
                     {{/each}}
 

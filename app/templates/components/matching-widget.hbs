@@ -1,30 +1,39 @@
 <label {{action "toggleStatus"}}>{{data.description}}</label>
 <div class="inner">
+
+    {{#if data.displayValue}}
+    <p>{{data.displayValue}}</p>
+    {{/if}}
+
     <form>
-    {{#if isTextfield}}
+    {{#if isPostal}}
         {{input type=text value=params.postcode class="cols-2"}}
     {{/if}}
 
 	{{#if isTextarea}}
-        {{textarea value=params.postcode class="cols-2"}}
+        {{textarea value=params.value  class="cols-2"}}
     {{/if}}
 
     {{#if isDate}}
         {{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
     {{/if}}
 
-	{{#if isDaterange}}
+    {{#if isTimePeriod}}
 		Start:
-        {{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
+        {{date-picker value=data.startDate date=mydate valueFormat='YYYY-MM-DD'}}
 		Eind:
-		{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD'}}
+        {{date-picker value=data.endDate date=mydate valueFormat='YYYY-MM-DD'}}
     {{/if}}
 
-    {{#if isNumber}}
-		{{input type="number" min="1" max="100" step="1" value=value}}
+    {{#if isHourlyRate}}
+        {{input type="number" min="1" max="100" step="1" value=params.hourlyRate}}
     {{/if}}
 
-    {{#if isSelect}}
+    {{#if isAge}}
+        {{input type="number" min="1" max="100" step="1" value=params.age}}
+    {{/if}}
+
+    {{#if isEducation}}
         {{view Ember.Select
          contentBinding="App.peopleController"
          selectionBinding="App.selectedPersonController.person"
@@ -34,7 +43,6 @@
     {{/if}}
 
     {{#if isTags}}
-
 		<ul class="tags">
 			<li>Tag 1 <i class="fa fa-trash-o"></i></li>
 			<li>Tag 2 <i class="fa fa-trash-o"></i></li>
@@ -42,19 +50,10 @@
 
         {{input type=type value=params.postcode class="cols-2"}}
 		<button {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
-    {{/if}}
-
-	{{#if isCheckbox}}
-			{{ view Ember.Checkbox
-           		contentBinding="paymentMethods"
-          		selectionBinding="order.bank"
-				optionLabelPath="name"
-           		optionValuePath="content.Id"
-		}}
 	{{/if}}
 
-	{{#if isMulticheckbox}}
-		{{multiselect-checkboxes options=options labelProperty=options.label }}
+    {{#if isRole}}
+        {{multiselect-checkboxes options=data.roles labelProperty='name' selection=role_chkbox.values}}
 	{{/if}}
 
     {{#if isNew}}

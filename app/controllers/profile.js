@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import App from './application';
 
-var ProfileController = Ember.Controller.extend({
+var ProfileController = App.extend({
 
     actions: {
 

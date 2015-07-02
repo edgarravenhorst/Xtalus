@@ -5,7 +5,6 @@ import Auth from './auth';
 var ProjectRoute = Auth.extend({
     model: function(params) {
         var demand = this.store.find('demand', params.project_id);
-        console.log('demand', demand);
         return demand;
     },
 });

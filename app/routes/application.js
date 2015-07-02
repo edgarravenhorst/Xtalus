@@ -5,6 +5,8 @@ import DS from 'ember-data';
 
 var ApplicationRoute = Ember.Route.extend({
 
+    globalSearchQuery:"",
+
     model: function(){
         var store = this.store;
         if($ISIS.getCookie('auth')) {
@@ -12,7 +14,8 @@ var ApplicationRoute = Ember.Route.extend({
                 console.log("\nAPI referentie:\n",'--------------------------------------------------', isis, "===================================================\n");
 
                 return $ISIS.get("http://acc.xtalus.gedge.nl/simple/restful/v1").then(function(restData){
-                    console.log(restData)
+                    console.log("\nPerson referentie:\n",'--------------------------------------------------', restData, "===================================================\n");
+
 
                     var person = store.find('person', restData.person.id);
                     var isis = store.createRecord('isis')
@@ -29,11 +32,6 @@ var ApplicationRoute = Ember.Route.extend({
 
 
     actions: {
-
-		findPerson:function(){
-			console.log(this.get('globalSearchQuery'));
-		},
-
         getProject:function(id){
             this.transitionTo('project', id);
         },

@@ -1,29 +1,33 @@
 import Ember from 'ember';
 /* global $ */
+/* global $ISIS */
 
 var ProjectMatchingController = Ember.Controller.extend({
 
     actions: {
 
         saveWidget:function(element, params){
-            console.log(this.get('profile'), params)
-            var profile = this.get('profile');
-            profile[element.action].invoke(params).then(function(result){
-                console.log(result);
+            console.log(this.get('selectedProfile'), params)
+            var profile = this.get('selectedProfile');
+
+            $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+profile.get('URI')).then(function(isisProfile){
+                isisProfile = $ISIS.extractMembers(isisProfile);
+                console.log(isisProfile, element.action);
+                isisProfile[element.action].invoke(params).then(function(result){
+                    console.log(result);
+                })
             })
         },
 
         selectMatchingProfile: function(id){
-
             var profile = this.store.find('demandprofile', id).then(function(profile){
-                this.send('getMatches', profile)
+                //this.send('calculateMatches', profile)
                 this.set('selectedProfile', profile)
             }.bind(this))
 
-
         },
 
-        getMatches: function(profile){
+        calculateMatches: function(profile){
             return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+profile.get('URI')).then(function(isisProfile){
                 isisProfile = $ISIS.extractMembers(isisProfile)
 
@@ -52,7 +56,6 @@ var ProjectMatchingController = Ember.Controller.extend({
 
                         console.log(matches)
                         profile.set('matches', matches)
-                        console.log(profile)
                         return matches
                     })
                 });

@@ -18,6 +18,7 @@ section#template-main {
 		box-sizing: border-box;
 		background:$color10;
 		padding:15px;
+        overflow: visible;
 
 		img#logo {
 			position:absolute;
@@ -25,22 +26,58 @@ section#template-main {
 			top:29px;
 		}
 
-		input#search-field{
-			position:absolute;
-			left:431px;
-			top:15px;
-			height:40px;
-			width:457px;
-			padding:0 21px;
-			color:$color4;
-			@include box-sizing(border-radius);
-			@include border-radius(3px);
-			box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.26);
-			background-image:url(../assets/images/search-icon.png);
-			background-position:right 10px;
-			background-repeat: no-repeat;
-			font-size:$fontsize3;
-		}
+        section#globalSearchBox{
+            @include centerElement('horizontal');
+            width:457px;
+            top:15px;
+            z-index: 9999;
+
+            input#searchfield{
+                height:40px;
+                width:100%;
+                padding:0 21px;
+                color:$color4;
+                @include box-sizing(border-box);
+                @include border-radius(3px);
+                box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.26);
+                background-image:url(../assets/images/search-icon.png);
+                background-position:right 10px;
+                background-repeat: no-repeat;
+                font-size:$fontsize3;
+            }
+
+            .result{
+                position: absolute;
+                left:0;
+                top:45px;
+                width:100%;
+                background: #fff;
+                @include border-radius(3px);
+                @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+                @include box-sizing(border-box);
+                padding:0 25px;
+
+                li {
+                    overflow: hidden;
+                    padding:10px 0;
+                    border-top:1px solid #eee;
+                    cursor: pointer;
+                    .profilePicture{
+                        min-width:30px;
+                        min-height:30px;
+                    }
+                    &:hover{
+                        background-color:#eee;
+                    }
+                }
+            }
+
+            &.hasresults {
+                .result {
+                    padding-bottom:25px;
+                }
+            }
+        }
 
 		section#profileAccountInfo{
 			position:absolute;
@@ -339,6 +376,11 @@ header#page-header {
 			}
 		}
 	}
+
+    &.has-image{
+        img{float:left; margin-right:30px;}
+        nav#submenu {left:220px}
+    }
 }
 
 aside#page-left, aside#page-right {

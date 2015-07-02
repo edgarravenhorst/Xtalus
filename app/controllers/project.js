@@ -1,10 +1,7 @@
 import Ember from 'ember';
+import App from './application';
 
-var ProjectController = Ember.Controller.extend({
-
-    actions: {
-
-    }
+var ProjectController = App.extend({
 
 });
 

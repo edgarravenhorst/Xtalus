@@ -63,7 +63,6 @@ export default DS.Model.extend({
     }.property('personalContacts'),
 
     isisObj:function(){
-        console.log('obe')
         return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+this.get('URI')).then(function(isisObjData){
 
             return ($ISIS.extractMembers(isisObjData));

@@ -11,8 +11,33 @@
 
 	<header id="app">
 		{{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
+        <section id='globalSearchBox' {{bind-attr class=":searchbox globalSearchResults:hasresults"}}>
+            {{input id="searchfield" value=globalSearchQuery}}
+            <ul class='result' >
 
-		{{input id="search-field" value=globalSearchQuery action="findPerson" on="key-press"}}
+                {{#if globalSearchResults.Person}} <h3>Personen</h3> {{/if}}
+                {{#each person in globalSearchResults.Person}}
+
+                    <li {{action 'handleSearchResultClick' 'person' person.id}}>
+                        <img class="profilePicture" src="{{activePerson.profilePicture}}" width="20" height="20"/>
+                        {{person.fullName}}
+                    </li>
+
+                {{/each}}
+
+                {{#if globalSearchResults.Demand}} <h3>Projecten</h3> {{/if}}
+                {{#each demand in globalSearchResults.Demand}}
+
+                    <li {{action 'handleSearchResultClick' 'project' demand.id}}>
+                        <img class="profilePicture" src="{{activePerson.profilePicture}}" width="20" height="20"/>
+                        {{demand.description}}
+                    </li>
+
+                {{/each}}
+
+            </ul>
+        </section>
+
 		<section id="profileAccountInfo">
 			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
             <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}

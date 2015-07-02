@@ -1,10 +1,10 @@
 import Ember from 'ember';
+import App from './application';
 
-var MeController = Ember.Controller.extend({
+var MeController = App.extend({
 
     actions: {
         updatePerson:function() {
-
             var activePerson = this.controller.get('activePerson');
             console.log(activePerson)
             activePerson.updatePerson.invoke({
