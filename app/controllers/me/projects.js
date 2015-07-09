@@ -55,7 +55,7 @@ var MeProjectsController = Ember.Controller.extend({
                 }).then(function(){
                     //self.send('refreshDemands');
                     self.send('closePopup', 'new-project');
-                    this.get('newProjectParams', {});
+                    self.set('newProjectParams', {});
                     self.model.reload();
                 });
             })
