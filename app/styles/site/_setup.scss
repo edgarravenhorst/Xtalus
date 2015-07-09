@@ -22,15 +22,17 @@ section#template-main {
 
 		img#logo {
 			position:absolute;
-			left:81px;
+			left:51px;
 			top:29px;
 		}
 
         section#globalSearchBox{
-            @include centerElement('horizontal');
+			position:absolute;
+            left:430px;
             width:457px;
             top:15px;
             z-index: 9999;
+
 
             input#searchfield{
                 height:40px;
@@ -91,6 +93,12 @@ section#template-main {
 			line-height:40px;
 			color:$color8;
 			font-size:$fontsize3;
+
+			&:hover #account-nav{
+
+				display:block;
+
+			}
 
 			#profile-username{
 				cursor:pointer;
@@ -266,7 +274,7 @@ section#account-nav{
 	display:none;
 	@include transition(0.3s);
 	position:absolute;
-	top:65px;
+	top:35px;
 	right:78px;
 	width:252px;
 	background-color:$color8;
@@ -279,6 +287,7 @@ section#account-nav{
 	h2{
 		font-size:$fontsize4;
 		margin-left:$globalPadding;
+		color:#000;
 	}
 
 	ul{
@@ -292,7 +301,8 @@ section#account-nav{
 			i{
 				margin-right:20px;
 				width:10px;
-				font-size:$fontsize2;
+				font-size:13px !important;
+				text-align: center;
 			}
 			padding:0 50px;
 			@include box-sizing(border-box);

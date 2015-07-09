@@ -1,14 +1,5 @@
 <section id='template-main'>
 
-	<section id="account-nav">
-		<h2>Account</h2>
-		<ul>
-			<li><i class="fa fa-cog"></i> Instellingen</li>
-			<li><i class="fa fa-info"></i> Help</li>
-			<li {{action 'logout' }}><i class="fa fa-sign-out"></i> Uitloggen</li>
-		</ul>
-	</section>
-
 	<header id="app">
 		{{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
         <section id='globalSearchBox' {{bind-attr class=":searchbox globalSearchResults:hasresults"}}>
@@ -17,22 +8,18 @@
 
                 {{#if globalSearchResults.Person}} <h3>Personen</h3> {{/if}}
                 {{#each person in globalSearchResults.Person}}
-
                     <li {{action 'handleSearchResultClick' 'person' person.id}}>
                         <img class="profilePicture" src="{{activePerson.profilePicture}}" width="20" height="20"/>
                         {{person.fullName}}
                     </li>
-
                 {{/each}}
 
                 {{#if globalSearchResults.Demand}} <h3>Projecten</h3> {{/if}}
                 {{#each demand in globalSearchResults.Demand}}
-
                     <li {{action 'handleSearchResultClick' 'project' demand.id}}>
                         <img class="profilePicture" src="{{activePerson.profilePicture}}" width="20" height="20"/>
                         {{demand.description}}
                     </li>
-
                 {{/each}}
 
             </ul>
@@ -40,7 +27,15 @@
 
 		<section id="profileAccountInfo">
 			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
-            <span id="profile-username" {{action 'toggleAccountNav' }}>{{activePerson.fullName}}
+			<section id="account-nav">
+				<h2>Account</h2>
+				<ul>
+					<li><i class="fa fa-cog"></i> Instellingen</li>
+					<li><i class="fa fa-info"></i> Help</li>
+					<li {{action 'logout' }}><i class="fa fa-sign-out"></i> Uitloggen</li>
+				</ul>
+			</section>
+            <span id="profile-username">{{activePerson.fullName}}
 				<i class="fa fa-chevron-down"></i></span>
 		</section>
 
@@ -51,7 +46,7 @@
 		<nav>
 			<ul>
 				<li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i><span>Projecten</span>{{/link-to}}</li>
-				<li>{{#link-to 'me.courses'}}<i class="fa fa-graduation-cap"></i><span>Opleidingen</span>{{/link-to}}</li>
+				<!-- <li>{{#link-to 'me.courses'}}<i class="fa fa-graduation-cap"></i><span>Opleidingen</span>{{/link-to}}</li> -->
 				<li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i><span>Netwerk</span>{{/link-to}}</li>
 				<li>{{#link-to 'me'}}<i class="fa fa-user"></i><span>Profiel</span>{{/link-to}}</li>
 			</ul>
