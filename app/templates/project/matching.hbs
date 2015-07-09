@@ -19,6 +19,7 @@
                 <hr>
                 <button {{action 'calculateMatches' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
             </section>
+
             <section id="add" class='slide-1'>
 
                 <section class='widgetContainer'>
@@ -43,7 +44,7 @@
             </span>
             {{/each}}
             <h5>matches 0/{{ model.matchingProfiles.length }}</h5>
-            <button>Specialisme toevoegen <i class="fa fa-plus"></i></button>
+            <button{{action "createDemandProfile"}}>Specialisme toevoegen <i class="fa fa-plus"></i></button>
         </header>
 
 

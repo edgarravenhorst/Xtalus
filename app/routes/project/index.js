@@ -9,20 +9,22 @@ var ProjectIndexRoute = Ember.Route.extend({
     actions: {
 
         delProject: function(){
+            var store = this.store;
             var self = this;
-            var ISISdemand = this.get('model.isisObj');
+            console.log(this);
+            var ISISdemand = this.controller.get('model.isisObj');
+
             var confirmed = confirm("Weet je het zeker?");
 
             if(confirmed) {
                 ISISdemand.then(function(demandObj){
                     demandObj.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
-
                         self.transitionTo('me.projects');
-                        self.model.reload();
                     });
                 })
             }
         },
+
     },
 });
 
