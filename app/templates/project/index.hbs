@@ -16,8 +16,10 @@
         {{/each}}
         <ul>
             <li><strong>Start- en einddatum</strong></li>
-            <li>{{ startdate }} t/m {{ enddate }}</li>
+            <li>{{ model.startdate }} t/m {{ model.enddate }}</li>
         </ul>
+
+		<button {{action "delProject"}}>Verwijder project</button>
     </aside>
 
     <section id='page-content'>
