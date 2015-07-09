@@ -3,6 +3,9 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     URI: DS.attr(),
     description: DS.attr(),
+	story: DS.attr(),
+	startDate: DS.attr(),
+	endDate: DS.attr(),
 	summary: DS.attr(),
     profiles: DS.attr(),
     owner:DS.belongsTo('person'),
