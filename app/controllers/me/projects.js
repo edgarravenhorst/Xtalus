@@ -28,19 +28,6 @@ var MeProjectsController = Ember.Controller.extend({
             return false;
         },
 
-        delProject: function(){
-            var self = this;
-            var demand = this.get('selectedDemand');
-            var confirmed = confirm("Weet je het zeker?");
-
-            if(confirmed) {
-                demand.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
-                    //self.send('refreshDemands');
-                    self.model.reload();
-                });
-            }
-        },
-
         createProject: function(){
             var self = this;
             var store = this.store;
