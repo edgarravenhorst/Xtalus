@@ -13,7 +13,7 @@ export default DS.Model.extend({
 	isisObj:function(){
         return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+this.get('URI')).then(function(isisObjData){
 
-		console.log($ISIS.extractMembers(isisObjData));
+		    console.log($ISIS.extractMembers(isisObjData));
             return ($ISIS.extractMembers(isisObjData));
 
         });

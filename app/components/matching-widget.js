@@ -54,15 +54,20 @@ export default Ember.Component.extend({
         return this.get('data.description') === 'LOCATION_ELEMENT';
     }.property('data.description'),
 
-	isRole: function() {
-        this.role_chkbox = {values:[]};
-        this.data.roles = [{name:'student', value:true}, {name:'principal', value:true}, {name:'professional', value:true}]
-        var params = {};
-        $.each(this.data.roles, function(i, obj){
-            params[obj.name] = false;
-        });
-        this.set('params', params)
-        return this.get('data.description') === 'REQUIRED_ROLE_ELEMENT';
+    isRole: function() {
+        if (this.get('data.description') === 'REQUIRED_ROLE_ELEMENT'){
+
+            this.role_chkbox = {values:[]};
+            this.data.roles = [{name:'student', value:true}, {name:'principal', value:true}, {name:'professional', value:true}]
+            var params = {};
+            $.each(this.data.roles, function(i, obj){
+                params[obj.name] = false;
+            });
+            this.set('params', params)
+            return true;
+        }
+
+        return false;
     }.property('data.description'),
 
     isPassion: function() {
@@ -81,19 +86,19 @@ export default Ember.Component.extend({
         return this.get('data.description') === 'WEEKDAY_TAGS_ELEMENT';
     }.property('data.description'),
 
-	isHourlyRate: function() {
+    isHourlyRate: function() {
         return this.get('data.description') === 'HOURLY_RATE_ELEMENT';
     }.property('data.description'),
 
-	isAge: function() {
+    isAge: function() {
         return this.get('data.description') === 'AGE_ELEMENT';
     }.property('data.widgetType'),
 
-	isTimePeriod: function() {
+    isTimePeriod: function() {
         return (this.get('data.description') === 'TIME_PERIOD_ELEMENT');
     }.property('data.description'),
 
-	isEducation: function() {
+    isEducation: function() {
         return this.get('data.description') === 'EDUCATION_LEVEL';
     }.property('data.description'),
 

@@ -55,6 +55,18 @@ var ApplicationRoute = Ember.Route.extend({
             console.log('slide-'+slideID);
             return false;
         },
+
+        showPopup: function(name){
+            Ember.$('section#page #' + name + '.popup').toggleClass('visible');
+            Ember.$('section#page').toggleClass('popup-' + name);
+            return false;
+        },
+
+        closePopup: function(name){
+            Ember.$('section#page #' + name + '.popup').removeClass('visible');
+            Ember.$('section#page').removeClass('popup-' + name);
+            return false;
+        },
     }
 });
 

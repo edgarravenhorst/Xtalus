@@ -1,73 +1,105 @@
-    <aside id='page-left' class='viewslider' >
-        <section class='slideContainer'>
-            <section id='index' class='slide-0'>
+<aside id='page-left' class='viewslider' >
+    <section class='slideContainer'>
+        <section id='index' class='slide-0'>
+            {{#if selectedProfile}}
+            <div class='profilePicture'></div>
+            <h4>{{ selectedProfile.description }}</h4>
+            <h5>geen match</h5>
+            <hr>
 
-                <div class='profilePicture' style="background-image: url({{ model.owner.picture }});"></div>
-                <h4>{{ selectedProfile.description }}</h4>
-                <h5>geen match</h5>
-                <hr>
+            <section class='widgetContainer'>
 
-                <section class='widgetContainer'>
-
-                    {{#each element in selectedProfile.profileElements}}
-                    {{matching-widget data=element isNew=false action='updateWidget'}}
-                    {{/each}}
-
-                </section>
-
-                <button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
-                <hr>
-                <button {{action 'calculateMatches' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
-            </section>
-
-            <section id="add" class='slide-1'>
-
-                <section class='widgetContainer'>
-
-                    {{#each element in selectedProfile.profileElementChoices}}
-                    {{matching-widget data=element action='saveWidget'}}
-                    {{/each}}
-
-                </section>
-
-            </section>
-        </section>
-    </aside>
-
-    <section id='page-content'>
-        <header id="criteria-header">
-            {{#each profile in model.profiles}}
-            <span {{action 'selectMatchingProfile' profile.id}} class="criteria">
-                <span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
-                    <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
-                </span>
-            </span>
-            {{/each}}
-            <h5>matches 0/{{ model.matchingProfiles.length }}</h5>
-            <button{{action "createDemandProfile"}}>Specialisme toevoegen <i class="fa fa-plus"></i></button>
-        </header>
-
-
-        <section id="matchingResults" class='list'>
-            <h3>MatchingProfiel: {{ model.selectedProfile.title }}</h3>
-            <h5>{{ connectionCount }} connecties</h5>
-            <table>
-                <tr>
-                    <th>Naam</th>
-                    <th>Branch</th>
-                    <th>Rol</th>
-                </tr>
-
-                {{#each match in selectedProfile.matches}}
-                <tr {{action 'showConnectionDetails' connection }}>
-                    <td>
-                        <div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div>
-                        {{ match.fullname }}
-                    </td>
-                    <td>{{match.branch}}</td>
-                    <td>{{match.roles}}</td>
-                </tr>
+                {{#each element in selectedProfile.profileElements}}
+                {{matching-widget data=element isNew=false action='updateWidget'}}
                 {{/each}}
-            </table>
+
+            </section>
+
+            <button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
+            <hr>
+            <button {{action 'calculateMatches' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
+            <hr>
+            <button {{action 'deleteDemandProfile' }} >Verwijder profiel <i class="fa fa-trash"></i></button>
+            {{/if}}
+        </section>
+
+        <section id="add" class='slide-1'>
+            <i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
+            <h3>Selecteer een filter</h3>
+            <section class='widgetContainer'>
+                {{#each element in selectedProfile.profileElementChoices}}
+                {{matching-widget data=element action='saveWidget'}}
+                {{/each}}
+
+            </section>
+
         </section>
     </section>
+</aside>
+
+<section id='page-content'>
+    <header id="criteria-header">
+        {{#each profile in model.profiles}}
+        <span {{action 'selectMatchingProfile' profile.id}} class="criteria">
+
+            {{#if ownerProfilePicture}}
+            <span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
+                <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
+            </span>
+            {{else}}
+            <span class='profilePicture'>
+                <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
+            </span>
+            {{/if}}
+
+        </span>
+        {{/each}}
+        <h5>matches 0/{{ model.matchingProfiles.length }}</h5>
+        <button {{action "showPopup" 'new-demand-profile'}} >Specialisme toevoegen <i class="fa fa-plus"></i></button>
+    </header>
+
+
+    <section id='overview' class='list'>
+        <h3>MatchingProfiel: {{ model.selectedProfile.title }}</h3>
+        <h5>{{ connectionCount }} connecties</h5>
+        <table>
+            <tr>
+                <th>Matching score</th>
+                <th>Naam</th>
+                <th>selecteer</th>
+            </tr>
+
+            {{#each match in selectedProfile.matches}}
+            <tr>
+                <td>{{match.calculatedMatchingValue}}</td>
+                <td>
+                    {{#if match.profilePicture }}
+                    <div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div>
+                    {{else}}
+                    <div class='profilePicture'></div>
+                    {{/if}}
+                    {{ match.contactName }}
+                </td>
+                <td><button {{action "saveMatch" match}} >Selecteer</button></td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
+
+</section>
+
+<section id="new-demand-profile" class='popup'>
+
+    <section class='inner'>
+        <header>
+            <h2>Nieuw Zoekprofiel</h2>
+        </header>
+        <form method="post" {{action "createDemandProfile" on="submit"}}>
+            {{input value=newProfileParams.name type="text" placeholder="Profielnaam" class="txt-field"}}<br>
+            <button type="submit" class="btn_sumbit">Project toevoegen</button>
+            <button class="btn close" {{action "closePopup" 'new-demand-profile'}}>Annuleren</button>
+        </form>
+
+    </section>
+
+</section>

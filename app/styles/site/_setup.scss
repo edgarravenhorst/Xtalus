@@ -611,6 +611,62 @@ section#page-content {
 	section#page-content { right:$globalPageRightWidth; }
 }
 
+section.popup {
+    visibility:hidden;
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,0.0);
+    z-index:9;
+    overflow: auto;
+    @include single-transition(all, 0.3s);
+
+    .inner {
+        opacity:0;
+        @include translateY(100%);
+        @include single-transition(all, 0.3s);
+        background:#fff;
+        width:380px;
+        @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+        @include border-radius(3px);
+        margin:auto;
+        margin-top:7.5%;
+        margin-bottom:50px;
+        padding:$globalPadding;
+    }
+
+    input,textarea{
+        @include border-radius(3px);
+    }
+
+    textarea{
+        height:200px;
+    }
+
+    button{
+        width: auto;
+        margin-top: 20px;
+        float: right;
+        background-color:$color12;
+        margin-left:20px;
+
+        &.close{
+            background-color:$color4;
+        }
+    }
+}
+
+section.popup.visible {
+    visibility: visible;
+    background-color:rgba(0,0,0,0.3);
+    .inner{
+        opacity:1;
+        @include translateY(00%);
+    }
+}
+
 
 // PAGE LOGIN
 //=============================================================================================
@@ -944,12 +1000,6 @@ section#page.profile {
 //=============================================================================================
 
 section#page.project-matching {
-
-	.profilePicture{
-		width:60px;
-		height:60px;
-	}
-
 	header#page-header {
 		padding-left:225px;
 
@@ -1004,12 +1054,17 @@ section#page.project-matching {
 			padding:20px;
 			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
 
+            .profilePicture{
+                width:60px;
+                height:60px;
+            }
+
 			button{
 				margin-top: 17px;
 				float:right;
 				background-color:$color12;
 
-				i{
+				i {
 					margin-left:10px;
 				}
 			}
@@ -1048,7 +1103,7 @@ section#page.project-matching {
 			}
 		}
 
-		section#matchingResults{
+		section#overview{
 			top:80px;
 
 			h3{
@@ -1063,7 +1118,10 @@ section#page.project-matching {
 	}
 
 	aside#page-left{
-
+        .profilePicture{
+            width:60px;
+            height:60px;
+        }
 		h4{
 			font-size:$fontsize5;
 			color:$color2;
@@ -1211,36 +1269,7 @@ section#page.references {
 section#page.projects {
 
 	// add project popup
-	section#add-project-popup{
-		display:none;
-		background-color:$color8;
-		padding:$globalPadding;
-		width:380px;
-		@include centerElement('both');
-		z-index:9;
-		@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-		@include border-radius(3px);
 
-		input,textarea{
-			@include border-radius(3px);
-		}
-
-		textarea{
-			height:200px;
-		}
-
-		button{
-			width: auto;
-			margin-top: 20px;
-			float: right;
-			background-color:$color12;
-			margin-left:20px;
-
-			&.close{
-				background-color:$color4;
-			}
-		}
-	}
 
 }
 

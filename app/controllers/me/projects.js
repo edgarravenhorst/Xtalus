@@ -18,16 +18,6 @@ var MeProjectsController = Ember.Controller.extend({
             return false;
         },
 
-        showPopup: function(name){
-            Ember.$('section#page.projects').toggleClass('popup-' + name);
-            return false;
-        },
-
-        closePopup: function(name){
-            Ember.$('section#page.projects').removeClass('popup-' + name);
-            return false;
-        },
-
         createProject: function(){
             var self = this;
             var store = this.store;

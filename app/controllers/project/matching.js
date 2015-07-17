@@ -3,24 +3,40 @@ import Ember from 'ember';
 /* global $ISIS */
 
 var ProjectMatchingController = Ember.Controller.extend({
-
+    newProfileParams: {},
     actions: {
 
-
-        createDemandProfile:function() {
+        showCreateDemandProfileForm:function(){
 
         },
 
+        createDemandProfile:function() {
+            var _this = this;
+            var demand = this.get('model')
+            var name = this.get('newProfileParams.name');
+            demand.get('isisObj').then(function(demandObj){
+                demandObj.createPersonDemandProfile.invoke({profileName:name}).then(function(result){
+                    _this.send('closePopup', 'new-demand-profile');
+                    _this.get('model').reload();
+                });
+            });
+        },
 
-
-
+        deleteDemandProfile:function() {
+            var _this = this;
+            this.get('selectedProfile').get('isisObj').then(function(profileObj){
+                profileObj.deleteProfile.invoke({confirmDelete:true}).then(function(result){
+                    _this.set('selectedProfile', undefined);
+                    _this.get('model').reload();
+                });
+            });
+        },
 
         saveWidget:function(element, params){
             console.log(this.get('selectedProfile'), params)
             var profile = this.get('selectedProfile');
 
-            $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+profile.get('URI')).then(function(isisProfile){
-                isisProfile = $ISIS.extractMembers(isisProfile);
+            profile.get('isisObj').then(function(isisProfile){
                 console.log(isisProfile, element.action);
                 isisProfile[element.action].invoke(params).then(function(result){
                     console.log(result);
@@ -30,51 +46,62 @@ var ProjectMatchingController = Ember.Controller.extend({
 
         selectMatchingProfile: function(id){
             var profile = this.store.find('demandprofile', id).then(function(profile){
-                //this.send('calculateMatches', profile)
-                this.set('selectedProfile', profile)
+                this.set('selectedProfile', profile);
+                this.send('calculateMatches', profile);
             }.bind(this))
-
-        },
+            },
 
         calculateMatches: function(profile){
-            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+profile.get('URI')).then(function(isisProfile){
-                isisProfile = $ISIS.extractMembers(isisProfile)
+            var profile = profile || this.get('selectedProfile');
+            var _this = this;
+            profile.get('isisObj').then(function(profileObj){
 
-                return isisProfile.collectSupplyProfileComparisons.extract().then(function(matches){
-                    var a_promises = [];
-                    $.each(matches, function(i, match){
-
-                        if(match) {
-                            a_promises.push($ISIS.init(match.proposedPerson.href));
-                            console.log(match);
-                        }
+                if (profileObj.chosenProfileMatch) {
+                    $ISIS.init(profileObj.chosenProfileMatch.href).then(function(a){
+                        console.log(a);
                     });
+                }
 
-                    return Ember.RSVP.all(a_promises).then(function(matches){
+                profileObj.updateSupplyProfileComparisons.invoke().then(function(){
+                    profileObj.collectSupplyProfileComparisons.getValues().then(function(matches) {
+                        console.log(matches)
+                        var a_promises = [];
+                        var filteredMatches = [];
 
                         $.each(matches, function(i, match){
-                            //console.log(match)
-                            var picture = match.picture ? match.picture.split(':') : '';
-                            var fullname = match.firstName + " " + match.lastName;
-                            if (match.middleName) {
-                                fullname = match.firstName + " " + match.middleName + " " + match.lastName;
+                            if(match) {
+                                filteredMatches.push(match);
+                                match.contactName = match.proposedPerson.title;
+                                _this.initMatchInfo(match);
                             }
-                            match.fullname = fullname;
-                            match.profilePicture = 'data:image/png;base64,'+picture[2];
                         });
 
-                        console.log(matches)
+                        matches = Ember.ArrayController.create({
+                            model: filteredMatches,
+                            sortProperties: ['calculatedMatchingValue'],
+                            sortAscending: false
+                        });
+
+                        console.log(filteredMatches);
                         profile.set('matches', matches)
-                        return matches
-                    })
+                    });
                 });
             });
+        },
 
+        saveMatch: function(match){
+            console.log(match)
+            match.SaveMatch.invoke();
+        },
+    },
 
-        }
+    initMatchInfo: function(match){
+        $ISIS.init(match.proposedPerson.href).then(function(person){
+            var picture = person.picture ? person.picture.split(':') : '';
+            if(picture[2]) Ember.set(match, 'profilePicture', 'data:image/png;base64,'+picture[2]);
+            Ember.set(match, 'roles', person.roles);
+        });
     }
-
-
 });
 
 export default ProjectMatchingController;
