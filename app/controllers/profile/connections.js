@@ -4,19 +4,15 @@ import Ember from 'ember';
 var ProfileNetworkController = Ember.Controller.extend({
 
     actions: {
-        showConnectionDetails: function(connection){
-            this.set("selectedPerson", connection);
-            $('section#page.network').addClass('show-details');
+        showConnectionDetails: function(personData){
+            this.set("selectedPerson", this.store.find('person', personData.contactId));
+            $('section#page').addClass('aside-right');
             return false;
         },
 
         hideConnectionDetails: function(){
-            $('section#page.network').removeClass('show-details');
+            $('section#page').removeClass('aside-right');
             return false;
-        },
-
-        getUserProfile: function(userID){
-            this.transitionToRoute('profile', userID);
         },
     },
 

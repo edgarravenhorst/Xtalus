@@ -1,16 +1,20 @@
 <section id='page-content' >
-    <section id='overview' class='list'>
-        <h5>{{ model.personalContacts.length }} connecties</h5>
+
+    <header id="" class="overview absolute">
+        <span class="count">{{ model.connections.length }} connecties</span>
+    </header>
+
+    <section id='' class='overview list'>
         <table>
             <tr>
                 <th>Naam</th>
                 <th>Rol</th>
             </tr>
 
-            {{#each connection in model.personalContacts}}
+            {{#each connection in model.connections}}
             <tr {{action 'showConnectionDetails' connection }}>
                 <td>
-                    <div class='profilePicture' style="background-image: url({{ connection.profilePicture }}) "></div>
+                    <div class='profilePicture' style="background-image: url({{ connection.picture }}) "></div>
                     {{ connection.contactName }}
                 </td>
                 <td>{{connection.contactRoles}}</td>

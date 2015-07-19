@@ -35,7 +35,7 @@
 </header>
 
 <section id="page-content">
-	<header id="overview" class="absolute">
+	<header id="" class="overview absolute">
 		<span class="count">{{ projectCount }} opleidingen</span>
 		<ul class='options'>
 			<!-- <li><button><i class="fa fa-sort-alpha-asc"></i></button></li> -->
@@ -43,7 +43,7 @@
 		</ul>
 	</header>
 
-	<section id="overview" class='tiles'>
+    <section id="" class='overview tiles'>
 		{{#each demand in demands}}
 
 		<section class="demand tile" {{action "showDetails" demand.uniqueItemId }}>

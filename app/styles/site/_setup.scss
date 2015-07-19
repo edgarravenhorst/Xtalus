@@ -474,7 +474,7 @@ section#page-content {
 		padding:$globalPadding/2 $globalPadding;
 	}
 
-	header#overview {
+	header.overview {
 		@include ignoreGlobalPadding(1,1,0,1);
 		box-sizing: border-box;
 		padding:0 80px;
@@ -517,7 +517,7 @@ section#page-content {
 		}
 	}
 
-	section#overview.tiles {
+	section.overview.tiles {
 		padding:$globalPadding 80px;
 		//text-align: center;
 		.tile {
@@ -581,7 +581,7 @@ section#page-content {
 		}
 	}
 
-	section#overview.list {
+	section.overview.list {
 		@include ignoreGlobalPadding();
 		padding:0;
 
@@ -1103,7 +1103,7 @@ section#page.project-matching {
 			}
 		}
 
-		section#overview{
+		section.overview{
 			top:80px;
 
 			h3{

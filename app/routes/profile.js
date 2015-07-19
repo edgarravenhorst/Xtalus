@@ -5,7 +5,6 @@ import Auth from './auth';
 var ProfileRoute = Auth.extend({
 
     model: function(params) {
-        console.log(this.modelFor('application'))
         return this.store.find('person', params.user_id)
     },
 });

@@ -2,9 +2,13 @@
     <section class='slideContainer'>
         <section id='index' class='slide-0'>
             {{#if selectedProfile}}
-            <div class='profilePicture'></div>
+            {{#if selectedProfile.match.profilePicture}}
+            <div class='profilePicture' style="background-image: url({{ selectedProfile.match.profilePicture }});"></div>
+            {{else}}
+                <div class='profilePicture'></div>
+            {{/if}}
             <h4>{{ selectedProfile.description }}</h4>
-            <h5>geen match</h5>
+            <h5>{{selectedProfile.match.fullName}}</h5>
             <hr>
 
             <section class='widgetContainer'>
@@ -42,13 +46,13 @@
         {{#each profile in model.profiles}}
         <span {{action 'selectMatchingProfile' profile.id}} class="criteria">
 
-            {{#if ownerProfilePicture}}
-            <span class='profilePicture' style="background-image: url({{ ownerProfilePicture }});">
-                <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
+            {{#if profile.match.profilePicture}}
+            <span class='profilePicture' style="background-image: url({{ profile.match.profilePicture }});">
+                <span class="info"><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
             </span>
             {{else}}
             <span class='profilePicture'>
-                <span class="info"><strong>{{ profile.description }}</strong><br />geen match</span>
+                <span class="info"><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
             </span>
             {{/if}}
 
@@ -58,29 +62,60 @@
         <button {{action "showPopup" 'new-demand-profile'}} >Specialisme toevoegen <i class="fa fa-plus"></i></button>
     </header>
 
+    {{#if selectedProfile.candidates}}
+    <section id='candidates' class='overview list'>
+        <h3>Kandidaten</h3>
+        <h5>{{ connectionCount }} kandidaten</h5>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th></th>
+            </tr>
 
-    <section id='overview' class='list'>
+            {{#each candidate in selectedProfile.candidates}}
+            <tr>
+
+                <td>
+                    {{#if candidate.profilePicture }}
+                    <div class='profilePicture' style="background-image: url({{ candidate.profilePicture }}) "></div>
+                    {{else}}
+                    <div class='profilePicture'></div>
+                    {{/if}}
+                    {{ candidate.contactName }}
+                </td>
+                <td>
+                    <button {{action "selectMatch" candidate}} >Kies persoon</button>
+                    <button {{action "removeCandidate" candidate}} >Verwijderen</button>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
+    {{/if}}
+
+
+    <section id='proposedMatches' class='overview list'>
         <h3>MatchingProfiel: {{ model.selectedProfile.title }}</h3>
         <h5>{{ connectionCount }} connecties</h5>
         <table>
             <tr>
                 <th>Matching score</th>
                 <th>Naam</th>
-                <th>selecteer</th>
+                <th></th>
             </tr>
 
-            {{#each match in selectedProfile.matches}}
+            {{#each proposedMatch in selectedProfile.matches}}
             <tr>
-                <td>{{match.calculatedMatchingValue}}</td>
+                <td>{{proposedMatch.calculatedMatchingValue}}</td>
                 <td>
-                    {{#if match.profilePicture }}
-                    <div class='profilePicture' style="background-image: url({{ match.profilePicture }}) "></div>
+                    {{#if proposedMatch.profilePicture }}
+                    <div class='profilePicture' style="background-image: url({{ proposedMatch.profilePicture }}) "></div>
                     {{else}}
                     <div class='profilePicture'></div>
                     {{/if}}
-                    {{ match.contactName }}
+                    {{ proposedMatch.contactName }}
                 </td>
-                <td><button {{action "saveMatch" match}} >Selecteer</button></td>
+                <td><button {{action "saveCandidate" proposedMatch}} >Uitnodigen</button></td>
             </tr>
             {{/each}}
         </table>

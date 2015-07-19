@@ -47,51 +47,63 @@ var ProjectMatchingController = Ember.Controller.extend({
         selectMatchingProfile: function(id){
             var profile = this.store.find('demandprofile', id).then(function(profile){
                 this.set('selectedProfile', profile);
-                this.send('calculateMatches', profile);
+                if(!profile.get('matches')) this.send('calculateMatches', profile);
             }.bind(this))
-            },
+        },
 
         calculateMatches: function(profile){
             var profile = profile || this.get('selectedProfile');
             var _this = this;
             profile.get('isisObj').then(function(profileObj){
-
-                if (profileObj.chosenProfileMatch) {
-                    $ISIS.init(profileObj.chosenProfileMatch.href).then(function(a){
-                        console.log(a);
-                    });
-                }
-
                 profileObj.updateSupplyProfileComparisons.invoke().then(function(){
                     profileObj.collectSupplyProfileComparisons.getValues().then(function(matches) {
-                        console.log(matches)
                         var a_promises = [];
-                        var filteredMatches = [];
-
-                        $.each(matches, function(i, match){
-                            if(match) {
-                                filteredMatches.push(match);
-                                match.contactName = match.proposedPerson.title;
-                                _this.initMatchInfo(match);
-                            }
-                        });
-
-                        matches = Ember.ArrayController.create({
-                            model: filteredMatches,
+                        var filteredMatches = Ember.ArrayController.create({
+                            model: [],
                             sortProperties: ['calculatedMatchingValue'],
                             sortAscending: false
                         });
 
+                        $.each(matches, function(i, match){
+                            if(match) {
+                                match.collect().then(function(match){
+                                    match.contactName = match.proposedPerson.title;
+                                    _this.initMatchInfo(match);
+                                    filteredMatches.pushObject(match);
+                                })
+                            }
+                        });
+
                         console.log(filteredMatches);
-                        profile.set('matches', matches)
+                        profile.set('matches', filteredMatches)
                     });
                 });
             });
         },
 
-        saveMatch: function(match){
-            console.log(match)
-            match.SaveMatch.invoke();
+        saveCandidate: function(candidate){
+            var profile = this.get('selectedProfile');
+            candidate.SaveMatch.invoke().then(function(){
+                profile.reload();
+            });
+        },
+
+        removeCandidate: function(candidate){
+            var candidates = this.get('selectedProfile.candidates');
+            var demand = this.get('model');
+            candidate.deleteMatch.invoke({confirmDelete:true}).then(function(){
+                demand.reload();
+                profile.reload();
+            });
+        },
+
+        selectMatch: function(candidate){
+            var profile = this.get('selectedProfile');
+            var demand = this.get('model');
+            candidate.updateCandidateStatus.invoke({candidateStatus:"Chosen"}).then(function(){
+                demand.reload();
+                profile.reload();
+            });
         },
     },
 

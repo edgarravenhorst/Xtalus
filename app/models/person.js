@@ -38,7 +38,7 @@ export default DS.Model.extend({
 
     profilePicture: function() {
         var picture = this.get('rawPicture') || false;
-        if (!picture) return 'http://www.gravatar.com/avatar/' + md5(this.get('email'))
+        if (!picture) return 'http://www.gravatar.com/avatar/' + md5(this.get('email')) + '?s=500'
         picture = picture.split(':');
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
@@ -48,15 +48,16 @@ export default DS.Model.extend({
         var email = this.get('email')
 
         $.each(connections, function(i, connection){
+            console.log(connection)
             var picture = connection.picture || false;
-            if (!picture) picture = 'http://www.gravatar.com/avatar/' + md5(email)
+            if (!picture) picture = 'http://www.gravatar.com/avatar/' + md5(connection.email)
             else {
                 picture = picture.split(':');
                 picture = 'data:image/png;base64,'+picture[2];
             }
 
             connection.picture = picture;
-            console.log(connection.picture)
+
         });
 
         return connections;
