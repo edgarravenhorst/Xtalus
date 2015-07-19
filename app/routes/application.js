@@ -67,6 +67,11 @@ var ApplicationRoute = Ember.Route.extend({
             Ember.$('section#page').removeClass('popup-' + name);
             return false;
         },
+
+        logout: function(){
+            $ISIS.auth.logout();
+            this.transitionTo('login');
+        },
     }
 });
 

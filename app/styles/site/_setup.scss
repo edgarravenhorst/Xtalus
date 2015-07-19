@@ -585,14 +585,22 @@ section#page-content {
 		@include ignoreGlobalPadding();
 		padding:0;
 
-		h5 {margin:15px 0; margin-bottom:-20px; padding:$globalPadding/2 $globalPadding;}
+        h3 {margin:20px 0 10px 0; margin-bottom:-20px; padding:10px $globalPadding 10px $globalPadding;}
+		h5 {margin: 5px 0; padding:10px $globalPadding 10px $globalPadding;}
 
 		table {
 			width:100%;
 			td,th {
-				padding:30px 50px;
+				padding:10px 25px;
 				text-align: left;
 				border-bottom:1px solid #e0e0e0;
+                &:first-child{
+                    padding-left:50px;
+                }
+                &:last-child{
+                    padding-right:50px;
+                    text-align: right;
+                }
 			}
 
 			td {cursor: pointer;}
@@ -1045,7 +1053,7 @@ section#page.project-matching {
 
 	section#page-content {
 
-		header#criteria-header{
+        header#profile-select{
 			position:absolute;
 			left:0;
 			top:0;
@@ -1054,20 +1062,18 @@ section#page.project-matching {
 			padding:20px;
 			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
 
-            .profilePicture{
+            .profilePicture, button.add{
+                position: relative;
                 width:60px;
                 height:60px;
+                margin: 5px 8px;
+                @include single-transition(all, 0.3s);
+                &:hover{
+                    width:70px;
+                    height: 70px;
+                    margin:0 3px;
+                }
             }
-
-			button{
-				margin-top: 17px;
-				float:right;
-				background-color:$color12;
-
-				i {
-					margin-left:10px;
-				}
-			}
 
 			h5{
 				display:table;
@@ -1075,32 +1081,52 @@ section#page.project-matching {
 				font-size:$fontsize3;
 			}
 
-			.criteria{
+            .profile, button.add{
 
 				.profilePicture{
 					float:left;
 					cursor:pointer;
 					position:relative;
 
-					.info{
-						display: none;
-						position:absolute;
-						left:0;
-						top: 60px;
-						width: 230px;
-						height: 44px;
-						padding:10px;
-						color:$color8;
-						background-color:$color10;
-						z-index:9999;
-					}
 
-					&:hover .info{
-						display:block;
-					}
 				}
 
+                .info{
+                    visibility: hidden;
+                    position:absolute;
+                    left:0;
+                    top: 60px;
+                    width: 230px;
+                    height: 44px;
+                    padding:10px;
+                    color:$color8;
+                    background-color:$color10;
+                    z-index:9999;
+                    @include single-transition(all, 0.3s);
+                    opacity: 0;
+                }
+
+                &:hover .info{
+                    visibility: visible;
+                    opacity: 1;
+                }
+
 			}
+
+            button.add{
+                @include border-radius(100%);
+                background: $color12;
+                font-size: 20px;
+                float: left;
+                .info{
+                    font-size:14px;
+                    text-transform: none;
+                    font-family: $font1;
+                    font-weight: normal;
+                    text-align: left;
+                    strong{font-weight: bold}
+                }
+            }
 		}
 
 		section.overview{

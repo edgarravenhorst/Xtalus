@@ -44,7 +44,7 @@
     <span class='owner'>{{selectedDemand.demandOwner.title}}</span>
     <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
     <hr>
-    <span class="expertise">
+    <!--<span class="expertise">
         <i class="fa fa-rocket"></i> <h5>Mijn expertise</h5>
         Leergierig persoon<br>
         {{
@@ -54,7 +54,14 @@
         optionLabelPath="content.label"
         optionValuePath="content.value"
         }}
-    </span>
+    </span>-->
+
+    {{#each profile in selectedDemand.profiles}}
+    <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;" {{action "selectMatchingProfile" profile.id}}>
+        <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ profile.match.profilePicture }}); width:35px; height:35px;">     </div>
+        <div><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</div>
+    </div>
+    {{/each}}
     <hr>
 
     <p>{{selectedDemand.demandSummary}}</p>

@@ -9,9 +9,9 @@
 
         <p><strong>Specialismen</strong></p>
         {{#each profile in model.profiles}}
-        <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;">
+        <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;" {{action "selectMatchingProfile" profile.id}}>
             <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ profile.match.profilePicture }}); width:35px; height:35px;">     </div>
-            <div><strong>{{ profile.description }}</strong><br />profile.match.fullName</div>
+            <div><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</div>
         </div>
         {{/each}}
         <ul>
