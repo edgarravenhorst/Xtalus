@@ -1,4 +1,15 @@
-<label {{action "toggleStatus"}}>{{data.description}}</label>
+
+{{#if isPostal}}<label {{action "toggleStatus"}}>Postcode</label>{{/if}}
+{{#if isRole}}<label {{action "toggleStatus"}}>Rol</label>{{/if}}
+{{#if isPassion}}<label {{action "toggleStatus"}}>Passie</label>{{/if}}
+{{#if isBranch}}<label {{action "toggleStatus"}}>Branches</label>{{/if}}
+{{#if isQuality}}<label {{action "toggleStatus"}}>Kwaliteiten</label>{{/if}}
+{{#if isWeekdays}}<label {{action "toggleStatus"}}>Beschikbare dagen</label>{{/if}}
+{{#if isHourlyRate}}<label {{action "toggleStatus"}}>Uurloon</label>{{/if}}
+{{#if isAge}}<label {{action "toggleStatus"}}>Leeftijd</label>{{/if}}
+{{#if isTimePeriod}}<label {{action "toggleStatus"}}>Periode</label>{{/if}}
+{{#if isEducation}}<label {{action "toggleStatus"}}>Opleiding</label>{{/if}}
+
 <div class="inner">
 
     {{#if data.displayValue}}
@@ -10,7 +21,7 @@
         {{input type=text value=params.postcode class="cols-2"}}
     {{/if}}
 
-	{{#if isTextarea}}
+    {{#if isPassion}}
         {{textarea value=params.value  class="cols-2"}}
     {{/if}}
 
@@ -42,7 +53,7 @@
          prompt="Pick a person:"}}
     {{/if}}
 
-    {{#if isTags}}
+    {{#if isBranch}}
 		<ul class="tags">
 			<li>Tag 1 <i class="fa fa-trash-o"></i></li>
 			<li>Tag 2 <i class="fa fa-trash-o"></i></li>
@@ -51,6 +62,16 @@
         {{input type=type value=params.postcode class="cols-2"}}
 		<button {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
 	{{/if}}
+
+    {{#if isQuality}}
+        <ul class="tags">
+            <li>Tag 1 <i class="fa fa-trash-o"></i></li>
+            <li>Tag 2 <i class="fa fa-trash-o"></i></li>
+        </ul>
+
+        {{input type=type value=params.postcode class="cols-2"}}
+        <button {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
+    {{/if}}
 
     {{#if isRole}}
         {{multiselect-checkboxes options=data.roles labelProperty='name' selection=role_chkbox.values}}

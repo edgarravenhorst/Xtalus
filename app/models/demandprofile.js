@@ -6,7 +6,7 @@ export default DS.Model.extend({
     profileElements: DS.attr(),
     profileElementChoices: DS.attr(),
     profileMatches: DS.attr(),
-    matches: DS.attr(),
+    profileComparisons: DS.attr(),
     chosenProfileMatchId:DS.attr({defaultValue:""}),
     chosenProfileMatchURI:DS.attr({defaultValue:""}),
 

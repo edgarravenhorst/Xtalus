@@ -22,7 +22,7 @@
             width:10%;
             @include translateX($position*10);
             @include box-sizing();
-            padding:$globalPadding;
+            padding:$viewSliderPadding;
             overflow: auto;
         }
 

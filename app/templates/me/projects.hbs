@@ -25,8 +25,9 @@
         {{#each demand in model.demands}}
 
         <section class="demand tile" {{action "showDetails" demand.id }}>
-            <img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
+            <img src="http://lorempixel.com/500/375/?{{demand.id}}"/>
             <div class="info">
+                <span class='profilePicture owner'></span>
                 <h4>{{demand.description}}</h4>
                 <span class='owner'>{{demand.demandOwner.title}}</span>
                 <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
@@ -38,7 +39,8 @@
 </section>
 
 <aside id="page-right">
-    <header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
+    {{#if selectedDemand}}
+    <header class='picture' style="background-image: url('http://lorempixel.com/500/375/?{{selectedDemand.id}}') "></header>
 
     <h4>{{selectedDemand.description}}</h4>
     <span class='owner'>{{selectedDemand.demandOwner.title}}</span>
@@ -56,10 +58,20 @@
         }}
     </span>-->
 
+    <p><strong>Specialismen</strong></p>
     {{#each profile in selectedDemand.profiles}}
-    <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;" {{action "selectMatchingProfile" profile.id}}>
-        <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ profile.match.profilePicture }}); width:35px; height:35px;">     </div>
-        <div><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</div>
+    <div class="matchingProfile" {{action "selectMatchingProfile" profile.id}}>
+        {{#if profile.match.profilePicture}}
+        <div class='profilePicture' style=" background-image: url({{ profile.match.profilePicture }});"></div>
+        {{else}}
+        <div class='profilePicture'></div>
+        {{/if}}
+
+        {{#if profile.match}}
+        <span><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
+        {{else}}
+        <span><strong>{{ profile.description }}</strong><br />Geen match</span>
+        {{/if}}
     </div>
     {{/each}}
     <hr>
@@ -70,6 +82,9 @@
 
     <button {{action 'hideDetails'}}>Sluiten</button><br><br>
     <button {{action 'getProject' selectedDemand.id }}>Bekijk project</button>
+    {{else}}
+    <img class='preloader' src='assets/images/preloader.gif' width="64"/>
+    {{/if}}
 </aside>
 
 <section id="new-project" class='popup'>

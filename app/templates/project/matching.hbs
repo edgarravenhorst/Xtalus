@@ -23,9 +23,9 @@
 
             <section class='widgetContainer'>
 
-                {{#each element in selectedProfile.profileElements}}
-                {{matching-widget data=element isNew=false action='updateWidget'}}
-                {{/each}}
+                {{#collection "ivy-sortable" axis="y" content=selectedProfile.profileElements moved="updateWidgetWeights"}}
+                {{matching-widget data=this isNew=false action='updateWidget'}}
+                {{/collection}}
 
             </section>
 
@@ -111,7 +111,7 @@
 
     <section id='proposedMatches' class='overview list'>
         <h3>Voorgestelde matches</h3>
-        <h5>{{ selectedProfile.matches.length }} personen</h5>
+        <h5>{{ selectedProfile.profileComparisons.length }} personen</h5>
         <table>
             <tr>
                 <th width="80">Matching score</th>
@@ -119,7 +119,7 @@
                 <th></th>
             </tr>
 
-            {{#each proposedMatch in selectedProfile.matches}}
+            {{#each proposedMatch in selectedProfile.profileComparisons}}
             <tr>
                 <td>{{proposedMatch.calculatedMatchingValue}}</td>
                 <td>
@@ -128,7 +128,7 @@
                     {{else}}
                     <div class='profilePicture'></div>
                     {{/if}}
-                    {{ proposedMatch.contactName }}
+                    {{ proposedMatch.proposedPersonName }}
                 </td>
                 <td><button {{action "saveCandidate" proposedMatch}} >Uitnodigen</button></td>
             </tr>

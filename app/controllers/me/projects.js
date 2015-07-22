@@ -22,7 +22,6 @@ var MeProjectsController = Ember.Controller.extend({
             var self = this;
             var store = this.store;
             var params = this.get('newProjectParams');
-            console.log(params)
             this.model.get('isisObj').then(function(isisObj){
                 console.log(isisObj);
                 isisObj.createPersonsDemand.invoke({

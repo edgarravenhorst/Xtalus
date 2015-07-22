@@ -90,7 +90,8 @@ $fontsize7: 30px;
 $fontsize8: 48px;
 
 // Padding
-$globalPadding: 50px;
+$globalPadding: 3%;
+$viewSliderPadding: 35px;
 
 /* Mixins and includes */
 @import "coderehab/mixins/ignorepadding";

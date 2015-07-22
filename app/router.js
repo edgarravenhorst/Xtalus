@@ -9,6 +9,7 @@ export default Router.map(function() {
     this.route('login');
 	this.route('registration');
 	this.route('forgot');
+	this.route('help');
 
 
     this.resource('me',function(){
@@ -16,6 +17,7 @@ export default Router.map(function() {
         this.route('projects');
 		this.route('courses');
 		this.route('references');
+		this.route('settings');
     });
 
     this.resource('profile', {path:"profile/:user_id"}, function(){

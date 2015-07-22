@@ -1,19 +1,28 @@
     <aside id='page-left' class='' >
-        <h4>{{ model.title }}</h4>
-        <h5>{{ model.owner.firstName }}</h5>
+        <header class='picture' style="background-image: url('http://lorempixel.com/500/375/?{{model.id}}') "></header>
 
-        <ul>
-            <li><strong>Beschrijving</strong></li>
-            <li>{{ model.description }}</li>
-        </ul>
+        <h5>Project: {{ model.description }}</h5>
+        <p>Eigenaar: {{ model.owner.firstName }}</p>
+
+        <hr>
 
         <p><strong>Specialismen</strong></p>
         {{#each profile in model.profiles}}
-        <div style="cursor:pointer; clear:both;border-bottom:1px solid #ccc; padding: 10px 0;" {{action "selectMatchingProfile" profile.id}}>
-            <div class='profilePicture' style="float:left; margin-right:10px; margin-bottom:10px; background-image: url({{ profile.match.profilePicture }}); width:35px; height:35px;">     </div>
-            <div><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</div>
+        <div class="matchingProfile" {{action "selectMatchingProfile" profile.id}}>
+            {{#if profile.match.profilePicture}}
+                <div class='profilePicture' style=" background-image: url({{ profile.match.profilePicture }});"></div>
+            {{else}}
+                <div class='profilePicture'></div>
+            {{/if}}
+
+            {{#if profile.match}}
+                <span><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
+            {{else}}
+                <span><strong>{{ profile.description }}</strong><br />Geen match</span>
+            {{/if}}
         </div>
         {{/each}}
+
         <ul>
             <li><strong>Start- en einddatum</strong></li>
             <li>{{ model.startDate }} t/m {{ model.endDate }}</li>
@@ -25,12 +34,7 @@
     <section id='page-content'>
 
 
-		{{ log this}}
-
-        <section id='passion'>
-            <h3>Samenvatting</h3>
-            <p>{{ model.summary }}</p>
-        </section>
+        <h4>Project: {{ model.description }}</h4>
 
         <section id='qualities'>
             <h3>verhaal</h3>

@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 export default Ember.Component.extend({
     tagName:'section',
-    classNames: 'matching-widget',
+    classNames: 'matching-widget sortable',
     currentValue: '',
     placeholder:'test',
 

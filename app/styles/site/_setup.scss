@@ -10,7 +10,7 @@ section#template-main {
 	@extend .absoluteFill;
 	//templatespecs
 	$headerHeight: 80px;
-	$asideWidth: 350px;
+	$asideWidth: 250px;
 
 	header#app {
 		@extend .absoluteFill;
@@ -22,17 +22,15 @@ section#template-main {
 
 		img#logo {
 			position:absolute;
-			left:51px;
+			left:35px;
 			top:29px;
 		}
 
         section#globalSearchBox{
-			position:absolute;
-            left:430px;
+			position:relative;
+            margin:auto;
             width:457px;
-            top:15px;
             z-index: 9999;
-
 
             input#searchfield{
                 height:40px;
@@ -53,6 +51,8 @@ section#template-main {
                 left:0;
                 top:45px;
                 width:100%;
+                max-height: 500px;
+                overflow: auto;
                 background: #fff;
                 @include border-radius(3px);
                 @include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
@@ -86,7 +86,7 @@ section#template-main {
 			right:0;
 			top:0;
 			bottom:0;
-			padding:0 76px 0 16px;
+			padding:0 35px 0 16px;
 			border-left:1px solid $color9;
 			height:40px;
 			margin-top:20px;
@@ -102,17 +102,28 @@ section#template-main {
 
 			#profile-username{
 				cursor:pointer;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 100%;
+                font-family: $font2;
+                small{
+                    font-size:12px;
+                }
 			}
 
 			img{
+                display: inline-block;
+                vertical-align: middle;
 				margin:0 19px;
-				float:left;
 				@include border-radius(100%);
 			}
 
 			i{
-				font-size:$iconsize;
+                display: inline-block;
+				font-size:11px;
 				margin-left:10px;
+                top: -1px;
+                position: relative;
 			}
 		}
 	}
@@ -126,7 +137,7 @@ section#template-main {
 	aside#user-menu {
 		@extend .absoluteFill;
 		@include box-sizing();
-		padding:$globalPadding;
+		padding:35px;
 		top:$headerHeight;
 		width:$asideWidth;
 		background-color:$color6;
@@ -134,6 +145,7 @@ section#template-main {
 		overflow:visible;
 		@include transition-property(width,padding);
 		@include transition-duration(0.3s);
+        overflow: hidden;
 
 		h3{
 			color:$color4;
@@ -141,45 +153,52 @@ section#template-main {
 			margin-top:$globalPadding;
 		}
 
-		nav{
+        .userinfo {
+            text-align:center;
+            width:100%;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            h4{margin-bottom: 0;}
+            span{
+                color:$color3;
+            }
+            .profilePicture {margin:0;}
+        }
 
+		nav{
+            font-family: $font2;
+            color:$color3;
+            margin:15px 0;
 			hr{
 				background-color:$color5;
+                margin:20px 0;
 			}
 
 			ul{
 				li{
-					font-size:$fontsize3;
-					height:$globalPadding;
-					line-height:$globalPadding;
+					font-size:15px;
+					line-height:135%;
 					margin-bottom:5px;
 					cursor:pointer;
 				}
 			}
 
 			i {
-				width:40px;
-				margin-right:26px;
+                width:15px;
+				margin-right:15px;
+                text-align: center;
+                color:$color4;
 			}
 
 			a{
-				color:$color4;
-				&.active{
+                color:$color3;
+                font-weight: normal;
+				&.active, &:hover{
 					color:$color1;
 					i{
 						color:$color11;
 					}
 				}
-
-				&:hover{
-					color:#212121;
-					i{
-						color:#757575;
-					}
-				}
-			}
-			i{
-				width:15px;
 			}
 
 			// project images
@@ -202,17 +221,15 @@ section#template-main {
 		// button collapse main-nav
 		button#toggle-user-menu{
 			position:absolute;
-			top:$globalPadding;
-			right:-20px;
-			z-index:999;
-			@include border-radius(100%);
-			background-color:$color11;
+			top:0px;
+			right:0px;
 			width:40px;
 			height:40px;
-			box-sizing:border-box;
-			padding:0;
-			font-size:$iconsize;
-			@include single-transition(all,0.3s);
+            background: none;
+            box-shadow: none;
+            color: #000;
+            font-size: 14px;
+            padding:0;
 		}
 	}
 
@@ -237,6 +254,14 @@ body.user-nav-small{
 		aside#user-menu{
 			width:100px;
 			padding:50px 30px;
+
+            .userinfo {
+                .profilePicture {
+                    width:40px;
+                    height:40px;
+                }
+                h4, span{display: none}
+            }
 
 			button#toggle-user-menu{
 				@include rotate(180deg);
@@ -275,7 +300,7 @@ section#account-nav{
 	@include transition(0.3s);
 	position:absolute;
 	top:35px;
-	right:78px;
+	right:35px;
 	width:252px;
 	background-color:$color8;
 	z-index:3;
@@ -332,16 +357,30 @@ body.account-nav-visible{
 // pagina specifieke styling
 //=============================================================================================
 
-$globalPageHeaderHeight: 140px;
+$globalPageHeaderHeight: 90px;
 $globalPageLeftWidth: 350px;
-$globalPageRightWidth: 398px;
+$globalPageRightWidth: 350px;
 
 header#page-header, aside#page-left, aside#page-right, section#page-content  {
 	@extend .absoluteFill;
 	@include box-sizing();
 	padding:$globalPadding/2 $globalPadding;
 
-	h4{ font-weight: bolder; font-size:22px; font-weight:600; line-height:48px; margin:0; color:$color10; }
+	h4, h5{
+        font-family:$font2;
+        font-size:22px;
+        line-height:48px;
+        margin:0;
+        color:$color10;
+        a{color:$color10}
+        i{
+            font-size: 10px;
+            top: -1px;
+            display: inline-block;
+            position: relative;
+        }
+    }
+    h5 {font-size:18px; color:$color2;}
 	ul{margin: 30px 0;}
 }
 
@@ -352,11 +391,12 @@ header#page-header {
 	height:$globalPageHeaderHeight;
 	z-index: 2;
 	overflow: visible;
-	padding:50px 80px;
+    padding:10px $globalPadding;
 
 	button{
 		float:right;
 		background-color:$color11;
+        margin:13px 5px;
 		i{
 			font-size:$fontsize1;
 			margin-left:20px;
@@ -364,9 +404,7 @@ header#page-header {
 	}
 
 	nav#submenu {
-		position:absolute;
-		bottom: -1px;
-		left: 80px;
+		position:relative;
 		ul{margin:0;}
 		li{
 			display: inline-block;
@@ -376,8 +414,8 @@ header#page-header {
 			padding:0;
 			a{
 				color:$color3;;
-				padding-bottom:10px;
-				font-size:$fontsize3;
+				//padding-bottom:10px;
+				font-size:$fontsize2;
 				display: block;
 				height: 28px;
 
@@ -389,7 +427,6 @@ header#page-header {
 
     &.has-image{
         img{float:left; margin-right:30px;}
-        nav#submenu {left:220px}
     }
 }
 
@@ -400,9 +437,10 @@ aside#page-left, aside#page-right {
 	z-index: 1;
 	@include single-transition(transform, 0.3s);
 	font-size:$fontsize3;
+    padding:$viewSliderPadding/2 $viewSliderPadding;
 
 	header.picture {
-		@include ignoreGlobalPadding(1,1,0,1);
+        @include ignoreGlobalPadding(1,1,0,1,0, $viewSliderPadding);
 		background-position: 50%;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -435,6 +473,12 @@ aside#page-left, aside#page-right {
 		}
 	}
 
+    button.close{
+        position: absolute;
+        top:0;
+        left:0;
+    }
+
 	.expertise{
 		h5{
 			font-size:$fontsize3;
@@ -446,8 +490,14 @@ aside#page-left, aside#page-right {
 	}
 
 	hr{
-		color:#e0e0e0;
+		background-color:#ddd;
+        margin:25px 0;
 	}
+
+    i{
+        float:left;
+        margin-right:20px;
+    }
 }
 
 aside#page-left {
@@ -475,13 +525,11 @@ section#page-content {
 	}
 
 	header.overview {
-		@include ignoreGlobalPadding(1,1,0,1);
 		box-sizing: border-box;
-		padding:0 80px;
 		border-bottom:1px solid #e0e0e0;
 		@include clearfix();
-		height:98px;
-		line-height: 98px;
+		height:60px;
+		line-height: 45px;
 
 		.count {
 			font-size:$fontsize3;
@@ -518,7 +566,7 @@ section#page-content {
 	}
 
 	section.overview.tiles {
-		padding:$globalPadding 80px;
+		padding:$globalPadding $globalPadding/2;
 		//text-align: center;
 		.tile {
 			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
@@ -527,7 +575,7 @@ section#page-content {
 			display: inline-block;
 			width:300px;
 			height:320px;
-			margin:0 $globalPadding $globalPadding 0;
+            margin:0 $globalPadding/2 $globalPadding $globalPadding/2;
 			padding:0;
 			vertical-align: top;
 			font-size: $fontsize2;
@@ -538,7 +586,6 @@ section#page-content {
 				max-width: 100%;
 				@include border-radius(3px);
 			}
-
 			.info{
 				background: #fafafa;
 				position:absolute;
@@ -556,11 +603,14 @@ section#page-content {
 					height:42px;
 					line-height:24px;
 				}
-				.owner{
-					color:$color2;
-					font-size:$fontsize3;
-					margin-top:10px;
-				}
+                .owner {
+                    width:70px;
+                    height:70px;
+                    position: absolute;
+                    right: $globalPadding/2;
+                    top:-40px;
+                    margin:0;
+                }
 
 				.status{
 					margin-top:10px;
@@ -582,23 +632,23 @@ section#page-content {
 	}
 
 	section.overview.list {
-		@include ignoreGlobalPadding();
-		padding:0;
 
         h3 {margin:20px 0 10px 0; margin-bottom:-20px; padding:10px $globalPadding 10px $globalPadding;}
 		h5 {margin: 5px 0; padding:10px $globalPadding 10px $globalPadding;}
 
 		table {
 			width:100%;
+            border-collapse: collapse;
+            border:0;
 			td,th {
 				padding:10px 25px;
 				text-align: left;
 				border-bottom:1px solid #e0e0e0;
                 &:first-child{
-                    padding-left:50px;
+                    padding-left:0px;
                 }
                 &:last-child{
-                    padding-right:50px;
+                    padding-right:0px;
                     text-align: right;
                 }
 			}
@@ -721,7 +771,7 @@ section#page.login {
 		@include centerElement('horizontal');
 		top:275px;
 		@include box-sizing();
-		padding:0 $globalPadding;
+        padding:0 $viewSliderPadding;
 		margin-top:-18px;
 		width:$loginWidth;
 
@@ -967,7 +1017,7 @@ section#page.profile {
 		h4{
 			font-size:$fontsize5;
 			color:$color2;
-			margin-top:10px;
+			margin-top:25px;
 		}
 
 		h5{
@@ -976,10 +1026,7 @@ section#page.profile {
 			line-height:24px;
 			font-weight: normal;
 		}
-		i{
-			float:left;
-			margin-right:20px;
-		}
+
 		h6{
 			margin:0 0 20px 0;
 			font-size:$fontsize3;
@@ -1025,6 +1072,7 @@ section#page.project-matching {
 
 	aside#page-left{
 		padding:20px;
+
 		.profilePicture {
 			float:left;
 		}
@@ -1041,24 +1089,17 @@ section#page.project-matching {
 			margin:10px 0 20px 0;
 			font-size:$fontsize1;
 		}
-
-		button{
-			float:right;
-			background-color:$color12;
-			i{
-				margin-left:10px;
-			}
-		}
 	}
 
 	section#page-content {
-
+        $page-header-height: 70px;
+        padding-top:$page-header-height+50px;
         header#profile-select{
 			position:absolute;
 			left:0;
 			top:0;
 			right:0;
-			height:70px;
+            height:$page-header-height;
 			padding:20px;
 			@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
 
@@ -1124,13 +1165,13 @@ section#page.project-matching {
                     font-family: $font1;
                     font-weight: normal;
                     text-align: left;
-                    strong{font-weight: bold}
+                    strong{font-family: $font2;}
                 }
             }
 		}
 
 		section.overview{
-			top:80px;
+			//top:80px;
 
 			h3{
 				font-size:$fontsize4;
@@ -1293,9 +1334,6 @@ section#page.references {
 //=============================================================================================
 
 section#page.projects {
-
-	// add project popup
-
 
 }
 

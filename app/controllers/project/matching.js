@@ -47,7 +47,28 @@ var ProjectMatchingController = Ember.Controller.extend({
         selectMatchingProfile: function(id){
             var profile = this.store.find('demandprofile', id).then(function(profile){
                 this.set('selectedProfile', profile);
-                if(!profile.get('matches')) this.send('calculateMatches', profile);
+
+                var widgets = profile.get('profileElements')
+                console.log(widgets.get('model'));
+                if(widgets.get('model'))widgets = widgets.get('model')
+
+                $.each(widgets, function(i, widget){
+
+                    if(widget) {
+                    $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + widget.URI).then(function(isisWidget){
+                        //console.log(widget);
+                        Ember.set(widget, 'weight', isisWidget.weight);
+                        profile.set('profileElements', Ember.ArrayController.create({
+                            model:widgets,
+                            sortProperties: ['weight'],
+                            sortAscending: true
+                        }))
+                        profile.set('profileElements', profile.get('profileElements').get('model'))
+                    });
+                    }
+                })
+
+                if(!profile.get('profileComparisons')) this.send('calculateMatches', profile);
             }.bind(this))
         },
 
@@ -67,16 +88,17 @@ var ProjectMatchingController = Ember.Controller.extend({
                         $.each(matches, function(i, match){
                             if(match) {
                                 match.collect().then(function(match){
-                                    match.contactName = match.proposedPerson.title;
+                                    match.proposedPersonName = match.proposedPerson.title;
                                     _this.initMatchInfo(match);
                                     filteredMatches.pushObject(match);
                                 })
                             }
                         });
 
-                        console.log(filteredMatches);
-                        profile.set('matches', filteredMatches)
+                        profile.set('profileComparisons', filteredMatches)
                     });
+
+                    _this.model.reload();
                 });
             });
         },
@@ -89,11 +111,12 @@ var ProjectMatchingController = Ember.Controller.extend({
         },
 
         removeCandidate: function(candidate){
+            var profile = this.get('selectedProfile');
             var candidates = this.get('selectedProfile.candidates');
             var demand = this.get('model');
             candidate.deleteMatch.invoke({confirmDelete:true}).then(function(){
-                demand.reload();
-                profile.reload();
+                candidates.removeObject(candidate);
+                //demand.reload();
             });
         },
 
@@ -105,6 +128,15 @@ var ProjectMatchingController = Ember.Controller.extend({
                 profile.reload();
             });
         },
+
+        updateWidgetWeights:function(){
+            var profile = this.get('selectedProfile');
+            var widgets = profile.get('profileElements');
+
+
+
+            console.log(widgets);
+        },
     },
 
     initMatchInfo: function(match){
@@ -113,7 +145,7 @@ var ProjectMatchingController = Ember.Controller.extend({
             if(picture[2]) Ember.set(match, 'profilePicture', 'data:image/png;base64,'+picture[2]);
             Ember.set(match, 'roles', person.roles);
         });
-    }
+    },
 });
 
 export default ProjectMatchingController;

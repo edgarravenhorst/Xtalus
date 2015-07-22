@@ -72,6 +72,29 @@ var ApplicationRoute = Ember.Route.extend({
             $ISIS.auth.logout();
             this.transitionTo('login');
         },
+
+        createPersonalContact: function(id){
+            var self = this;
+            this.store.find('person', id).then(function(person){
+                var ISISdemand = person.get('isisObj');
+                ISISdemand.then(function(profileObj){
+                    if (!profileObj.addAsPersonalContact) {
+                        alert(profileObj.firstName + ' is al een connectie');
+                        return
+                    }
+                    profileObj.addAsPersonalContact.invoke().then(function(){
+                        self.controller.model.get('activePerson').content.reload()
+                        alert(profileObj.firstName + ' is toegevoegd aan uw connecties');
+                    });
+                })
+            })
+
+        },
+
+        deletePersonalContact: function(){
+
+        },
+
     }
 });
 
