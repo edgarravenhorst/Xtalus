@@ -33,42 +33,40 @@ var ProjectMatchingController = Ember.Controller.extend({
         },
 
         saveWidget:function(element, params){
-            console.log(this.get('selectedProfile'), params)
+            console.log(element, params)
             var profile = this.get('selectedProfile');
+            var _this = this;
 
             profile.get('isisObj').then(function(isisProfile){
-                console.log(isisProfile, element.action);
+                //console.log(isisProfile, element.action);
                 isisProfile[element.action].invoke(params).then(function(result){
-                    console.log(result);
+                    profile.reload();
+
+                    _this.send('calculateMatches')
                 })
             })
+        },
+
+        updateWidget:function(element){
+            console.log('widget updated')
+            this.send('calculateMatches');
+            //this.get('selectedProfile').reload();
+            this.get('selectedProfile').reload();
+        },
+
+        removeWidget:function(element){
+            console.log('widget removed')
+            console.log(this.get('selectedProfile').get('hasDirtyAttributes'))
+            //this.get('selectedProfile').get('profileElements').removeObject(element);
+            this.get('selectedProfile').reload();
+
+            this.send('calculateMatches');
         },
 
         selectMatchingProfile: function(id){
             var profile = this.store.find('demandprofile', id).then(function(profile){
                 this.set('selectedProfile', profile);
-
-                var widgets = profile.get('profileElements')
-                console.log(widgets.get('model'));
-                if(widgets.get('model'))widgets = widgets.get('model')
-
-                $.each(widgets, function(i, widget){
-
-                    if(widget) {
-                    $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + widget.URI).then(function(isisWidget){
-                        //console.log(widget);
-                        Ember.set(widget, 'weight', isisWidget.weight);
-                        profile.set('profileElements', Ember.ArrayController.create({
-                            model:widgets,
-                            sortProperties: ['weight'],
-                            sortAscending: true
-                        }))
-                        profile.set('profileElements', profile.get('profileElements').get('model'))
-                    });
-                    }
-                })
-
-                if(!profile.get('profileComparisons')) this.send('calculateMatches', profile);
+                this.send('calculateMatches');
             }.bind(this))
         },
 
@@ -76,7 +74,8 @@ var ProjectMatchingController = Ember.Controller.extend({
             var profile = profile || this.get('selectedProfile');
             var _this = this;
             profile.get('isisObj').then(function(profileObj){
-                profileObj.updateSupplyProfileComparisons.invoke().then(function(){
+                profileObj.updateSupplyProfileComparisons.invoke({}, false).then(function(data){
+
                     profileObj.collectSupplyProfileComparisons.getValues().then(function(matches) {
                         var a_promises = [];
                         var filteredMatches = Ember.ArrayController.create({
@@ -97,15 +96,14 @@ var ProjectMatchingController = Ember.Controller.extend({
 
                         profile.set('profileComparisons', filteredMatches)
                     });
-
-                    _this.model.reload();
                 });
             });
         },
 
         saveCandidate: function(candidate){
             var profile = this.get('selectedProfile');
-            candidate.SaveMatch.invoke().then(function(){
+            console.log(candidate);
+            candidate.SaveMatch.invoke({}, false).then(function(){
                 profile.reload();
             });
         },
@@ -130,12 +128,24 @@ var ProjectMatchingController = Ember.Controller.extend({
         },
 
         updateWidgetWeights:function(){
+            var _this = this;
             var profile = this.get('selectedProfile');
-            var widgets = profile.get('profileElements');
+            var widgets = profile.get('widgets');
+            var totalWeight = 100;
+            var divider = 4;
 
+            profile.set('profileComparisons', [])
 
+            var a_promises = [];
+            $.each(widgets, function(i, widget){
+                widget.weight = totalWeight/divider + totalWeight/2
+                totalWeight -= widget.weight - totalWeight/2;
+                a_promises.push(widget.updateWeight.invoke({integer:widget.weight}));
+            })
 
-            console.log(widgets);
+            return Ember.RSVP.all(a_promises).then(function(widgets){
+                _this.send('calculateMatches')
+            });
         },
     },
 

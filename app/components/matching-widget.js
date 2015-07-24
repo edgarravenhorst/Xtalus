@@ -33,6 +33,10 @@ export default Ember.Component.extend({
 
             params.weight = 10
 
+            if(this.get('isPostal')){ params.postcode = this.data.postcode }
+            if(this.get('isAge')){ params.age = this.data.numericValue }
+            if(this.get('isHourlyRate')){ params.hourlyRate = this.data.numericValue }
+
             if(this.get('isTimePeriod')){
                 params.startDate = this.data.startDate;
                 params.endDate = this.data.endDate;
@@ -42,28 +46,73 @@ export default Ember.Component.extend({
                 $.each(this.get('role_chkbox.values'), function(i, obj){
                     params[obj.name] = obj.value;
                 });
-                console.log(params);
             }
 
-            this.sendAction('action', this.get('data'), params);
+            if(this.get('isEducation')){
+                params.dropDownValue = this.data.studyValue.value;
+            }
+            console.log(params);
+            this.sendAction('onsave', this.get('data'), params);
             return false
-        }
+        },
+
+        updateWidget:function() {
+            var _this = this;
+            var params = {};
+            params.weight = this.data.weight;
+
+            var promise;
+
+            //not working!
+            if(this.get('isPostal')){
+                params.postcode = this.data.postcode
+                promise = this.data.updateLocation.invoke(params, false)
+            }
+
+            //works
+            if(this.get('isAge')){
+                params.age = this.data.numericValue
+                promise = this.data.updateAge.invoke(params)
+            }
+
+            if(this.get('isHourlyRate')){
+                params.hourlyRate = this.data.numericValue
+                promise = this.data.updateHourlyRate.invoke(params)
+            }
+
+            promise.then(function(){
+                _this.sendAction('onupdate', _this.get('data'));
+            })
+        },
+
+        removeWidget:function(){
+            var _this = this;
+
+            this.data.deleteProfileElement.invoke({confirmDelete:true}).then(function(){
+                _this.sendAction('onremove', _this.get('data'));
+            });
+        },
     },
 
     isPostal: function() {
         return this.get('data.description') === 'LOCATION_ELEMENT';
     }.property('data.description'),
 
+    isAge: function() {
+        return this.get('data.description') === 'AGE_ELEMENT';
+    }.property('data.description'),
+
+    //doing
+    isHourlyRate: function() {
+        return this.get('data.description') === 'HOURLY_RATE_ELEMENT';
+    }.property('data.description'),
+
+    //TODO!!!!
+
     isRole: function() {
         if (this.get('data.description') === 'REQUIRED_ROLE_ELEMENT'){
-
-            this.role_chkbox = {values:[]};
+            this.data.roleValues = [];
             this.data.roles = [{name:'student', value:true}, {name:'principal', value:true}, {name:'professional', value:true}]
-            var params = {};
-            $.each(this.data.roles, function(i, obj){
-                params[obj.name] = false;
-            });
-            this.set('params', params)
             return true;
         }
 
@@ -83,23 +132,27 @@ export default Ember.Component.extend({
     }.property('data.description'),
 
     isWeekdays: function() {
-        return this.get('data.description') === 'WEEKDAY_TAGS_ELEMENT';
-    }.property('data.description'),
+        if (this.get('data.description') === 'WEEKDAY_TAGS_ELEMENT'){
+            this.data.weekdaysValues = [];
+            this.data.weekdays = [{name:'maandag', value:true}, {name:'dinsdag', value:true}, {name:'woensdag', value:true}, {name:'donderdag', value:true}, {name:'vrijdag', value:true}]
+            return true;
+        }
 
-    isHourlyRate: function() {
-        return this.get('data.description') === 'HOURLY_RATE_ELEMENT';
+        return false;
     }.property('data.description'),
-
-    isAge: function() {
-        return this.get('data.description') === 'AGE_ELEMENT';
-    }.property('data.widgetType'),
 
     isTimePeriod: function() {
         return (this.get('data.description') === 'TIME_PERIOD_ELEMENT');
     }.property('data.description'),
 
     isEducation: function() {
-        return this.get('data.description') === 'EDUCATION_LEVEL';
+        if (this.get('data.description') === 'EDUCATION_LEVEL'){
+            this.role_chkbox = {values:[]};
+            this.data.study = [{name:'MBO', value:"mbo"}, {name:'HBO', value:"hbo"}, {name:'WO', value:"wo"}]
+
+            return true;
+        }
+        return false;
     }.property('data.description'),
 
 

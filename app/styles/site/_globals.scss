@@ -3,95 +3,99 @@ Basic HTML element styling
 */
 
 html, body {
-	background-color: $body-color;
-	font-family: $font1;
-	font-size: 13px;
-	color: $text-color;
-	line-height: 140%;
-	margin: 0;
-	padding: 0;
-	*{
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
+    background-color: $body-color;
+    font-family: $font1;
+    font-size: 13px;
+    color: $text-color;
+    line-height: 140%;
+    margin: 0;
+    padding: 0;
+    *{
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
 
 ul{
-	list-style:none;
-	margin:0;
-	padding:0;
+    list-style:none;
+    margin:0;
+    padding:0;
 
-	li{
-		padding:7px 0;
-	}
+    li{
+        padding:7px 0;
+    }
 }
 
 input, textarea, button, select {
-	box-sizing: border-box;
-	padding:10px;
-	@include border-radius(0);
-	border:1px solid #ddd;
-	margin:5px 0px;
-	outline:none;
+    box-sizing: border-box;
+    padding:10px;
+    @include border-radius(0);
+    border:1px solid #ddd;
+    margin:5px 0px;
+    outline:none;
+}
+
+input, select {
+    height:40px;
 }
 
 button{
-	background: $color2;
-	border:0;
-	@include border-radius(3px);
-	padding:14px 21px;
-	color:#fff;
-	text-transform: uppercase;
-	margin:0;
-	font-weight:bold;
-	@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-	cursor:pointer;
-	outline: none;
+    background: $color2;
+    border:0;
+    @include border-radius(3px);
+    padding:14px 21px;
+    color:#fff;
+    text-transform: uppercase;
+    margin:0;
+    font-weight:bold;
+    //@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+    cursor:pointer;
+    outline: none;
 }
 
 a {
-	color:$text-color;
-	text-decoration:none;
-	font-family: $font2;
+    color:$text-color;
+    text-decoration:none;
+    font-family: $font2;
 }
 
 hr {
-	clear:both;
-	height:1px;
-	border:0;
-	background-color:$color6;
-	margin:34px 0;
-	padding:0;
+    clear:both;
+    height:1px;
+    border:0;
+    background-color:$color6;
+    margin:34px 0;
+    padding:0;
 }
 
 form {
-	width:100%;
-	box-sizing: border-box;
-	margin:10px 0;
+    width:100%;
+    box-sizing: border-box;
+    margin:10px 0;
 
-	&:after {
-		content: ' ';
-		display: block;
-		clear: both;
-	}
+    &:after {
+        content: ' ';
+        display: block;
+        clear: both;
+    }
 
-	label{
-		font-weight:bold;
-	}
+    label{
+        font-weight:bold;
+    }
 
-	button{
-		background: $color1;
-		color:#fff;
-	}
+    button{
+        background: $color1;
+        color:#fff;
+    }
 
-	input, textarea, button,  {
-		width:100%;
-		font-size: 14px;
-		outline:none;
-	}
-	select{
-		width:100%;
-	}
+    input, textarea, button,  {
+        width:100%;
+        font-size: 14px;
+        outline:none;
+    }
+    select{
+        width:100%;
+    }
 }
 
 h1 {font-family:$font2; font-size:35px;  font-weight:300; margin:45px 0 20px 0; line-height: 100%; }
@@ -102,9 +106,9 @@ h5 {}
 h6 {}
 
 p{
-	margin:10px 0 20px 0;
-	a{text-decoration:underline;}
-	a:hover{color:$color1;}
+    margin:10px 0 20px 0;
+    a{text-decoration:underline;}
+    a:hover{color:$color1;}
 }
 
 /*
@@ -112,45 +116,45 @@ Global used Classes
 */
 
 #edit-btn {
-	position: absolute;
-	right:30px;
-	top:30px;
-	font-size: 18px;
-	cursor: pointer;
-	&:hover {
-		@extend .fa-spin;
-	}
+    position: absolute;
+    right:30px;
+    top:30px;
+    font-size: 18px;
+    cursor: pointer;
+    &:hover {
+        @extend .fa-spin;
+    }
 }
 
 #back-btn {
-	position: absolute;
-	left:30px;
-	top:30px;
-	font-size: 18px;
-	cursor: pointer;
+    position: absolute;
+    left:30px;
+    top:30px;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .absoluteFill {
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	overflow: hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow: hidden;
 }
 
 .profilePicture {
-	background-color: #ccc;
+    background-color: #ccc;
     background-image:url('../assets/images/profile-img-placeholder.png');
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: inline-block;
-	@include border-radius(100%);
-	vertical-align: middle;
-	min-width:40px;
-	min-height: 40px;
-	margin:5px 10px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    @include border-radius(100%);
+    vertical-align: middle;
+    min-width:40px;
+    min-height: 40px;
+    margin:5px 10px;
 }
 
 .preloader {
@@ -159,55 +163,65 @@ Global used Classes
 
 .widgetContainer li{padding:0}
 .matching-widget {
-	@include border-radius(3px);
-	//@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
-	@include single-transition(height, 0.3s);
-	margin-bottom:10px;
+    @include border-radius(3px);
+    //@include single-box-shadow(0px, 1px, 4px, 0px, rgba(0,0,0,0.25));
+    @include single-transition(height, 0.3s);
+    margin-bottom:10px;
     background: #eee;
     border:1px solid #dedede;
 
-	label{
-		display:block;
-		width: 100%;
-		padding:20px;
-		box-sizing: border-box;
-		cursor: pointer;
-		i{
-			float:right;
-		}
-	}
+    .alert{
+        color:#ff0000;
+    }
 
-	.inner {
-		@include single-transition(opacity, 0.3s);
-		margin-bottom:20px;
-		box-sizing:border-box;
-		width:100%;
-		padding:0 20px 20px 20px;
-		display:block;
+    label{
+        font-family:$font2;
+        display:block;
+        width: 100%;
+        padding:20px;
+        box-sizing: border-box;
+        cursor: pointer;
+        i{
+            float:right;
+        }
+    }
 
-		cursor:pointer
+    button {
+        background:none;
+        float:right;
+        width:auto;
+        padding:0;
+        margin:10px 4px;
+        border:0;
+        color:$color9;
+        i{margin-right:5px !important; margin-top: 2px !important;}
+    }
 
-			form{
-				margin:0;
-			}
+    .inner {
+        @include single-transition(opacity, 0.3s);
+        margin-bottom:20px;
+        box-sizing:border-box;
+        width:100%;
+        padding:0 20px 20px 20px;
+        display:block;
+        font-size:14px;
+        cursor:pointer;
 
-			i{
-				float:right;
-			}
+        form{
+            margin:0;
+        }
 
-			.config{
-				// display:none;
-				}
+    }
 
-	}
+    &.collapsed {
+        max-height:55px;
+        overflow: hidden;
+        .inner{
+            display:none;
+        }
+    }
 
-	&.collapsed {
-		max-height:55px;
-		overflow: hidden;
-		.inner{
-			display:none;
-		}
-	}
+
 }
 
 .matchingProfile {
