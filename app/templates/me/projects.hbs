@@ -95,6 +95,7 @@
         <form method="post" {{action "createProject" on="submit"}}>
             {{input value=newProjectParams.title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
             {{textarea value=newProjectParams.summary placeholder="Samenvatting" class="txt-area"}}<br>
+			{{textarea value=newProjectParams.story placeholder="Verhaal" class="txt-area"}}<br>
             <button type="submit" class="btn add-project-btn">Project toevoegen</button>
             <button class="btn close" {{action "closePopup" 'new-project'}}>Annuleren</button>
         </form>

@@ -64,7 +64,7 @@
 
             <div {{bind-attr class="errors.birthday:error :cols-2"}}>
                 <label><i class="fa fa-birthday-cake"></i> Geboortedatum <span class="required">*</span><br>
-					{{date-picker value=formdata.birthday date=mydate valueFormat='YYYY-MM-DD'}}
+					{{date-picker value=formdata.birthday date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
                 </label>
 				 <span>{{errors.birthday}}</span>
             </div>
@@ -110,7 +110,9 @@
 				<span>{{errors.entity}}</span>
             </div>
 
-            <button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
+
+			<button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
+			<!-- {{#link-to 'login'}}Annuleren{{/link-to}} -->
         </form>
 
     </section>

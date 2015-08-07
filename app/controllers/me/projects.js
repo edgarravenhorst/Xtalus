@@ -27,7 +27,7 @@ var MeProjectsController = Ember.Controller.extend({
                 isisObj.createPersonsDemand.invoke({
                     demandDescription: params.title,
                     demandSummary: params.summary,
-                    demandStory: params.summary
+                    demandStory: params.story
                 }).then(function(){
                     //self.send('refreshDemands');
                     self.send('closePopup', 'new-project');

@@ -20,7 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
-    "ember-cli": "0.2.7",
+    "ember-cli": "1.13.7",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-compass-compiler": "0.0.18",
@@ -33,6 +33,7 @@
     "ember-cli-md5": "^0.1.0",
     "ember-cli-qunit": "0.3.10",
     "ember-cli-uglify": "1.0.1",
+    "ember-cli-windows-addon": "^1.2.2",
     "ember-data": "1.0.0-beta.16.1",
     "ember-export-application-global": "^1.0.2",
     "ember-multiselect-checkboxes": "^0.3.1",

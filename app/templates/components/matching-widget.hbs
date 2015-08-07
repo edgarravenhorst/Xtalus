@@ -57,9 +57,9 @@
 
         {{#if isTimePeriod}}
         Start:
-        {{date-picker value=data.startDate date=mydate valueFormat='YYYY-MM-DD'}}
+        {{date-picker value=data.startDate date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
         Eind:
-        {{date-picker value=data.endDate date=mydate valueFormat='YYYY-MM-DD'}}
+        {{date-picker value=data.endDate date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
         {{/if}}
 
 
