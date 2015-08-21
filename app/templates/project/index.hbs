@@ -37,17 +37,17 @@
 
 		<section id='edit' class='slide-1'>
 			<i id="edit-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-cog"></i>
-			<form method="post" {{action "updateProject" on="submit"}}>
+			<form method="post" {{action "updateDemand" on="submit"}}>
 				Afbeelding:
 
 				[image upload hier]
 				<br><br>
-				Naam:
-				{{input value=model.name type="text" placeholder="Voornaam" class="txt-field"}}<br>
+				Beschrijving:
+				{{textarea value=model.description placeholder="Beschrijving" rows="6" class="txt-field"}}<br>
 				Samenvatting
-				{{textarea value=model.summary placeholder="Tussenvoegsel" class="txt-field"}}<br>
+				{{textarea value=model.summary placeholder="Samenvatting" rows="8" class="txt-field"}}<br>
 				Verhaal
-				{{textarea value=model.story placeholder="Achternaam" class="txt-field"}}<br>
+				{{textarea value=model.story placeholder="Verhaal" rows="8" class="txt-field"}}<br>
 
 				<h4>Start en eind datum</h4>
 				Van:

@@ -19,8 +19,8 @@
 			<hr>
 			<section id="availability">
 				<i class="fa fa-calendar"></i> <h6>Beschikbaarheid</h6>
-				<p>1 april t/m 30 maart<br>
-				15 uur per week</p>
+				<p><br>
+				</p>
 			</section>
 		</section>
 
@@ -49,9 +49,9 @@
 
 				<h4>Beschikbaarheid</h4>
 				Van:
-				{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
+				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
 				tot:
-				{{date-picker value=params.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
+				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
 
 				<button type="submit" class="btn add-project-btn">Wijzigen <i class="fa fa-pencil"></i></button>
 			</form>
